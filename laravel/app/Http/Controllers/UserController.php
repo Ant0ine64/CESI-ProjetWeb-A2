@@ -11,25 +11,81 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    //
+    //CREATE USER
     function register(Request $request){
+        //request decomposition
+        $input = $request->all();
+
+        foreach ($input as $value) {
+            if($value == null || $value == "" || $value == 0) {
+                return response('Error invalid input value', 400)
+                    ->header('Content-Type', 'text/plain');
+            }
+        }
+        print_r($input);
+        print Type::where('type', $input['type']);
+        // find the ids of those fields
+        $id_type = json_decode(Type::where('type', $input['type']), true)['id'];
+        $id_center = json_decode(Center::where('city', $input['city']), true)['id'];
+
+        $user = User::insert([
+            'firstname' => $input['firstname'],
+            'lastname' => $input['lastname'],
+            'id_type' => $id_type,
+            'id_center' => $id_center,
+            'login' => $input['login'],
+            'password_hash' => Hash::make($input['password'])
+        ]);
+
+       return response('Successfully created user : '.$user, 200)
+                  ->header('Content-Type', 'text/plain');
+    }
+
+    //READ
+    function readAll() {
+        return User::all();
+    }
+
+    function readByLogin(Request $request) {
+        $login = $request->input('login');
+        return json_decode(User::where('login', $login), true);
+    }
+
+
+    //UPDATE
+    function updateByLogin(Request $request) {
+        $login = $request->input('login');
+        // find the ids of those fields
         $id_type = json_decode(Type::where('type', $request->input('type'))->first(), true)['id'];
         $id_center = json_decode(Center::where('city', $request->input('city'))->first(), true)['id'];
 
-        echo 'Center :'.$id_center .' et type : '.$id_type.'all :';
-        print_r($request->all());
-
-        User::insert("INSERT INTO `user` (firstname, lastname, id_type, id_center, login, password_hash)
-            VALUES (?, ?, ?, ?, ?, ?)", [
-            $request->input(firstname),
-            $request->input(lastname),
-            $id_type,
-            $id_center,
-            $request->input(login),
-            Hash::make($request.password)
+        User::where('login', $login)->update([
+            'firstname' => $request->input("firstname"),
+            'lastname' => $request->input("lastname"),
+            'id_type' => $id_type,
+            'id_center' => $id_center
         ]);
 
-       return response('Success', 200)
-                  ->header('Content-Type', 'text/plain');
+
+        return response('Successfully updated user : '.$login, 200)
+            ->header('Content-Type', 'text/plain');
+    }
+
+    function updatePasswordByLogin(Request $request) {
+        $login = $request->input('login');
+
+        User::where('login', $login)->update([
+            'password_hash' => Hash::make($request->input("password"))
+        ]);
+    }
+
+
+    //DELETE
+    function deleteByLogin(Request $request) {
+        $login = $request->input('login');
+        User::where('login', $login)->delete();
+
+        return response('Successfully deleted user : '.$login, 200)
+            ->header('Content-Type', 'text/plain');
     }
 }
