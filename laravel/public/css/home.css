@@ -6,11 +6,6 @@ body{
     background: linear-gradient(to bottom right,orange, white);
 }
 
-#logo{
-    max-width: 10%;
-    height: auto;
-}
-
 #ask_form_div{
     line-height: 550px;
     text-align:center; 

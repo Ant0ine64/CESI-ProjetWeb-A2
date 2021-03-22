@@ -26,9 +26,9 @@ Route::get('ask_account', function () {
     return view('ask_account');
 });
 
-Route::get('register', function()
+Route::get('search', function()
 {
-    return view('register');
+    return view('search');
 });
 
 Route::get('register', function(){

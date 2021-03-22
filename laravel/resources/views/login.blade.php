@@ -7,6 +7,7 @@
     </head>
     <body>
             <div id="log_form_div">
+                <img src="img/cesinkdin.png" alt="Logo" id="logo">
                 <form id="login_form" method="POST">
                     @csrf
                     <label for="email">Email:</label><br>

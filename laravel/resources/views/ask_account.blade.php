@@ -7,6 +7,7 @@
     </head>
     <body>
             <div id="ask_form_div">
+                <img src="img/cesinkdin.png" alt="Logo" id="logo">
                 <form id="ask_acc_form" method="POST">
                     @csrf
                     <label for="email">Email:</label><br>
