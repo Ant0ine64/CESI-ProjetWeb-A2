@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -23,4 +25,18 @@ Route::prefix('register')-> group(function() {
     return view('register');
     });
     Route::post('submit', [UserController::class, 'register'])->name('submit');
+});
+
+Route::prefix('registerCompany')-> group(function() {
+    Route::get('/', function () {
+        return view('registerCompany');
+    });
+    Route::post('submit', [CompanyController::class, 'registerCompany'])->name('submit');
+});
+
+Route::prefix('registerOffer')-> group(function() {
+    Route::get('/', function () {
+        return view('registerOffer');
+    });
+    Route::post('submit', [OfferController::class, 'registerOffer'])->name('submit');
 });
