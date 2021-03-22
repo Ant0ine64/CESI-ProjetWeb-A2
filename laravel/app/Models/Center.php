@@ -14,4 +14,6 @@ class Center extends Model
         'city',
         'address'
     ];
+
+    protected $table = 'center';
 }
