@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 
 class CompanyController extends Controller
 {
+    //Create
     function registerCompany(Request $request){
 
         $name = $request->input("name");
@@ -39,10 +40,23 @@ class CompanyController extends Controller
 
     }
 
+    //Read
     public static function tryGettingCompany($companyId) {
         return Company::where('id', $companyId)->get();
     }
 
+
+    //Update
+
+
+
+    //Delete
+    function deleteCompanyById(Request $request) {
+        $companyId = $request->input('idCompany');
+        Company::where('id', $companyId)->delete();
+        return response('Successfully deleted company : ' .$companyId, 200)
+            ->header('Content-Type', 'text/plain');
+    }
 
 }
 
