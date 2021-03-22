@@ -7,12 +7,12 @@
 <body>
     <form action="{{route('submit')}}" method="post">
         @csrf
-        <input type="text" name="Prénom" id="firstname"><br>
-        <input type="text" name="Nom" id="lastname"><br>
-        <input type="text" name="identifiant" id="login"><br>
-        <input type="text" name="Type" id="type"><br>
-        <input type="text" name="Center" id="city"><br>
-        <input type="password" name="Password" id="password"><br>
+        <input type="text" name="firstname" id="firstname"><br>
+        <input type="text" name="lastname" id="lastname"><br>
+        <input type="text" name="login" id="login"><br>
+        <input type="text" name="type" id="type"><br>
+        <input type="text" name="city" id="city"><br>
+        <input type="password" name="password" id="password"><br>
         <input type="submit" value="Register">
     </form>
 </body>

@@ -15,7 +15,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::get('login', function () {
@@ -29,6 +29,15 @@ Route::get('ask_account', function () {
 Route::get('register', function()
 {
     return view('register');
+});
+
+Route::get('register', function(){
+    return view('register');
+});
+
+Route::get('home', function()
+{
+    return view('home');
 });
 
 Route::prefix('register')-> group(function() {

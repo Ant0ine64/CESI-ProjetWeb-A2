@@ -6,20 +6,8 @@ body{
     background: linear-gradient(to bottom right,orange, white);
 }
 
-#log_form_div{
-    line-height: 400px;
-    text-align:center; 
-    vertical-align:middle;
-}
-
-#login_form{
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 14px; 
-}
-
 #ask_form_div{
-    line-height: 400px;
+    line-height: 550px;
     text-align:center; 
     vertical-align:middle;
 }
