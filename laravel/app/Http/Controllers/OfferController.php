@@ -48,4 +48,61 @@ class OfferController extends Controller
                 ->header('Content-Type', 'text/plain');
 
     }
+
+    //Read
+
+    //Update
+
+    function updateOffer(Request $request){
+
+        $idOffer = $request->input("idOffer");
+        $newIdCompany = $request->input("idCompany");
+        $newTitle = $request->input("title");
+        $newCompetences = $request->input("competences");
+        $newDate = $request->input("date");
+        $newEndDate = $request->input("endDate");
+        $newRemuneration = $request->input("remuneration");
+        $newSlots = $request->input("slots");
+
+        $companyInfos = CompanyController::tryGettingCompany($newIdCompany);
+
+        if($companyInfos == null || $companyInfos->First() == null ||
+            $newTitle == null || $newCompetences == null ||$newDate == null || $newEndDate == null || $newRemuneration == null || $newSlots==null ||
+            !is_numeric($newSlots) || !is_numeric($newRemuneration))
+            return response('Wrong input', 400)
+                ->header('Content-Type', 'text/plain');
+
+
+        $origin = new DateTime($newDate);
+        $offerEndDate = new DateTime($newEndDate);
+        $interval = $origin->diff($offerEndDate);
+
+        $offerInfos = Offer::where('id', $idOffer);
+        if($offerInfos == null)
+            echo "NULL";
+        /*
+              if($offerInfos->update([
+                  'id_company' => $companyInfos->First()->id,
+                  'title' => $newTitle,
+                  'competences' =>  $newCompetences,
+                  'date' =>  $newDate,
+                  'duration' =>  $interval->format('%a'),
+                  'remuneration' =>  $newRemuneration,
+                  'slots' =>  $newSlots
+              ]))
+                  return response('Success', 200)
+                      ->header('Content-Type', 'text/plain');
+              else
+                  return response('Wrong input', 500)
+                      ->header('Content-Type', 'text/plain'); */
+
+    }
+
+    //Delete
+    function deleteOfferById(Request $request) {
+        $offerId = $request->input('idOffer');
+        Offer::where('id', $offerId)->delete();
+        return response('Successfully removed offer : ' . $offerId, 200)
+            ->header('Content-Type', 'text/plain');
+    }
 }
