@@ -26,17 +26,31 @@ Route::prefix('register')-> group(function() {
     });
     Route::post('submit', [UserController::class, 'register'])->name('user.create');
 });
-
+//region Company
 Route::prefix('registerCompany')-> group(function() {
     Route::get('/', function () {
         return view('registerCompany');
     });
     Route::post('submit', [CompanyController::class, 'registerCompany'])->name('company.create');
 });
-
+//endregion Company
+//region Offer
 Route::prefix('registerOffer')-> group(function() {
     Route::get('/', function () {
         return view('registerOffer');
     });
     Route::post('submit', [OfferController::class, 'registerOffer'])->name('offer.create');
 });
+Route::prefix('updateOffer')-> group(function() {
+    Route::get('/', function () {
+        return view('updateOffer');
+    });
+    Route::post('submit', [OfferController::class, 'updateOffer'])->name('submit'); //todo: fix cette route de merde qui redirige vers deleteOfferById lors du submit
+});
+Route::prefix('deleteOffer')-> group(function() {
+    Route::get('/', function () {
+        return view('deleteOffer');
+    });
+    Route::post('submit', [OfferController::class, 'deleteOfferById'])->name('submit');
+});
+//endregion Offer
