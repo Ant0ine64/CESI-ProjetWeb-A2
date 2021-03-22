@@ -24,19 +24,19 @@ Route::prefix('register')-> group(function() {
     Route::get('/', function () {
     return view('register');
     });
-    Route::post('submit', [UserController::class, 'register'])->name('submit');
+    Route::post('submit', [UserController::class, 'register'])->name('user.create');
 });
 
 Route::prefix('registerCompany')-> group(function() {
     Route::get('/', function () {
         return view('registerCompany');
     });
-    Route::post('submit', [CompanyController::class, 'registerCompany'])->name('submit');
+    Route::post('submit', [CompanyController::class, 'registerCompany'])->name('company.create');
 });
 
 Route::prefix('registerOffer')-> group(function() {
     Route::get('/', function () {
         return view('registerOffer');
     });
-    Route::post('submit', [OfferController::class, 'registerOffer'])->name('submit');
+    Route::post('submit', [OfferController::class, 'registerOffer'])->name('offer.create');
 });

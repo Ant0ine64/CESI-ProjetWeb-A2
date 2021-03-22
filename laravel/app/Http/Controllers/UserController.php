@@ -18,15 +18,14 @@ class UserController extends Controller
 
         foreach ($input as $value) {
             if($value == null || $value == "" || $value == 0) {
-                return response('Error invalid input value', 400)
+                return response('Error invalid input value :'.$value, 400)
                     ->header('Content-Type', 'text/plain');
             }
         }
-        print_r($input);
-        print Type::where('type', $input['type']);
+        //print_r(Type::where('type', $input['type']));
         // find the ids of those fields
-        $id_type = json_decode(Type::where('type', $input['type']), true)['id'];
-        $id_center = json_decode(Center::where('city', $input['city']), true)['id'];
+        $id_type = json_decode(Type::where('type', $input['type'])->first(), true)['id'];
+        $id_center = json_decode(Center::where('city', $input['city'])->first(), true)['id'];
 
         $user = User::insert([
             'firstname' => $input['firstname'],
