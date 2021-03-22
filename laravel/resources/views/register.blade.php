@@ -5,7 +5,7 @@
     <title>Register</title>
 </head>
 <body>
-    <form action="{{route('submit')}}" method="post">
+    <form action="{{route('user.create')}}" method="post">
         @csrf
         <input type="text" name="firstname" id="firstname"><br>
         <input type="text" name="lastname" id="lastname"><br>
