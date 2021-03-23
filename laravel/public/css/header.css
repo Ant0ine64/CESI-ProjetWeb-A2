@@ -1,0 +1,62 @@
+a
+{
+    font-size: 220%;
+    color: lightgrey;
+    margin-right: 5%;
+    font-family: Nunito;
+}
+
+img
+{
+    margin-top: 5px;
+    max-width: 50%;
+}
+
+header
+{
+    background-color: dimgrey;
+}
+
+#partLeft
+{
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    margin-right: 25%;
+    float: left;
+}
+
+.part1
+{
+    padding: 4%;
+    padding-top: 3%;
+
+}
+
+.part2
+{
+    padding: 4%;
+    padding-top: 3%;
+
+}
+
+#partRight
+{
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    color: dimgrey;
+    margin-left: 80%;
+    margin-bottom: -30%;
+}
+
+a:link
+{
+    text-decoration:none;
+}
+
+
+a:hover
+{
+    color: orange;
+}
