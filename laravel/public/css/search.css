@@ -4,10 +4,12 @@ html{
 
 body{
     margin: 0;
+    padding: 0;
     background: linear-gradient(to bottom right,orange, white);
 }
 
 header{
+    background-color: dimgray;
     margin: auto;
     z-index: 1;
     position: fixed;
@@ -17,7 +19,6 @@ header{
 
 #main{
     top: 85px;
-    min-height: 100%;
     position: relative;
 }
 
@@ -25,10 +26,107 @@ header{
     text-align: center;
 }
 
-footer{
-    height: ;
-    width: 100%;
-    position: absolute;
-    top : 100%;
+.center{
+    margin-right: auto;
+    margin-left: auto;
 }
 
+footer{
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    font-size: 20px;
+    background-color: dimgrey;
+    text-align: center;
+    font-family: Nunito;
+}
+
+footer a
+{
+    color: lightgrey;
+}
+
+footer p
+{
+    color: lightgrey;
+}
+
+a:link
+{
+    text-decoration:none;
+}
+
+a:hover
+{
+    color: orange;
+}
+
+#adress{
+    margin-top: -40px;
+}
+
+#country{
+    margin-top: -70px;
+}
+
+#links{
+    margin-top: -35px;
+    margin-bottom: -10px;
+}
+
+#header{
+    margin: auto;
+}
+
+header a
+{
+    font-size: 120%;
+    color: lightgrey;
+    margin-right: 5%;
+    font-family: Nunito;
+}
+
+#logo
+{
+    margin-top: 10px;
+    max-width: 25%;
+}
+
+#partLeft
+{
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    margin-right: 25%;
+    margin-bottom: 0%;
+    float: left;
+}
+
+.part1
+{
+    padding: 3%;
+    padding-top: 2%;
+}
+
+.links
+{
+    padding: 10%;
+    padding-top: 8%;
+}
+
+.part2
+{
+    padding: 6%;
+    padding-top: 4%;
+
+}
+
+#partRight
+{
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    color: dimgrey;
+    margin-left: 80%;
+    margin-bottom: -30%;
+}

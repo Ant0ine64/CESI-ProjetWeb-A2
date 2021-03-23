@@ -1,15 +1,15 @@
 <div id="header">
     <div id="partLeft">
-        <div class="part1">
+        <div class="links">
             <a href="home" id="Acceuil">Acceuil</a>
         </div>
-        <div class="part1">
+        <div class="links">
             <a href="search" id="Search">Search</a>
         </div>
-        <div class="part1">
+        <div class="links">
             <a href="gestion" id="Gestion">Gestion</a>
         </div>
-        <div class="part1">
+        <div class="links">
             <a href="#" id="Notifs">Notification</a>
         </div>
     </div>

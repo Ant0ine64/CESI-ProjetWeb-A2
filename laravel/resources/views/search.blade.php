@@ -27,8 +27,8 @@
                 </form>
             </div>  
         </div>
-        <div id="table_div">
-            <table>
+        <div id="table_div"><br>
+            <table class="center">
                 @if(request()->input('filter')=='users')
                     <th>Name</th>
                     <th>Sirname</th>
@@ -50,9 +50,7 @@
         </div>  
     </main>
     <footer>
-        <span>
             @include('footer')
-        </span>
     </footer>
 </body>
 </html>
