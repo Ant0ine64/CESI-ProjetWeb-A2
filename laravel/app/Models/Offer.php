@@ -12,4 +12,6 @@ class Offer extends Model
     use HasFactory;
 
     protected $table = 'offer';
+    protected $guarded = [];
+    public $timestamps = false;
 }
