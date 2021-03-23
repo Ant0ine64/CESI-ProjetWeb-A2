@@ -16,7 +16,6 @@ class CompanyController extends Controller
 {
     //Create
     function registerCompany(Request $request){
-
         $name = $request->input("name");
         $address = $request->input("address");
         $activitySector = $request->input("activitySector");
@@ -37,7 +36,6 @@ class CompanyController extends Controller
         else
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
-
     }
 
     //Read
@@ -48,7 +46,35 @@ class CompanyController extends Controller
 
     //Update
 
+    function updateCompany(Request $request){
+        $idCompany = $request->input("companyId");
+        $newName = $request->input("name");
+        $newAddress = $request->input("address");
+        $newActivitySector = $request->input("activitySector");
+        $newInternsNumber = $request->input("internsNumber");
 
+        if($newName == null || $newAddress == null ||$newActivitySector == null || $newInternsNumber == null || !is_numeric($newInternsNumber))
+            return response('Wrong input', 400)
+                ->header('Content-Type', 'text/plain');
+
+        $companyInfos = Company::where('id', $idCompany);
+        if($companyInfos == null || $companyInfos->First() == null)
+            return response('This company id doesnt exist..', 400)
+                ->header('Content-Type', 'text/plain');
+
+
+        if($companyInfos->First()->update([
+            'name' => $newName,
+            'address' => $newAddress,
+            'activity_sector' =>  $newActivitySector,
+            'interns_number' => $newInternsNumber
+        ]))
+            return response('Succesfully updated company !', 200)
+                ->header('Content-Type', 'text/plain');
+        else
+            return response('Wrong input', 500)
+                ->header('Content-Type', 'text/plain');
+    }
 
     //Delete
     function deleteCompanyById(Request $request) {
