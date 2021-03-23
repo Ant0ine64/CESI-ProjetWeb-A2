@@ -51,6 +51,10 @@ class OfferController extends Controller
 
     //Read
 
+    public static function tryGettingOffer($offerId) {
+        return Offer::where('id', $offerId)->get();
+    }
+
     //Update
 
     function updateOffer(Request $request){
@@ -102,8 +106,11 @@ class OfferController extends Controller
     //Delete
     function deleteOfferById(Request $request) {
         $offerId = $request->input('idOffer');
-        Offer::where('id', $offerId)->delete();
-        return response('Successfully removed offer : ' . $offerId, 200)
-            ->header('Content-Type', 'text/plain');
+        if(Offer::where('id', $offerId)->delete())
+            return response('Successfully removed offer : ' . $offerId, 200)
+                ->header('Content-Type', 'text/plain');
+         else
+             return response('Wrong user input', 400)
+                  ->header('Content-Type', 'text/plain');
     }
 }

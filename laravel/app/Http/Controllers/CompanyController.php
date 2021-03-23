@@ -43,7 +43,6 @@ class CompanyController extends Controller
         return Company::where('id', $companyId)->get();
     }
 
-
     //Update
 
     function updateCompany(Request $request){
@@ -79,9 +78,12 @@ class CompanyController extends Controller
     //Delete
     function deleteCompanyById(Request $request) {
         $companyId = $request->input('idCompany');
-        Company::where('id', $companyId)->delete();
-        return response('Successfully deleted company : ' .$companyId, 200)
-            ->header('Content-Type', 'text/plain');
+        if(Company::where('id', $companyId)->delete())
+            return response('Successfully deleted company : ' .$companyId, 200)
+                ->header('Content-Type', 'text/plain');
+        else
+            return response('Wrong user input', 400)
+                ->header('Content-Type', 'text/plain');
     }
 
 }
