@@ -16,29 +16,28 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('login');
-});
+})->name('Login');
 
 Route::get('login', function () {
     return view('login');
-});
+})->name('Login');
 
 Route::get('ask_account', function () {
     return view('ask_account');
-});
+})->name('Ask');
 
-Route::get('search', function()
-{
+Route::any('search', function () {
     return view('search');
-});
+})->name('Search');
 
 Route::get('register', function(){
     return view('register');
-});
+})->name('Register');
 
 Route::get('home', function()
 {
     return view('home');
-});
+})->name('Home');
 
 Route::prefix('register')-> group(function() {
     Route::get('/', function () {
