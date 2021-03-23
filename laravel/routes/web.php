@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -20,9 +21,13 @@ Route::get('/', function () {
     return view('login');
 });
 
+// LOGIN
 Route::get('login', function () {
     return view('login');
 });
+Route::post('login', [LoginController::class, 'authenticate'])->name('user.login');
+Route::get('logout', [LoginController::class, 'logout'])->name('user.logout');
+// END LOGIN
 
 Route::get('ask_account', function () {
     return view('ask_account');
