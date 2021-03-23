@@ -81,7 +81,7 @@ class OfferController extends Controller
         $offerEndDate = new DateTime($newEndDate);
         $interval = $origin->diff($offerEndDate);
 
-        $offerInfos = Offer::where('id', $idOffer);
+        $offerInfos = OfferController::tryGettingOffer($idOffer);
         if($offerInfos == null || $offerInfos->First() == null)
             return response('This offer id doesnt exist..', 400)
                 ->header('Content-Type', 'text/plain');

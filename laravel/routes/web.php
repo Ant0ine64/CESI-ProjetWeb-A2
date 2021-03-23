@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\NotationController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -113,3 +114,18 @@ Route::prefix('notationAdd')-> group(function() {
     Route::post('submit', [NotationController::class, 'addNotation'])->name('notation.add');
 });
 //endregion Notation
+//region Promotion & UserPromotion
+Route::prefix('promotionAdd')-> group(function() {
+    Route::get('/', function () {
+        return view('promotionAdd');
+    });
+    Route::post('submit', [PromotionController::class, 'addPromotion'])->name('promotion.add');
+});
+Route::prefix('userPromotionAdd')-> group(function() {
+    Route::get('/', function () {
+        return view('userPromotionAdd');
+    });
+    Route::post('submit', [PromotionController::class, 'addUserInPromotion'])->name('userPromotion.add');
+});
+//endregion Promotion & UserPromotion
+
