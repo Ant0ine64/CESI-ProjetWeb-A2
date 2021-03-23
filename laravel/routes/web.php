@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\NotationController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
@@ -104,3 +105,11 @@ Route::prefix('wishListUpdate')-> group(function() {
     Route::post('submit', [WishListController::class, 'updateWishListState'])->name('wishlist.update');
 });
 //endregion WishList
+//region Notation
+Route::prefix('notationAdd')-> group(function() {
+    Route::get('/', function () {
+        return view('notationAdd');
+    });
+    Route::post('submit', [NotationController::class, 'addNotation'])->name('notation.add');
+});
+//endregion Notation
