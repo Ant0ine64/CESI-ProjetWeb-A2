@@ -3,13 +3,13 @@
 <head>
         <link href="/css/login.css" rel="stylesheet">
         <meta charset="UTF-8">
-        <title>Search</title>
+        <title>Gestion</title>
 </head>
 <body>
     <header>
-            <?php include '/Users/benoitmacbook/Documents/CESI/A2/Interface_Web/Projet/CESI-ProjetWeb-A2/laravel/public/html/header.blade.php'?>
+            
     </header>
-    <main>
+    <main id="main">
         <div>
             <input type="text" value="Your search...">
             <div>
@@ -28,21 +28,24 @@
         <div>
             <table>
                 @if(request()->input('filter')=='users')
-                <th>Name</th>
-                <th>Sirname</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Center</th>
+                    <th>Name</th>
+                    <th>Sirname</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Center</th>
+                    <th>Actions</th>
                 @elseif (request()->input('filter')=='companies')
-                <th>Name</th>
-                <th>Activity sector</th>
-                <th>Number of offers</th>
-                <th>Grade</th> 
+                    <th>Name</th>
+                    <th>Activity sector</th>
+                    <th>Number of offers</th>
+                    <th>Grade</th>
+                    <th>Actions</th>
                 @elseif (request()->input('filter')=='offers')
-                <th>Title</th>
-                <th>Company</th>
-                <th>Comptencies</th>
-                <th>Number of slots</th>     
+                    <th>Title</th>
+                    <th>Company</th>
+                    <th>Comptencies</th>
+                    <th>Number of slots</th>
+                    <th>Actions</th>     
                 @endif
             </table>  
         </div>  

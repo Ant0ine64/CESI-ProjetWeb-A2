@@ -30,6 +30,10 @@ Route::any('search', function () {
     return view('search');
 })->name('Search');
 
+Route::any('gestion', function(){
+    return view('gestion');
+})->name('Gestion');
+
 Route::get('register', function(){
     return view('register');
 })->name('Register');

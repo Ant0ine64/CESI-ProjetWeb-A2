@@ -1,9 +1,10 @@
-body{
+footer{
     background-color: dimgrey;
 }
 
-#partLeft
+#text
 {
+    margin: 0 auto;
     text-align: center;
     font-family: Nunito;
 }
