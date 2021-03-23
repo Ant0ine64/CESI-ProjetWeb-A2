@@ -55,6 +55,13 @@ Route::prefix('registerCompany')-> group(function() {
     });
     Route::post('submit', [CompanyController::class, 'registerCompany'])->name('company.create');
 });
+
+Route::prefix('updateCompany')-> group(function() {
+    Route::get('/', function () {
+        return view('updateCompany');
+    });
+    Route::post('submit', [CompanyController::class, 'updateCompany'])->name('company.update');
+});
 //endregion Company
 //region Offer
 Route::prefix('registerOffer')-> group(function() {
