@@ -67,7 +67,7 @@ Route::prefix('updateOffer')-> group(function() {
     Route::get('/', function () {
         return view('updateOffer');
     });
-    Route::post('submit', [OfferController::class, 'updateOffer'])->name('submit'); //todo: fix cette route de merde qui redirige vers deleteOfferById lors du submit
+    Route::post('submit', [OfferController::class, 'updateOffer'])->name('offer.update');
 });
 Route::prefix('deleteOffer')-> group(function() {
     Route::get('/', function () {

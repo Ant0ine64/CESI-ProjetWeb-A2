@@ -78,10 +78,11 @@ class OfferController extends Controller
         $interval = $origin->diff($offerEndDate);
 
         $offerInfos = Offer::where('id', $idOffer);
-        if($offerInfos == null)
-            echo "NULL";
-        /*
-              if($offerInfos->update([
+        if($offerInfos == null || $offerInfos->First() == null)
+            return response('This offer id doesnt exist..', 400)
+                ->header('Content-Type', 'text/plain');
+
+              if($offerInfos->First()->update([
                   'id_company' => $companyInfos->First()->id,
                   'title' => $newTitle,
                   'competences' =>  $newCompetences,
@@ -92,9 +93,9 @@ class OfferController extends Controller
               ]))
                   return response('Success', 200)
                       ->header('Content-Type', 'text/plain');
-              else
+              else{
                   return response('Wrong input', 500)
-                      ->header('Content-Type', 'text/plain'); */
+                      ->header('Content-Type', 'text/plain');}
 
     }
 
