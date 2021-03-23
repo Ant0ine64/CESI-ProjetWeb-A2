@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"> 
+<html lang="fr">
 <head>
         <link href="/css/login.css" rel="stylesheet">
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
     </head>
     <body>
         <header>
-            
+
         </header>
         <main>
-            
+           t login pélo
         </main>
         <footer>
 
