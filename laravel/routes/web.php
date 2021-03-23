@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -83,3 +84,23 @@ Route::prefix('deleteOffer')-> group(function() {
     Route::post('submit', [OfferController::class, 'deleteOfferById'])->name('submit');
 });
 //endregion Offer
+//region WishList
+Route::prefix('wishListAdd')-> group(function() {
+    Route::get('/', function () {
+        return view('wishListAdd');
+    });
+    Route::post('submit', [WishListController::class, 'addToWishList'])->name('wishlist.add');
+});
+Route::prefix('wishListRemove')-> group(function() {
+    Route::get('/', function () {
+        return view('wishListRemove');
+    });
+    Route::post('submit', [WishListController::class, 'removeFromWishList'])->name('wishlist.remove');
+});
+Route::prefix('wishListUpdate')-> group(function() {
+    Route::get('/', function () {
+        return view('wishListUpdate');
+    });
+    Route::post('submit', [WishListController::class, 'updateWishListState'])->name('wishlist.update');
+});
+//endregion WishList
