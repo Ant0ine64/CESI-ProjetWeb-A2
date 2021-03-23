@@ -11,7 +11,7 @@ class NotationController extends Controller
 {
 
     //Create
-    function addNotation(Request $request){
+    function addNotation(Request $request){ //todo: j'ai oublié de mettre le grade de la notation
         $idUser = "4"; //todo: get this ID by using User Model
         $idCompany = $request->input("idCompany");
 
@@ -34,7 +34,7 @@ class NotationController extends Controller
         if(Notation::insert([
             'id_company' => $companyInfos->First()->id,
             'id_user' => $idUser,
-            'grade' => 0 //todo: find the meaning of grade in this context? permissionId?
+            'grade' => 0
         ]))
             return response('Success', 200)
                 ->header('Content-Type', 'text/plain');

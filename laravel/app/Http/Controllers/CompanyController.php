@@ -10,6 +10,7 @@ use App\Models\Offer;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class CompanyController extends Controller
@@ -29,9 +30,10 @@ class CompanyController extends Controller
             'name' => $name,
             'address' => $address,
             'activity_sector' =>  $activitySector,
-            'interns_number' => $internsNumber
+            'interns_number' => $internsNumber,
+            'is_visible' => 1
         ]))
-            return response('Success', 200)
+        return response('Success', 200)
                 ->header('Content-Type', 'text/plain');
         else
             return response('Wrong input', 500)
@@ -66,9 +68,21 @@ class CompanyController extends Controller
             'name' => $newName,
             'address' => $newAddress,
             'activity_sector' =>  $newActivitySector,
-            'interns_number' => $newInternsNumber
+            'interns_number' => $newInternsNumber,
+            'is_visible' => 1
         ]))
             return response('Succesfully updated company !', 200)
+                ->header('Content-Type', 'text/plain');
+        else
+            return response('Wrong input', 500)
+                ->header('Content-Type', 'text/plain');
+    }
+
+    public static function toggleCompanyState($companyId) {
+        if(Company::where('id', $companyId)->update([
+            'is_visible' => DB::raw('1 - is_visible')
+        ]))
+            return response('Succesfully toggled company state!', 200)
                 ->header('Content-Type', 'text/plain');
         else
             return response('Wrong input', 500)
