@@ -4,6 +4,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotationController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
@@ -38,20 +39,16 @@ Route::get('ask_account', function () {
 })->name('Ask');
 
 Route::any('search', function () {
-    return view('search');
+    return (PermissionController::tryGettingToView('search','company.search'));
 })->name('Search');
 
 Route::any('gestion', function(){
-    return view('gestion');
+    return (PermissionController::tryGettingToView('gestion','')); //todo: gestion perm name ?
 })->name('Gestion');
-
-Route::get('register', function(){
-    return view('register');
-})->name('Register');
 
 Route::get('home', function()
 {
-    return view('home');
+    return (PermissionController::tryGettingToView('home','auth'));
 })->name('Home');
 
 Route::prefix('register')-> group(function() {
@@ -63,14 +60,14 @@ Route::prefix('register')-> group(function() {
 //region Company
 Route::prefix('registerCompany')-> group(function() {
     Route::get('/', function () {
-        return view('registerCompany');
+        return (PermissionController::tryGettingToView('registerCompany','company.create'));
     });
     Route::post('submit', [CompanyController::class, 'registerCompany'])->name('company.create');
 });
 
 Route::prefix('updateCompany')-> group(function() {
     Route::get('/', function () {
-        return view('updateCompany');
+        return (PermissionController::tryGettingToView('updateCompany','company.update'));
     });
     Route::post('submit', [CompanyController::class, 'updateCompany'])->name('company.update');
 });
@@ -78,39 +75,39 @@ Route::prefix('updateCompany')-> group(function() {
 //region Offer
 Route::prefix('registerOffer')-> group(function() {
     Route::get('/', function () {
-        return view('registerOffer');
+        return (PermissionController::tryGettingToView('registerOffer','offer.create'));
     });
     Route::post('submit', [OfferController::class, 'registerOffer'])->name('offer.create');
 });
 Route::prefix('updateOffer')-> group(function() {
     Route::get('/', function () {
-        return view('updateOffer');
+        return (PermissionController::tryGettingToView('updateOffer','offer.update'));
     });
     Route::post('submit', [OfferController::class, 'updateOffer'])->name('offer.update');
 });
 Route::prefix('deleteOffer')-> group(function() {
     Route::get('/', function () {
-        return view('deleteOffer');
+        return (PermissionController::tryGettingToView('deleteOffer','offer.delete'));
     });
-    Route::post('submit', [OfferController::class, 'deleteOfferById'])->name('submit');
+    Route::post('submit', [OfferController::class, 'deleteOfferById'])->name('offer.delete');
 });
 //endregion Offer
 //region WishList
 Route::prefix('wishListAdd')-> group(function() {
     Route::get('/', function () {
-        return view('wishListAdd');
+        return (PermissionController::tryGettingToView('wishListAdd','wishlist.add'));
     });
     Route::post('submit', [WishListController::class, 'addToWishList'])->name('wishlist.add');
 });
 Route::prefix('wishListRemove')-> group(function() {
     Route::get('/', function () {
-        return view('wishListRemove');
+        return (PermissionController::tryGettingToView('wishListRemove','wishlist.remove'));
     });
     Route::post('submit', [WishListController::class, 'removeFromWishList'])->name('wishlist.remove');
 });
 Route::prefix('wishListUpdate')-> group(function() {
     Route::get('/', function () {
-        return view('wishListUpdate');
+        return (PermissionController::tryGettingToView('wishListUpdate','')); //todo: this permission doesnt exist
     });
     Route::post('submit', [WishListController::class, 'updateWishListState'])->name('wishlist.update');
 });
@@ -118,21 +115,22 @@ Route::prefix('wishListUpdate')-> group(function() {
 //region Notation
 Route::prefix('notationAdd')-> group(function() {
     Route::get('/', function () {
-        return view('notationAdd');
+        return (PermissionController::tryGettingToView('notationAdd','auth'));
     });
-    Route::post('submit', [NotationController::class, 'addNotation'])->name('notation.add');
+    Route::post('submit', [NotationController::class, 'addNotation'])->name('notation.add'); //todo: this permission doesnt exist
 });
 //endregion Notation
 //region Promotion & UserPromotion
 Route::prefix('promotionAdd')-> group(function() {
     Route::get('/', function () {
-        return view('promotionAdd');
+        return (PermissionController::tryGettingToView('promotionAdd','auth'));//todo: this permission doesnt exist
     });
     Route::post('submit', [PromotionController::class, 'addPromotion'])->name('promotion.add');
+
 });
 Route::prefix('userPromotionAdd')-> group(function() {
     Route::get('/', function () {
-        return view('userPromotionAdd');
+        return (PermissionController::tryGettingToView('userPromotionAdd','auth'));//todo: this permission doesnt exist
     });
     Route::post('submit', [PromotionController::class, 'addUserInPromotion'])->name('userPromotion.add');
 });
