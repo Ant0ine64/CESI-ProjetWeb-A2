@@ -51,6 +51,10 @@ class OfferController extends Controller
 
     //Read
 
+    public static function tryGettingOffer($offerId) {
+        return Offer::where('id', $offerId)->get();
+    }
+
     //Update
 
     function updateOffer(Request $request){
@@ -77,11 +81,12 @@ class OfferController extends Controller
         $offerEndDate = new DateTime($newEndDate);
         $interval = $origin->diff($offerEndDate);
 
-        $offerInfos = Offer::where('id', $idOffer);
-        if($offerInfos == null)
-            echo "NULL";
-        /*
-              if($offerInfos->update([
+        $offerInfos = OfferController::tryGettingOffer($idOffer);
+        if($offerInfos == null || $offerInfos->First() == null)
+            return response('This offer id doesnt exist..', 400)
+                ->header('Content-Type', 'text/plain');
+
+              if($offerInfos->First()->update([
                   'id_company' => $companyInfos->First()->id,
                   'title' => $newTitle,
                   'competences' =>  $newCompetences,
@@ -92,17 +97,20 @@ class OfferController extends Controller
               ]))
                   return response('Success', 200)
                       ->header('Content-Type', 'text/plain');
-              else
+              else{
                   return response('Wrong input', 500)
-                      ->header('Content-Type', 'text/plain'); */
+                      ->header('Content-Type', 'text/plain');}
 
     }
 
     //Delete
     function deleteOfferById(Request $request) {
         $offerId = $request->input('idOffer');
-        Offer::where('id', $offerId)->delete();
-        return response('Successfully removed offer : ' . $offerId, 200)
-            ->header('Content-Type', 'text/plain');
+        if(Offer::where('id', $offerId)->delete())
+            return response('Successfully removed offer : ' . $offerId, 200)
+                ->header('Content-Type', 'text/plain');
+         else
+             return response('Wrong user input', 400)
+                  ->header('Content-Type', 'text/plain');
     }
 }
