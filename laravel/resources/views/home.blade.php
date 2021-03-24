@@ -10,7 +10,12 @@
 
         </header>
         <main>
-           t login pélo
+           t login pélo :
+            @if(\App\Http\Controllers\PermissionController::can('offer.delete'))
+                ok mon gars
+            @else
+                pas ok ici
+                @endif
         </main>
         <footer>
 

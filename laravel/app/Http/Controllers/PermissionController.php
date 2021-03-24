@@ -7,11 +7,12 @@ use App\Models\Permission;
 use App\Models\PermissionCustom;
 use App\Models\PermissionType;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PermissionController extends Controller
 {
     // Test permission, return true if user can
-    public function can($permission): bool
+    public static function can($permission): bool
     {
 
         $ability = false;
@@ -19,8 +20,9 @@ class PermissionController extends Controller
 
         // used for getting type and id
         $user = Auth::user();
+        Log::debug('utype:'.$user['id_type'].' permid'.$permission_id);
 
-        if(PermissionType::where('id_type', $user['type'])->where('id_permission', $permission_id)->first()) {
+        if(PermissionType::where('id_type', $user['id_type'])->where('id_permission', $permission_id)->first()) {
             //permission exist in standard permission_type table
             return true;
         } elseif ($user['type'] != 4) { //simple perms : not delegate
