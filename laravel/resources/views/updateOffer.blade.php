@@ -5,7 +5,7 @@
     <title>UpdateOffer</title>
 </head>
 <body>
-    <form action="{{route('submit')}}" method="post">
+    <form action="{{route('offer.update')}}" method="post">
         @csrf
         <input value = "23" type="text" name="idOffer" id="idOffer"><br>
         <input value = "23" type="text" name="idCompany" id="idCompany"><br>
