@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr"> 
 <head>
-        <link href="/css/search.css" rel="stylesheet">
-        <link href="/css/header.css" rel="stylesheet">
-        <link href="/css/footer.css" rel="stylesheet">
+        <link href="/css/login.css" rel="stylesheet">
         <meta charset="UTF-8">
-        <title>Search</title>
+        <title>Gestion</title>
 </head>
 <body>
-    <header id="header">
-        @include ('header')
+    <header>
+            
     </header>
     <main id="main">
-        <div id="form_div">
+        <div>
             <input type="text" value="Your search...">
-            <div><br>
+            <div>
                 <form action="" method="POST">
                 @csrf
                     <input type="radio" id="users" name="filter" value="users">
@@ -27,30 +25,33 @@
                 </form>
             </div>  
         </div>
-        <div id="table_div"><br>
-            <table class="center">
+        <div>
+            <table>
                 @if(request()->input('filter')=='users')
                     <th>Name</th>
                     <th>Sirname</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Center</th>
+                    <th>Actions</th>
                 @elseif (request()->input('filter')=='companies')
                     <th>Name</th>
                     <th>Activity sector</th>
                     <th>Number of offers</th>
-                    <th>Grade</th> 
+                    <th>Grade</th>
+                    <th>Actions</th>
                 @elseif (request()->input('filter')=='offers')
                     <th>Title</th>
                     <th>Company</th>
                     <th>Comptencies</th>
-                    <th>Number of slots</th>     
+                    <th>Number of slots</th>
+                    <th>Actions</th>     
                 @endif
             </table>  
         </div>  
     </main>
     <footer>
-            @include('footer')
+           
     </footer>
 </body>
 </html>
