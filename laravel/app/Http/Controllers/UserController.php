@@ -50,6 +50,9 @@ class UserController extends Controller
         return json_decode(User::where('login', $login), true);
     }
 
+    public static function tryGettingUserById($userId) {
+        return User::where('id', $userId)->get();
+    }
 
     //UPDATE
     function updateByLogin(Request $request) {

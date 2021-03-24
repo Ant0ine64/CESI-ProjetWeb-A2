@@ -7,11 +7,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Offer extends Model
+class Notation extends Model
 {
     use HasFactory;
 
-    protected $table = 'offer';
+    protected $table = 'notation';
     protected $guarded = [];
     public $timestamps = false;
 }

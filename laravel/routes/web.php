@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\NotationController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -58,6 +61,13 @@ Route::prefix('registerCompany')-> group(function() {
     });
     Route::post('submit', [CompanyController::class, 'registerCompany'])->name('company.create');
 });
+
+Route::prefix('updateCompany')-> group(function() {
+    Route::get('/', function () {
+        return view('updateCompany');
+    });
+    Route::post('submit', [CompanyController::class, 'updateCompany'])->name('company.update');
+});
 //endregion Company
 //region Offer
 Route::prefix('registerOffer')-> group(function() {
@@ -70,7 +80,7 @@ Route::prefix('updateOffer')-> group(function() {
     Route::get('/', function () {
         return view('updateOffer');
     });
-    Route::post('submit', [OfferController::class, 'updateOffer'])->name('submit'); //todo: fix cette route de merde qui redirige vers deleteOfferById lors du submit
+    Route::post('submit', [OfferController::class, 'updateOffer'])->name('offer.update');
 });
 Route::prefix('deleteOffer')-> group(function() {
     Route::get('/', function () {
@@ -79,3 +89,46 @@ Route::prefix('deleteOffer')-> group(function() {
     Route::post('submit', [OfferController::class, 'deleteOfferById'])->name('submit');
 });
 //endregion Offer
+//region WishList
+Route::prefix('wishListAdd')-> group(function() {
+    Route::get('/', function () {
+        return view('wishListAdd');
+    });
+    Route::post('submit', [WishListController::class, 'addToWishList'])->name('wishlist.add');
+});
+Route::prefix('wishListRemove')-> group(function() {
+    Route::get('/', function () {
+        return view('wishListRemove');
+    });
+    Route::post('submit', [WishListController::class, 'removeFromWishList'])->name('wishlist.remove');
+});
+Route::prefix('wishListUpdate')-> group(function() {
+    Route::get('/', function () {
+        return view('wishListUpdate');
+    });
+    Route::post('submit', [WishListController::class, 'updateWishListState'])->name('wishlist.update');
+});
+//endregion WishList
+//region Notation
+Route::prefix('notationAdd')-> group(function() {
+    Route::get('/', function () {
+        return view('notationAdd');
+    });
+    Route::post('submit', [NotationController::class, 'addNotation'])->name('notation.add');
+});
+//endregion Notation
+//region Promotion & UserPromotion
+Route::prefix('promotionAdd')-> group(function() {
+    Route::get('/', function () {
+        return view('promotionAdd');
+    });
+    Route::post('submit', [PromotionController::class, 'addPromotion'])->name('promotion.add');
+});
+Route::prefix('userPromotionAdd')-> group(function() {
+    Route::get('/', function () {
+        return view('userPromotionAdd');
+    });
+    Route::post('submit', [PromotionController::class, 'addUserInPromotion'])->name('userPromotion.add');
+});
+//endregion Promotion & UserPromotion
+
