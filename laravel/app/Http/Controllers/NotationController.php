@@ -14,8 +14,13 @@ class NotationController extends Controller
     function addNotation(Request $request){ //todo: j'ai oublié de mettre le grade de la notation
         $idUser = "4"; //todo: get this ID by using User Model
         $idCompany = $request->input("idCompany");
+        $grade = $request->input("grade");
 
         $companyInfos = CompanyController::tryGettingCompany($idCompany);
+
+        if(!is_numeric($grade) ||  $grade <0 || $grade > 5)
+            return response('This grade isnt valid..', 400)
+                ->header('Content-Type', 'text/plain');
 
         if($companyInfos == null || $companyInfos->First() == null ||
             !is_numeric($idUser) || !is_numeric($idCompany))
