@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotationController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PromotionController;
@@ -23,9 +24,14 @@ Route::get('/', function () {
     return view('login');
 })->name('Login');
 
+// LOGIN
 Route::get('login', function () {
     return view('login');
-})->name('Login');
+});
+Route::post('login', [LoginController::class, 'authenticate'])->name('user.login');
+Route::get('logout', [LoginController::class, 'logout'])->name('user.logout');
+// END LOGIN
+
 
 Route::get('ask_account', function () {
     return view('ask_account');
