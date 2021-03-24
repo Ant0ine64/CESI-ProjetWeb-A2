@@ -8,6 +8,7 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use \App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -137,4 +138,20 @@ Route::prefix('userPromotionAdd')-> group(function() {
     Route::post('submit', [PromotionController::class, 'addUserInPromotion'])->name('userPromotion.add');
 });
 //endregion Promotion & UserPromotion
+
+Route::prefix('delegate')-> group(function() {
+    //read delegate
+    Route::get('/', function () {
+        return view('delegateRead');
+    });
+    Route::post('/', [PermissionController::class, 'readDelegatePermissions'])->name('delegate.read');
+
+    //update delegate
+    Route::prefix('update')-> group(function() {
+        Route::get('/', function () {
+            return view('delegateUpdate');
+        });
+        Route::post('/', [PermissionController::class, 'readDelegatePermissions'])->name('delegate.read');
+    });
+});
 
