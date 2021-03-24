@@ -26,25 +26,31 @@
         <div id="table_div"><br>
             @if(request()->input('filter')=='users')
                 <table class="center">
+                <tr>
                     <th>Name</th>
                     <th>Sirname</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Center</th>
+                </tr>
                 </table>  
             @elseif (request()->input('filter')=='companies')
                 <table class="center">
+                <tr>
                     <th>Name</th>
                     <th>Activity sector</th>
                     <th>Number of offers</th>
                     <th>Grade</th>
+                </tr>
                 </table>  
             @elseif (request()->input('filter')=='offers')
                 <table class="center">
+                <tr>
                     <th>Title</th>
                     <th>Company</th>
                     <th>Comptencies</th>
-                    <th>Number of slots</th>    
+                    <th>Number of slots</th>  
+                </tr>
                 </table>   
             @endif
         </div>  
