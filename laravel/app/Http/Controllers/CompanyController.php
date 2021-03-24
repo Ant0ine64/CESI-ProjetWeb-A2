@@ -69,7 +69,7 @@ class CompanyController extends Controller
             'address' => $newAddress,
             'activity_sector' =>  $newActivitySector,
             'interns_number' => $newInternsNumber,
-            'is_visible' => 1
+            'is_visible' => DB::raw('is_visible')
         ]))
             return response('Succesfully updated company !', 200)
                 ->header('Content-Type', 'text/plain');
