@@ -29,6 +29,7 @@ header{
 .center{
     margin-right: auto;
     margin-left: auto;
+    width: 100%;
 }
 
 footer{
@@ -129,4 +130,12 @@ header a
     color: dimgrey;
     margin-left: 80%;
     margin-bottom: -30%;
+}
+
+table, th, td{
+    border: 1px solid black;
+}
+
+th, td{
+    padding: 15px;
 }

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Type;
 use App\Models\Center;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -41,8 +42,10 @@ class UserController extends Controller
     }
 
     //READ
-    function readAll() {
-        return User::all();
+    static function readAll() {
+        $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->get();
+        Log::debug($users);
+        return view('search', ['users' => $users]);
     }
 
     function readByLogin(Request $request) {

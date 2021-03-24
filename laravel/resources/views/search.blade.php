@@ -11,7 +11,7 @@
     </header>
     <main id="main">
         <div id="form_div">
-                <form action="" method="POST">
+                <form action="{{route('search.filter')}}" method="POST">
                 @csrf
                     <input type="text" placeholder="Your search..." id="searchbar"><br><br>
                     <input type="radio" id="users" name="filter" value="users">
@@ -33,6 +33,15 @@
                     <th>Role</th>
                     <th>Center</th>
                 </tr>
+                @foreach ($users as $users)
+                <tr>
+                    <td>{{$users->firstname}}</td>
+                    <td>{{$users->lastname}}</td>
+                    <td>{{$users->login}}</td>
+                    <td>{{$users->type}}</td>
+                    <td>{{$users->city}}</td>
+                </tr>
+                @endforeach
                 </table>  
             @elseif (request()->input('filter')=='companies')
                 <table class="center">
