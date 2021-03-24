@@ -13,10 +13,9 @@
     </header>
     <main id="main">
         <div id="form_div">
-            <input type="text" value="Your search...">
-            <div><br>
                 <form action="" method="POST">
                 @csrf
+                    <input type="text" placeholder="Your search..." id="searchbar"><br><br>
                     <input type="radio" id="users" name="filter" value="users">
                     <label for="users">Users</label>
                     <input type="radio" id="company" name="filter" value="companies">
@@ -25,7 +24,6 @@
                     <label for="offers">Offers</label>
                     <input type="submit" value="result" name="result">
                 </form>
-            </div>  
         </div>
         <div id="table_div"><br>
             <table class="center">
