@@ -141,17 +141,12 @@ Route::prefix('userPromotionAdd')-> group(function() {
 
 Route::prefix('delegate')-> group(function() {
     //read delegate
-    Route::get('/', function () {
+    /*Route::get('/', function () {
         return view('delegateRead');
-    });
-    Route::post('/', [PermissionController::class, 'readDelegatePermissions'])->name('delegate.read');
+    });*/
+    Route::get('/', [PermissionController::class, 'readDelegatePermissions'])->name('delegate.read');
 
     //update delegate
-    Route::prefix('update')-> group(function() {
-        Route::get('/', function () {
-            return view('delegateUpdate');
-        });
-        Route::post('/', [PermissionController::class, 'readDelegatePermissions'])->name('delegate.read');
-    });
+        Route::post('update', [PermissionController::class, 'updateDelegatePermissions'])->name('delegate.update');
 });
 

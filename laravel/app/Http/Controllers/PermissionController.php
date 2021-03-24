@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Log;
 
 class PermissionController extends Controller
 {
+    public static function readAllDelegablePermissions() {
+        //$updatablePermissions = [];
+        foreach (Permission::all() as $perm) {
+            if (in_array($perm['id'], self::UPDATABLE_DELEGATE_PERM)) {
+                //check if permission is updatable
+                $updatablePermissions[$perm['id']] = $perm['title'];
+            }
+        }
+        return $updatablePermissions;
+    }
+
     // Test permission, return true if user can
     public static function can($permission): bool
     {
@@ -36,6 +47,9 @@ class PermissionController extends Controller
         }
     }
 
+
+    //DELEGATE STUFF
+
     function readDelegatePermissions(Request $request) {
 
         $login = $request->input('login');
@@ -46,21 +60,46 @@ class PermissionController extends Controller
                 ->header('Content-Type', 'text/plain');
         }
 
-        // find user login and permission title with ids
-       $join = PermissionCustom::where('id_user', $delegate['id'])
-           ->join('user', 'permission_custom.id_user', '=', 'user.id')
-           ->join('permission', 'permission.id', '=', 'permission_custom.id_permission')
-           ->select('permission_custom.id_permission', 'permission.title', 'user.login')
-           ->get();
-        Log::debug($join);
+        // find permission of corresponding user
+       $join = PermissionCustom::where('id_user', $delegate['id'])->get();
 
-        return view('delegateRead', ['permissions' => $join]);
+        foreach ($join as $perm) $permissions[] = $perm->id_permission;
+
+        return view('delegateRead', ['username' => $login, 'user_permissions' => $permissions]);
     }
 
+    /**
+     * @param Request $request as 'login' the unique username, 'permissions' an array of permissions title
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|string
+     */
     function updateDelegatePermissions(Request $request) {
 
+        $login = $request->input('login');
+        $delegate = User::where('login', $login)->first();
+
+        $permissions = array_keys($request->except(['login', '_token']));
+        Log::debug($permissions);
+
+        if ($delegate['id_type'] != 4) { //return if not delegate
+            return response('Not a delegate', 404)
+                ->header('Content-Type', 'text/plain');
+        }
+
+        //throw 403 forbidden if unauthorized perm is chosen
+        foreach ($permissions as $perm) {
+            if (!in_array($perm, self::UPDATABLE_DELEGATE_PERM)) abort(403);
+        }
+
+        //edit the permissions
+        PermissionCustom::where('id_user', $delegate['id'])->delete();
+        foreach ($permissions as $perm)PermissionCustom::insert([
+            'id_user' => $delegate['id'],
+            'id_permission' => $perm
+        ]);
+
+        return redirect()->route('delegate.read', ['login' => $login]);
     }
 
-    private $updatableDelegatePermissions = [
+     private const UPDATABLE_DELEGATE_PERM = [
         2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 32, 33];
 }
