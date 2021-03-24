@@ -92,7 +92,7 @@ Route::prefix('deleteOffer')-> group(function() {
     Route::get('/', function () {
         return view('deleteOffer');
     });
-    Route::post('submit', [OfferController::class, 'deleteOfferById'])->name('submit');
+    Route::post('submit', [OfferController::class, 'deleteOfferById'])->name('offer.delete');
 });
 //endregion Offer
 //region WishList
