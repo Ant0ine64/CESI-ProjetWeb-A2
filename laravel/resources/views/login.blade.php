@@ -11,7 +11,7 @@
                 <form id="login_form" action="{{route('user.login')}}" method="POST">
                     @csrf
                     <label for="login">Login:</label><br>
-                    <input type="email" name="login" id="login"><br><br>
+                    <input type="text" name="login" id="login"><br><br>
                     <label for="pwd">Password:</label><br>
                     <input type="password" name="password" id="pwd"><br><br>
                     <p>@isset($status)@endisset</p>

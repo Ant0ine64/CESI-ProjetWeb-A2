@@ -37,9 +37,13 @@ Route::get('ask_account', function () {
     return view('ask_account');
 })->name('Ask');
 
+// START SEARCH
 Route::any('search', function () {
     return view('search');
 })->name('Search')->middleware('auth');
+
+Route::post('search', [UserController::class, 'readAll'])->name('search.filter');
+//END SEARCH
 
 Route::any('gestion', function(){
     return view('gestion');
