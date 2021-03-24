@@ -2,8 +2,6 @@
 <html lang="fr"> 
 <head>
         <link href="/css/search.css" rel="stylesheet">
-        <link href="/css/header.css" rel="stylesheet">
-        <link href="/css/footer.css" rel="stylesheet">
         <meta charset="UTF-8">
         <title>Search</title>
 </head>
@@ -26,25 +24,29 @@
                 </form>
         </div>
         <div id="table_div"><br>
-            <table class="center">
-                @if(request()->input('filter')=='users')
+            @if(request()->input('filter')=='users')
+                <table class="center">
                     <th>Name</th>
                     <th>Sirname</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Center</th>
-                @elseif (request()->input('filter')=='companies')
+                </table>  
+            @elseif (request()->input('filter')=='companies')
+                <table class="center">
                     <th>Name</th>
                     <th>Activity sector</th>
                     <th>Number of offers</th>
-                    <th>Grade</th> 
-                @elseif (request()->input('filter')=='offers')
+                    <th>Grade</th>
+                </table>  
+            @elseif (request()->input('filter')=='offers')
+                <table class="center">
                     <th>Title</th>
                     <th>Company</th>
                     <th>Comptencies</th>
-                    <th>Number of slots</th>     
-                @endif
-            </table>  
+                    <th>Number of slots</th>    
+                </table>   
+            @endif
         </div>  
     </main>
     <footer>
