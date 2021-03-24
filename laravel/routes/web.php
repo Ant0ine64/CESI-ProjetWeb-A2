@@ -39,11 +39,11 @@ Route::get('ask_account', function () {
 
 Route::any('search', function () {
     return view('search');
-})->name('Search');
+})->name('Search')->middleware('auth');
 
 Route::any('gestion', function(){
     return view('gestion');
-})->name('Gestion');
+})->name('Gestion')->middleware('auth');
 
 Route::get('register', function(){
     return view('register');
@@ -52,7 +52,7 @@ Route::get('register', function(){
 Route::get('home', function()
 {
     return view('home');
-})->name('Home');
+})->name('Home')->middleware('auth');
 
 Route::prefix('register')-> group(function() {
     Route::get('/', function () {
