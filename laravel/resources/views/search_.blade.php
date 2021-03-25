@@ -3,7 +3,7 @@
 <head>
         <link href="/css/search.css" rel="stylesheet">
         <meta charset="UTF-8">
-        <title>Gestion</title>
+        <title>Search</title>
 </head>
 <body>
     <header id="header">
@@ -11,38 +11,15 @@
     </header>
     <main id="main">
         <div id="form_div">
-                <form action="{{route('gestion.filter')}}" method="POST">
+                <form action="{{route('search.filter')}}" method="POST">
                 @csrf
                     <input type="text" placeholder="Your search..." id="searchbar"><br><br>
-                    @if ($radio == 'users')
-                    <input type="radio" id="users" name="filter" value="users" checked>
-                    <label for="users">Users</label>
-                    <input type="radio" id="company" name="filter" value="companies">
-                    <label for="company">Companies </label>
-                    <input type="radio" id="offers" name="filter" value="offers">
-                    <label for="offers">Offers</label>
-                    @elseif ($radio == 'companies')
-                    <input type="radio" id="users" name="filter" value="users">
-                    <label for="users">Users</label>
-                    <input type="radio" id="company" name="filter" value="companies" checked>
-                    <label for="company">Companies </label>
-                    <input type="radio" id="offers" name="filter" value="offers">
-                    <label for="offers">Offers</label>
-                    @elseif ($radio == 'offers')
                     <input type="radio" id="users" name="filter" value="users">
                     <label for="users">Users</label>
                     <input type="radio" id="company" name="filter" value="companies">
                     <label for="company">Companies </label>
-                    <input type="radio" id="offers" name="filter" value="offers" checked>
-                    <label for="offers">Offers</label>
-                    @else
-                    <input type="radio" id="users" name="filter" value="users" checked>
-                    <label for="users">Users</label>
-                    <input type="radio" id="company" name="filter" value="companies">
-                    <label for="company">Companies </label>
                     <input type="radio" id="offers" name="filter" value="offers">
                     <label for="offers">Offers</label>
-                    @endif
                     <input type="submit" value="Filter" name="result">
                 </form>
         </div>

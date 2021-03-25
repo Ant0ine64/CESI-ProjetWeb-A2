@@ -9,6 +9,7 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SearchController;
 
 // ===== STANDARD ROUTES =====
 
@@ -29,20 +30,30 @@ Route::get('ask_account', function () {
     return view('ask_account');
 })->name('Ask');
 
-// search
+// START SEARCH
 Route::any('search', function () {
-    return (PermissionController::tryGettingToView('search','company.search'));
-})->name('Search');
+    return view('search_');
+})->name('Search')->middleware('auth');
 
-// gestion
-Route::any('gestion', function(){
-    return (PermissionController::tryGettingToView('gestion','')); //todo: gestion perm name ?
-})->name('Gestion');
+Route::post('search', [SearchController::class, 'readAll'])->name('search.filter');
+//END SEARCH
 
-// home
-Route::get('home', function(){
-    return (PermissionController::tryGettingToView('home','auth'));
-})->name('Home');
+// START GESTION
+Route::any('gestion', function () {
+    return view('gestion_');
+})->name('Gestion')->middleware('auth');
+
+Route::post('gestion', [SearchController::class, 'readAllG'])->name('gestion.filter');
+//END GESTION
+
+Route::get('register', function(){
+    return view('register');
+})->name('Register');
+
+Route::get('home', function()
+{
+    return view('home');
+})->name('Home')->middleware('auth');
 
 //register
 Route::prefix('register')-> group(function() {

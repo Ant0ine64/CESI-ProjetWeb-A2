@@ -21,8 +21,7 @@ class LoginController extends Controller
             Auth::login($user);
             $request->session()->regenerate();
             Log::debug(Auth::user());
-            echo "nice";
-            return view('home');//redirect()->intended('home');
+            return redirect()->route('Home');//redirect()->intended('home');
         }
 
         return view('login', ['status' => 'Incorrect credentials']);

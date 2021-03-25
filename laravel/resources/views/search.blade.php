@@ -2,8 +2,6 @@
 <html lang="fr"> 
 <head>
         <link href="/css/search.css" rel="stylesheet">
-        <link href="/css/header.css" rel="stylesheet">
-        <link href="/css/footer.css" rel="stylesheet">
         <meta charset="UTF-8">
         <title>Search</title>
 </head>
@@ -13,38 +11,98 @@
     </header>
     <main id="main">
         <div id="form_div">
-                <form action="" method="POST">
+                <form action="{{route('search.filter')}}" method="POST">
                 @csrf
                     <input type="text" placeholder="Your search..." id="searchbar"><br><br>
-                    <input type="radio" id="users" name="filter" value="users">
+                    @if ($radio == 'users')
+                    <input type="radio" id="users" name="filter" value="users" checked>
                     <label for="users">Users</label>
                     <input type="radio" id="company" name="filter" value="companies">
                     <label for="company">Companies </label>
                     <input type="radio" id="offers" name="filter" value="offers">
                     <label for="offers">Offers</label>
-                    <input type="submit" value="result" name="result">
+                    @elseif ($radio == 'companies')
+                    <input type="radio" id="users" name="filter" value="users">
+                    <label for="users">Users</label>
+                    <input type="radio" id="company" name="filter" value="companies" checked>
+                    <label for="company">Companies </label>
+                    <input type="radio" id="offers" name="filter" value="offers">
+                    <label for="offers">Offers</label>
+                    @elseif ($radio == 'offers')
+                    <input type="radio" id="users" name="filter" value="users">
+                    <label for="users">Users</label>
+                    <input type="radio" id="company" name="filter" value="companies">
+                    <label for="company">Companies </label>
+                    <input type="radio" id="offers" name="filter" value="offers" checked>
+                    <label for="offers">Offers</label>
+                    @else
+                    <input type="radio" id="users" name="filter" value="users" checked>
+                    <label for="users">Users</label>
+                    <input type="radio" id="company" name="filter" value="companies">
+                    <label for="company">Companies </label>
+                    <input type="radio" id="offers" name="filter" value="offers">
+                    <label for="offers">Offers</label>
+                    @endif
+                    <input type="submit" value="Filter" name="result">
                 </form>
         </div>
         <div id="table_div"><br>
-            <table class="center">
-                @if(request()->input('filter')=='users')
+            @if(request()->input('filter')=='users')
+                <table class="center">
+                <tr>
                     <th>Name</th>
                     <th>Sirname</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Center</th>
-                @elseif (request()->input('filter')=='companies')
+                </tr>
+                @foreach ($users as $users)
+                <tr>
+                    <td>{{$users->firstname}}</td>
+                    <td>{{$users->lastname}}</td>
+                    <td>{{$users->login}}</td>
+                    <td>{{$users->type}}</td>
+                    <td>{{$users->city}}</td>
+                </tr>
+                @endforeach
+                </table>  
+            @elseif (request()->input('filter')=='companies')
+                <table class="center">
+                <tr>
                     <th>Name</th>
+                    <th>Address</th>
                     <th>Activity sector</th>
-                    <th>Number of offers</th>
-                    <th>Grade</th> 
-                @elseif (request()->input('filter')=='offers')
+                </tr>
+                @foreach ($comps as $comps)
+                <tr>
+                    <td>{{$comps->name}}</td>
+                    <td>{{$comps->address}}</td>
+                    <td>{{$comps->activity_sector}}</td>
+                </tr>
+                @endforeach
+                </table>  
+            @elseif (request()->input('filter')=='offers')
+                <table class="center">
+                <tr>
                     <th>Title</th>
                     <th>Company</th>
-                    <th>Comptencies</th>
-                    <th>Number of slots</th>     
-                @endif
-            </table>  
+                    <th>Comptences</th>
+                    <th>Start date</th>
+                    <th>Duration</th>
+                    <th>Number of slots</th>  
+                </tr>
+                @foreach ($offers as $offers)
+                <tr>
+                    <td>{{$offers->title}}</td>
+                    <td>{{$offers->name}}</td>
+                    <td>{{$offers->competences}}</td>
+                    <td>{{$offers->date}}</td>
+                    <td>{{$offers->duration}}</td>
+                    <td>{{$offers->slots}}</td>
+                </tr>
+                @endforeach
+                </table>   
+            @endif
         </div>  
     </main>
     <footer>

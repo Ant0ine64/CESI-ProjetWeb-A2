@@ -14,35 +14,12 @@
                 <form action="{{route('gestion.filter')}}" method="POST">
                 @csrf
                     <input type="text" placeholder="Your search..." id="searchbar"><br><br>
-                    @if ($radio == 'users')
-                    <input type="radio" id="users" name="filter" value="users" checked>
-                    <label for="users">Users</label>
-                    <input type="radio" id="company" name="filter" value="companies">
-                    <label for="company">Companies </label>
-                    <input type="radio" id="offers" name="filter" value="offers">
-                    <label for="offers">Offers</label>
-                    @elseif ($radio == 'companies')
-                    <input type="radio" id="users" name="filter" value="users">
-                    <label for="users">Users</label>
-                    <input type="radio" id="company" name="filter" value="companies" checked>
-                    <label for="company">Companies </label>
-                    <input type="radio" id="offers" name="filter" value="offers">
-                    <label for="offers">Offers</label>
-                    @elseif ($radio == 'offers')
                     <input type="radio" id="users" name="filter" value="users">
                     <label for="users">Users</label>
                     <input type="radio" id="company" name="filter" value="companies">
                     <label for="company">Companies </label>
-                    <input type="radio" id="offers" name="filter" value="offers" checked>
-                    <label for="offers">Offers</label>
-                    @else
-                    <input type="radio" id="users" name="filter" value="users" checked>
-                    <label for="users">Users</label>
-                    <input type="radio" id="company" name="filter" value="companies">
-                    <label for="company">Companies </label>
                     <input type="radio" id="offers" name="filter" value="offers">
                     <label for="offers">Offers</label>
-                    @endif
                     <input type="submit" value="Filter" name="result">
                 </form>
         </div>
@@ -62,7 +39,7 @@
                     <td>{{$users->lastname}}</td>
                     <td>{{$users->login}}</td>
                     <td>{{$users->type}}</td>
-                    <td>{{$users->city}}</td>
+                    <td>{{$users->city}}</td>        
                 </tr>
                 @endforeach
                 </table>  
@@ -72,6 +49,7 @@
                     <th>Name</th>
                     <th>Address</th>
                     <th>Activity sector</th>
+                    <th>Actions</th>
                 </tr>
                 @foreach ($comps as $comps)
                 <tr>
