@@ -63,6 +63,17 @@ Route::prefix('register')-> group(function() {
     Route::post('submit', [UserController::class, 'register'])->name('user.create');
 });
 
+// ===== USER =====
+
+Route::prefix('user')-> group(function() {
+    Route::prefix('update')-> group(function() {
+        Route::get('/', function () {
+            return (PermissionController::tryGettingToView('user.update','auth'));
+        });
+        Route::post('submit', [UserController::class, 'updateByLogin'])->name('user.update');
+    });
+
+});
 
 // ===== COMPANY =====
 
@@ -169,3 +180,6 @@ Route::prefix('delegate')-> group(function() {
 
     Route::post('update', [PermissionController::class, 'updateDelegatePermissions'])->name('delegate.update');
 });
+
+
+
