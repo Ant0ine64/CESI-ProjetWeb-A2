@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="/css/update.css" rel="stylesheet">
+    <link href="/css/offerUpdate.css" rel="stylesheet">
     <title>UpdateOffer</title>
 </head>
 <body style="font-family: Nunito;">
