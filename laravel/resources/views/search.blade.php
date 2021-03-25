@@ -113,6 +113,7 @@
                     </td>
                     <td>
                         <form action="{{route('offer.delete')}}" method="post" style="text-align: center">
+                            @csrf
                             <input type="hidden" name="idOffer" value="{{$offers->id}}">
                             <input type="submit" value="Delete">
                         </form>
