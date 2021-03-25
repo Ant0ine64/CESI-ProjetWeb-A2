@@ -44,7 +44,6 @@ class UserController extends Controller
     //READ
     static function readAll() {
         $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->get();
-        Log::debug($users);
         return view('search', ['users' => $users]);
     }
 
