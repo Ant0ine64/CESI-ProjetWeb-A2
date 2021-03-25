@@ -20,7 +20,7 @@
                     <label for="company">Companies </label>
                     <input type="radio" id="offers" name="filter" value="offers">
                     <label for="offers">Offers</label>
-                    <input type="submit" value="result" name="result">
+                    <input type="submit" value="Filter" name="result">
                 </form>
         </div>
         <div id="table_div"><br>
@@ -49,16 +49,12 @@
                     <th>Name</th>
                     <th>Address</th>
                     <th>Activity sector</th>
-                    <th>Number of offers</th>
-                    <th>Grade</th>
                 </tr>
                 @foreach ($comps as $comps)
                 <tr>
-                    <td>{{$users->firstname}}</td>
-                    <td>{{$users->lastname}}</td>
-                    <td>{{$users->login}}</td>
-                    <td>{{$users->type}}</td>
-                    <td>{{$users->city}}</td>
+                    <td>{{$comps->name}}</td>
+                    <td>{{$comps->address}}</td>
+                    <td>{{$comps->activity_sector}}</td>
                 </tr>
                 @endforeach
                 </table>  
