@@ -8,6 +8,7 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::any('search', function () {
     return view('search');
 })->name('Search')->middleware('auth');
 
-Route::post('search', [UserController::class, 'readAll'])->name('search.filter');
+Route::post('search', [SearchController::class, 'readAll'])->name('search.filter');
 //END SEARCH
 
 Route::any('gestion', function(){
