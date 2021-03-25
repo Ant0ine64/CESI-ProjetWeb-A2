@@ -14,12 +14,35 @@
                 <form action="{{route('search.filter')}}" method="POST">
                 @csrf
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
-                    <input type="radio" id="users" name="filter" value="users">
+                    @if ($radio == 'users')
+                    <input type="radio" id="users" name="filter" value="users" checked>
                     <label for="users">Users</label>
                     <input type="radio" id="company" name="filter" value="companies">
                     <label for="company">Companies </label>
                     <input type="radio" id="offers" name="filter" value="offers">
                     <label for="offers">Offers</label>
+                    @elseif ($radio == 'companies')
+                    <input type="radio" id="users" name="filter" value="users">
+                    <label for="users">Users</label>
+                    <input type="radio" id="company" name="filter" value="companies" checked>
+                    <label for="company">Companies </label>
+                    <input type="radio" id="offers" name="filter" value="offers">
+                    <label for="offers">Offers</label>
+                    @elseif ($radio == 'offers')
+                    <input type="radio" id="users" name="filter" value="users">
+                    <label for="users">Users</label>
+                    <input type="radio" id="company" name="filter" value="companies">
+                    <label for="company">Companies </label>
+                    <input type="radio" id="offers" name="filter" value="offers" checked>
+                    <label for="offers">Offers</label>
+                    @else
+                    <input type="radio" id="users" name="filter" value="users" checked>
+                    <label for="users">Users</label>
+                    <input type="radio" id="company" name="filter" value="companies">
+                    <label for="company">Companies </label>
+                    <input type="radio" id="offers" name="filter" value="offers">
+                    <label for="offers">Offers</label>
+                    @endif
                     <input type="submit" value="Filter" name="result">
                 </form>
         </div>
@@ -37,7 +60,7 @@
                 <tr>
                     <td>{{$users->firstname}}</td>
                     <td>{{$users->lastname}}</td>
-                    <td>{{$users->login}}</td>
+                    <td><a href="profile?id={{$users->id}}">{{$users->login}}</a></td>
                     <td>{{$users->type}}</td>
                     <td>{{$users->city}}</td>
                 </tr>
@@ -52,7 +75,7 @@
                 </tr>
                 @foreach ($comps as $comps)
                 <tr>
-                    <td>{{$comps->name}}</td>
+                    <td><a href="#">{{$comps->name}}</a></td>
                     <td>{{$comps->address}}</td>
                     <td>{{$comps->activity_sector}}</td>
                 </tr>
@@ -70,7 +93,7 @@
                 </tr>
                 @foreach ($offers as $offers)
                 <tr>
-                    <td>{{$offers->title}}</td>
+                    <td><a href="#">{{$offers->title}}</a></td>
                     <td>{{$offers->name}}</td>
                     <td>{{$offers->competences}}</td>
                     <td>{{$offers->date}}</td>
