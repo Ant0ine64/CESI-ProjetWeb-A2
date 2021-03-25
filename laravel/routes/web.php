@@ -40,7 +40,7 @@ Route::get('ask_account', function () {
 
 // START SEARCH
 Route::any('search', function () {
-    return view('search');
+    return view('search_');
 })->name('Search')->middleware('auth');
 
 Route::post('search', [SearchController::class, 'readAll'])->name('search.filter');
@@ -48,7 +48,7 @@ Route::post('search', [SearchController::class, 'readAll'])->name('search.filter
 
 // START GESTION
 Route::any('gestion', function () {
-    return view('gestion');
+    return view('gestion_');
 })->name('Gestion')->middleware('auth');
 
 Route::post('gestion', [SearchController::class, 'readAllG'])->name('gestion.filter');
