@@ -57,17 +57,19 @@ class UserController extends Controller
     //UPDATE
     function updateByLogin(Request $request) {
         $login = $request->input('login');
-        // find the ids of those fields
-        $id_type = json_decode(Type::where('type', $request->input('type'))->first(), true)['id'];
-        $id_center = json_decode(Center::where('city', $request->input('city'))->first(), true)['id'];
+        $id_type = Type::where('type', $request->input('type'))->first();
+        $id_center = Center::where('city', $request->input('city'))->first();
+
+        if($id_type == null || $id_center == null)
+            return response('Error invalid input.', 400)
+                ->header('Content-Type', 'text/plain');
 
         User::where('login', $login)->update([
             'firstname' => $request->input("firstname"),
             'lastname' => $request->input("lastname"),
-            'id_type' => $id_type,
-            'id_center' => $id_center
+            'id_type' => $id_type->id,
+            'id_center' => $id_center->id
         ]);
-
 
         return response('Successfully updated user : '.$login, 200)
             ->header('Content-Type', 'text/plain');
