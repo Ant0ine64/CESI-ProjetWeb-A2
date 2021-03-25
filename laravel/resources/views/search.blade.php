@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"> 
+<html lang="fr">
 <head>
         <link href="/css/search.css" rel="stylesheet">
         <meta charset="UTF-8">
@@ -65,7 +65,7 @@
                     <td>{{$users->city}}</td>
                 </tr>
                 @endforeach
-                </table>  
+                </table>
             @elseif (request()->input('filter')=='companies')
                 <table class="center">
                 <tr>
@@ -80,8 +80,13 @@
                     <td>{{$comps->activity_sector}}</td>
                 </tr>
                 @endforeach
-                </table>  
+                </table>
             @elseif (request()->input('filter')=='offers')
+                <div id="table_create">
+                    <form action="{{route('offer.getCreate')}}" method="get" style>
+                        <input type="submit" value="Add">
+                    </form>
+                </div>
                 <table class="center">
                 <tr>
                     <th>Title</th>
@@ -89,8 +94,10 @@
                     <th>Comptences</th>
                     <th>Start date</th>
                     <th>Duration</th>
-                    <th>Number of slots</th>  
+                    <th>Number of slots</th>
                 </tr>
+
+
                 @foreach ($offers as $offers)
                 <tr>
                     <td>{{$offers->title}}</td>
@@ -99,11 +106,22 @@
                     <td>{{$offers->date}}</td>
                     <td>{{$offers->duration}}</td>
                     <td>{{$offers->slots}}</td>
+                    <td>
+                        <form action="{{route('offer.getUpdate')}}" method="get" style="text-align: center">
+                            <input type="submit" value="Edit">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{route('offer.delete')}}" method="post" style="text-align: center">
+                            <input type="hidden" name="idOffer" value="{{$offers->id}}">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
-                </table>   
+                </table>
             @endif
-        </div>  
+        </div>
     </main>
     <footer>
             @include('footer')

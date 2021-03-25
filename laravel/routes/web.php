@@ -89,14 +89,14 @@ Route::prefix('offer')-> group(function() {
     Route::prefix('register')-> group(function() {
         Route::get('/', function () {
             return (PermissionController::tryGettingToView('offer.register','offer.create'));
-        });
+        })->name('offer.getCreate');
         Route::post('submit', [OfferController::class, 'registerOffer'])->name('offer.create');
     });
 
     Route::prefix('update')-> group(function() {
         Route::get('/', function () {
             return (PermissionController::tryGettingToView('offer.update','offer.update'));
-        });
+        })->name('offer.getUpdate');
         Route::post('submit', [OfferController::class, 'updateOffer'])->name('offer.update');
     });
 
