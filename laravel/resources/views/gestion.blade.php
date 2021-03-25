@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr"> 
 <head>
-        <link href="/css/gestion.css" rel="stylesheet">
+        <link href="/css/search.css" rel="stylesheet">
         <meta charset="UTF-8">
         <title>Gestion</title>
 </head>
@@ -10,33 +10,76 @@
         @include ('header')
     </header>
     <main id="main">
-        <div id="search_div">
-            <input type="text" placeholder="Your search...">
+        <div id="form_div">
+                <input type="text" placeholder="Your search..." id="searchbar"><br><br>
+                <form action="{{route('gestion.filter')}}" method="POST">
+                @csrf
+                    <input type="radio" id="users" name="filter" value="users">
+                    <label for="users">Users</label>
+                    <input type="radio" id="company" name="filter" value="companies">
+                    <label for="company">Companies </label>
+                    <input type="radio" id="offers" name="filter" value="offers">
+                    <label for="offers">Offers</label>
+                    <input type="submit" value="Filter" name="result">
+                </form>
         </div>
         <div id="table_div"><br>
-        @if (can(stud.update))
-            <table class="center">
-                <th>Name</th>
-                <th>Sirname</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Center</th>
-            </table> 
-        @elseif (can(comp.update))
-            <table class="center">
-                <th>Name</th>
-                <th>Activity sector</th>
-                <th>Number of offers</th>
-                <th>Grade</th> 
-            </table>
-        @elseif (can(offer.update)
-            <table class="center">
-                <th>Title</th>
-                <th>Company</th>
-                <th>Comptencies</th>
-                <th>Number of slots</th>     
-            </table>
-        @endif  
+            @if(request()->input('filter')=='users')
+                <table class="center">
+                <tr>
+                    <th>Name</th>
+                    <th>Sirname</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Center</th>
+                </tr>
+                @foreach ($users as $users)
+                <tr>
+                    <td>{{$users->firstname}}</td>
+                    <td>{{$users->lastname}}</td>
+                    <td>{{$users->login}}</td>
+                    <td>{{$users->type}}</td>
+                    <td>{{$users->city}}</td>
+                </tr>
+                @endforeach
+                </table>  
+            @elseif (request()->input('filter')=='companies')
+                <table class="center">
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Activity sector</th>
+                </tr>
+                @foreach ($comps as $comps)
+                <tr>
+                    <td>{{$comps->name}}</td>
+                    <td>{{$comps->address}}</td>
+                    <td>{{$comps->activity_sector}}</td>
+                </tr>
+                @endforeach
+                </table>  
+            @elseif (request()->input('filter')=='offers')
+                <table class="center">
+                <tr>
+                    <th>Title</th>
+                    <th>Company</th>
+                    <th>Comptences</th>
+                    <th>Start date</th>
+                    <th>Duration</th>
+                    <th>Number of slots</th>  
+                </tr>
+                @foreach ($offers as $offers)
+                <tr>
+                    <td>{{$offers->title}}</td>
+                    <td>{{$offers->name}}</td>
+                    <td>{{$offers->competences}}</td>
+                    <td>{{$offers->date}}</td>
+                    <td>{{$offers->duration}}</td>
+                    <td>{{$offers->slots}}</td>
+                </tr>
+                @endforeach
+                </table>   
+            @endif
         </div>  
     </main>
     <footer>
