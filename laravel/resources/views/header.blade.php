@@ -9,13 +9,10 @@
         <div class="links">
             <a href="gestion" id="Gestion">Gestion</a>
         </div>
-        <div class="links">
-            <a href="#" id="Notifs">Notification</a>
-        </div>
     </div>
     <div id="partRight">
         <div class="part2">
-            <a href="profile" id="Profile">Profile</a>
+        <a href="profile?id={{Auth::user()->id}}" id="Profile">Profile</a>
         </div>
         <div class="part2">
             <a href="logout" id="Deco">Déconnexion</a>
