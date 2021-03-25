@@ -42,10 +42,9 @@ class OfferController extends Controller
             'remuneration' =>  $remuneration,
             'slots' =>  $slots
         ]))
-            return response('Success', 200)
-                ->header('Content-Type', 'text/plain');
+            return view('search_');
         else
-            return response('Wrong input', 500)
+            return response('Wrong input', 400)
                 ->header('Content-Type', 'text/plain');
 
     }
