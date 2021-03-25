@@ -81,6 +81,8 @@ class PermissionController extends Controller
     function readDelegatePermissions(Request $request) {
 
         $login = $request->input('login');
+        if (!$login) return view('delegate.read'); // only search view if empty
+
         $delegate = User::where('login', $login)->first();
 
         if ($delegate['id_type'] != 4) { //return if not delegate
@@ -93,7 +95,7 @@ class PermissionController extends Controller
 
         foreach ($join as $perm) $permissions[] = $perm->id_permission;
 
-        return view('delegateRead', ['username' => $login, 'user_permissions' => $permissions]);
+        return view('delegate.read', ['username' => $login, 'user_permissions' => $permissions]);
     }
 
     /**

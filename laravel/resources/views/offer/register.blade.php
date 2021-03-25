@@ -5,7 +5,7 @@
     <title>RegisterOffer</title>
 </head>
 <body>
-    <form action="{{route('submit')}}" method="post">
+    <form action="{{route('offer.create')}}" method="post">
         @csrf
         <input value = "23" type="text" name="idCompany" id="idCompany"><br>
         <input value = "defaultValue" type="text" name="title" id="title"><br>
