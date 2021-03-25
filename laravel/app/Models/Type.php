@@ -13,5 +13,7 @@ class Type extends Model
         'id',
         'type'
     ];
+    protected $guarded = [];
+    public $timestamps = false;
     protected $table = 'type';
 }

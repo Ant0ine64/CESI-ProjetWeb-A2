@@ -35,18 +35,18 @@ class PermissionController extends Controller
             return abort(403);
     }
 
+    public static function hasAdminRights(): bool {
+        $userInfos = UserController::tryGettingUserById(Auth::user()->id)->First();
+        if($userInfos == null)
+            return false;
+        return $userInfos->id_type == 1;
+    }
+
 
     public static function isLogged(){
         return Auth::check();
     }
 
-    /*public static function ensureUserHasRole($request, Closure $next, $role){
-        if (! $request->user()->hasRole($role)) {
-            // Redirect...
-        }
-
-        return $next($request);
-    }*/
     // Test permission, return true if user can
     public static function can($permission): bool
     {
