@@ -18,7 +18,7 @@
             <a href="profile" id="Profile">Profile</a>
         </div>
         <div class="part2">
-            <a href="login" id="Deco">Déconnexion</a>
+            <a href="logout" id="Deco">Déconnexion</a>
         </div>
         <div class="part_">
             <img src="img/cesinkdin.png" alt="logo" style="float: right" id="logo">
