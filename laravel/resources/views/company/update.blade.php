@@ -23,15 +23,15 @@
                <form action="{{route('company.update')}}" method="post">
                @csrf
                Company id :
-               <input value="<?php echo $companyInfos->id; ?>" type="text" name="companyId" id="companyId" readonly><br>
+               <input value="{{$companyInfos->id}}" type="text" name="companyId" id="companyId" readonly><br>
                Company name :
-               <input value="<?php echo $companyInfos->name; ?>" type="text" name="name" id="name"><br>
+               <input value="{{$companyInfos->name}}" type="text" name="name" id="name"><br>
                Company address :
-               <input value="<?php echo $companyInfos->address; ?>" type="text" name="address" id="address"><br>
+               <input value="{{$companyInfos->address}}" type="text" name="address" id="address"><br>
                Company activity sector :
-               <input value="<?php echo $companyInfos->activity_sector; ?>" type="text" name="activitySector" id="activitySector"><br>
+               <input value="{{$companyInfos->activity_sector}}" type="text" name="activitySector" id="activitySector"><br>
                Company interns number :
-               <input value="<?php echo $companyInfos->interns_number; ?>" type="text" name="internsNumber" id="internsNumber"><br>
+               <input value="{{$companyInfos->interns_number}}" type="text" name="internsNumber" id="internsNumber"><br>
                <input type="submit" value="UpdateCompany">
                </form>
 </body>
