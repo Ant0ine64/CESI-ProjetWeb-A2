@@ -45,6 +45,9 @@ class CompanyController extends Controller
         return Company::where('id', $companyId)->get();
     }
 
+    public static function tryGettingCompanies() {
+        return Company::All();
+    }
     //Update
 
     function updateCompany(Request $request){
