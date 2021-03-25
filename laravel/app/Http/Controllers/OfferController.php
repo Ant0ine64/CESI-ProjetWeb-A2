@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Offer;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class OfferController extends Controller
 {
@@ -50,13 +51,17 @@ class OfferController extends Controller
     }
 
     //Read
+    static function readAll() {
+        $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
+        Log::debug($offers);
+        return view('search', ['offers' => $offers]);
+    }
 
     public static function tryGettingOffer($offerId) {
         return Offer::where('id', $offerId)->get();
     }
 
     //Update
-
     function updateOffer(Request $request){
 
         $idOffer = $request->input("idOffer");
