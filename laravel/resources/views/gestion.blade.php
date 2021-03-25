@@ -13,7 +13,7 @@
         <div id="form_div">
                 <form action="{{route('gestion.filter')}}" method="POST">
                 @csrf
-                    <input type="text" placeholder="Your search..." id="searchbar"><br><br>
+                    <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
                     @if ($radio == 'users')
                     <input type="radio" id="users" name="filter" value="users" checked>
                     <label for="users">Users</label>
