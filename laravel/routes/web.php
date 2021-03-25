@@ -14,14 +14,18 @@ use App\Http\Controllers\SearchController;
 // ===== STANDARD ROUTES =====
 
 // root
-Route::get('/', function () { // todo : if auth -> home else ->login
-    return view('login');
+Route::get('/', function () {
+    if(!PermissionController::isLogged())
+        return view('login');
+    else
+        return view('home');
 })->name('Login');
 
 // login
 Route::get('login', function () {
     return view('login');
 })->name('login');
+
 Route::post('login', [LoginController::class, 'authenticate'])->name('user.login');
 Route::get('logout', [LoginController::class, 'logout'])->name('user.logout');
 
