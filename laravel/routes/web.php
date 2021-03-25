@@ -50,6 +50,11 @@ Route::any('gestion', function () {
 Route::post('gestion', [SearchController::class, 'readAllG'])->name('gestion.filter');
 //END GESTION
 
+// Profile page
+Route::get('profile', function () {
+    return view('profile');
+})->name('profile');
+
 Route::get('register', function(){
     return view('register');
 })->name('Register');
