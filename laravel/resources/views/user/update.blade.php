@@ -20,15 +20,15 @@
     <form action="{{route('user.update')}}" method="post">
         @csrf
         First Name :
-        <input value= "<?php echo $userInfos->firstname; ?>" type="text" name="firstname" id="firstname"><br>
+        <input value= "{{$userInfos->firstname}}" type="text" name="firstname" id="firstname"><br>
         Last Name :
-        <input value= "<?php echo $userInfos->lastname; ?>" type="text" name="lastname" id="lastname"><br>
+        <input value= "{{$userInfos->lastname}}" type="text" name="lastname" id="lastname"><br>
         Login :
-        <input value= "<?php echo $userInfos->login; ?>" type="text" name="login" id="login" readonly><br>
+        <input value= "{{$userInfos->login}}" type="text" name="login" id="login" readonly><br>
         Type name :
-        <input value= "<?php echo $typeInfos->type; ?>" type="text" name="type" id="type"><br>
+        <input value= "{{$typeInfos->type}}" type="text" name="type" id="type"><br>
         City name :
-        <input value= "<?php echo $centerInfos->city; ?>" type="text" name="city" id="city"><br>
+        <input value= "{{$centerInfos->city}}" type="text" name="city" id="city"><br>
         <input type="submit" value="Update">
     </form>
 </body>
