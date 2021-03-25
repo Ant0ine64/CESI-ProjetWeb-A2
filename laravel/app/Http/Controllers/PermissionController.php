@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\User;
+use Closure;
 use Illuminate\Http\Request;
 use App\Models\Permission;
 use App\Models\PermissionCustom;
@@ -23,15 +25,41 @@ class PermissionController extends Controller
         return $updatablePermissions;
     }
 
+    public static function tryGettingToView($viewName, $permission){
+      if(!PermissionController::isLogged())
+          return view('login');
+
+        if(PermissionController::can($permission))
+            return view($viewName);
+        else
+            return abort(403);
+    }
+
+
+    public static function isLogged(){
+        return Auth::check();
+    }
+
+    /*public static function ensureUserHasRole($request, Closure $next, $role){
+        if (! $request->user()->hasRole($role)) {
+            // Redirect...
+        }
+
+        return $next($request);
+    }*/
     // Test permission, return true if user can
     public static function can($permission): bool
     {
-
         $ability = false;
         $permission_id = Permission::where('title', $permission)->first()['id'];
 
         // used for getting type and id
         $user = Auth::user();
+
+        if($user == null)
+            return false;
+
+        Log::debug('utype:'.$user['id_type'].' permid'.$permission_id);
 
         if(PermissionType::where('id_type', $user['id_type'])->where('id_permission', $permission_id)->first()) {
             //permission exist in standard permission_type table
