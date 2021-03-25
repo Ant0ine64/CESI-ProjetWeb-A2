@@ -21,7 +21,7 @@
             <a href="login" id="Deco">Déconnexion</a>
         </div>
         <div class="part_">
-            <img src="img/cesinkdin.png" alt="logo" style="float: right" id="logo">
+            <img src="./public/img/cesinkdin.png" alt="logo" style="float: right" id="logo">
         </div>
     </div>
 </div>

@@ -5,6 +5,9 @@
     <title>Register</title>
 </head>
 <body>
+    <header id="header">
+        @include ('header')
+    </header>
     <form action="{{route('user.create')}}" method="post">
         @csrf
         <input type="text" name="firstname" id="firstname"><br>
@@ -15,5 +18,8 @@
         <input type="password" name="password" id="password"><br>
         <input type="submit" value="Register">
     </form>
+    <footer>
+        @include('footer')
+    </footer>
 </body>
 </html>
