@@ -55,7 +55,7 @@ class SearchController extends Controller
             $comps = Company::where('name', 'like', '%'.$search.'%')->orWhere('address', 'like', '%'.$search.'%')->orWhere('activity_sector', 'like', '%'.$search.'%')->get();
         };
         
-        return view('search', ['users' => $users, 'offers' => $offers, 'comps' => $comps, 'radio' => $radio]);
+        return view('search_', ['users' => $users, 'offers' => $offers, 'comps' => $comps, 'radio' => $radio]);
     }
 
     //READ
@@ -96,6 +96,6 @@ class SearchController extends Controller
             $comps = Company::where('name', 'like', '%'.$search.'%')->orWhere('address', 'like', '%'.$search.'%')->orWhere('activity_sector', 'like', '%'.$search.'%')->get();
         };
 
-        return view('gestion', ['users' => $users, 'offers' => $offers, 'comps' => $comps, 'radio' => $radio]);
+        return view('gestion_', ['users' => $users, 'offers' => $offers, 'comps' => $comps, 'radio' => $radio]);
     }
 }

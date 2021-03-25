@@ -13,13 +13,36 @@
         <div id="form_div">
                 <form action="{{route('gestion.filter')}}" method="POST">
                 @csrf
-                    <input type="text" placeholder="Your search..." name="searchbar" id="searchbar"><br><br>
-                    <input type="radio" id="users" name="filter" value="users">
+                <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
+                    @if ($radio == 'users')
+                    <input type="radio" id="users" name="filter" value="users" checked>
                     <label for="users">Users</label>
                     <input type="radio" id="company" name="filter" value="companies">
                     <label for="company">Companies </label>
                     <input type="radio" id="offers" name="filter" value="offers">
                     <label for="offers">Offers</label>
+                    @elseif ($radio == 'companies')
+                    <input type="radio" id="users" name="filter" value="users">
+                    <label for="users">Users</label>
+                    <input type="radio" id="company" name="filter" value="companies" checked>
+                    <label for="company">Companies </label>
+                    <input type="radio" id="offers" name="filter" value="offers">
+                    <label for="offers">Offers</label>
+                    @elseif ($radio == 'offers')
+                    <input type="radio" id="users" name="filter" value="users">
+                    <label for="users">Users</label>
+                    <input type="radio" id="company" name="filter" value="companies">
+                    <label for="company">Companies </label>
+                    <input type="radio" id="offers" name="filter" value="offers" checked>
+                    <label for="offers">Offers</label>
+                    @else
+                    <input type="radio" id="users" name="filter" value="users" checked>
+                    <label for="users">Users</label>
+                    <input type="radio" id="company" name="filter" value="companies">
+                    <label for="company">Companies </label>
+                    <input type="radio" id="offers" name="filter" value="offers">
+                    <label for="offers">Offers</label>
+                    @endif
                     <input type="submit" value="Filter" name="result">
                 </form>
         </div>
@@ -32,6 +55,7 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th>Center</th>
+                    <th>Actions</th>
                 </tr>
                 @foreach ($users as $users)
                 <tr>
@@ -39,7 +63,8 @@
                     <td>{{$users->lastname}}</td>
                     <td>{{$users->login}}</td>
                     <td>{{$users->type}}</td>
-                    <td>{{$users->city}}</td>        
+                    <td>{{$users->city}}</td>  
+                    <td><a href="#" class="clickme danger">Edit</a>&emsp;<a href="#" class="clickme critical">Delete</a></td>      
                 </tr>
                 @endforeach
                 </table>  
@@ -56,6 +81,7 @@
                     <td>{{$comps->name}}</td>
                     <td>{{$comps->address}}</td>
                     <td>{{$comps->activity_sector}}</td>
+                    <td><a href="company/update?id={{$comps->id}}" class="clickme danger">Edit</a>&emsp;<a href="#" class="clickme critical">Delete</a></td>
                 </tr>
                 @endforeach
                 </table>  
@@ -68,6 +94,7 @@
                     <th>Start date</th>
                     <th>Duration</th>
                     <th>Number of slots</th>  
+                    <th>Actions</th>
                 </tr>
                 @foreach ($offers as $offers)
                 <tr>
@@ -77,6 +104,7 @@
                     <td>{{$offers->date}}</td>
                     <td>{{$offers->duration}}</td>
                     <td>{{$offers->slots}}</td>
+                    <td><a href="#" class="clickme danger">Edit</a>&emsp;<a href="#" class="clickme critical">Delete</a></td>
                 </tr>
                 @endforeach
                 </table>   
