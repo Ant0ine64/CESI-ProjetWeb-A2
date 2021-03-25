@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\WishList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Echo_;
 
@@ -14,7 +15,7 @@ class WishListController extends Controller
 {
     //Create
     function addToWishList(Request $request){
-        $idUser = "4"; //todo: get this ID by using User Model
+        $idUser = Auth::id();
         $idOffer = $request->input("idOffer");
 
         $offerInfos = OfferController::tryGettingOffer($idOffer);
@@ -53,7 +54,7 @@ class WishListController extends Controller
     //Update
     function updateWishListState(Request $request){ // attention ici on ne check pas si l'idOffer existe dans l'id user a voir si on a le temps de le faire
         //state++;
-        $idUser = "4"; //todo: get this ID by using User Model
+        $idUser = Auth::id();
         $idOffer = $request->input('idOffer');
         if(WishList::where('id_user', '=', $idUser)
             ->where('id_offer', '=', $idOffer)
@@ -71,7 +72,7 @@ class WishListController extends Controller
 
     //Delete
     function removeFromWishList(Request $request){
-        $idUser = "4"; //todo: get this ID by using User Model
+        $idUser = Auth::id();
         $idOffer = $request->input('idOffer');
         if(WishList::where('id_user', '=', $idUser)
             ->where('id_offer', '=', $idOffer)
