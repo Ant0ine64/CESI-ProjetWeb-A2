@@ -47,19 +47,41 @@
                 <table class="center">
                 <tr>
                     <th>Name</th>
+                    <th>Address</th>
                     <th>Activity sector</th>
                     <th>Number of offers</th>
                     <th>Grade</th>
                 </tr>
+                @foreach ($comps as $comps)
+                <tr>
+                    <td>{{$users->firstname}}</td>
+                    <td>{{$users->lastname}}</td>
+                    <td>{{$users->login}}</td>
+                    <td>{{$users->type}}</td>
+                    <td>{{$users->city}}</td>
+                </tr>
+                @endforeach
                 </table>  
             @elseif (request()->input('filter')=='offers')
                 <table class="center">
                 <tr>
                     <th>Title</th>
                     <th>Company</th>
-                    <th>Comptencies</th>
+                    <th>Comptences</th>
+                    <th>Start date</th>
+                    <th>Duration</th>
                     <th>Number of slots</th>  
                 </tr>
+                @foreach ($offers as $offers)
+                <tr>
+                    <td>{{$offers->title}}</td>
+                    <td>{{$offers->name}}</td>
+                    <td>{{$offers->competences}}</td>
+                    <td>{{$offers->date}}</td>
+                    <td>{{$offers->duration}}</td>
+                    <td>{{$offers->slots}}</td>
+                </tr>
+                @endforeach
                 </table>   
             @endif
         </div>  
