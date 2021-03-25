@@ -28,7 +28,7 @@ class SearchController extends Controller
             $comps = Company::get();
         }
         elseif ($radio == 'users' && $search != ''){
-            $users = User::where('firstname', 'like', '%'.$search.'%')->orWhere('lastname', 'like', '%'.$search.'%')->orWhere('login', 'like', '%'.$search.'%')->orWhere('center', 'like', '%'.$search.'%')->orWhere('type', 'like', '%'.$search.'%')->join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->get();
+            $users = User::where('firstname', 'like', '%'.$search.'%')->orWhere('lastname', 'like', '%'.$search.'%')->orWhere('login', 'like', '%'.$search.'%')->orWhere('city', 'like', '%'.$search.'%')->orWhere('type', 'like', '%'.$search.'%')->join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->get();
             $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
             $comps = Company::get();
         };
@@ -54,8 +54,6 @@ class SearchController extends Controller
             $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
             $comps = Company::where('name', 'like', '%'.$search.'%')->orWhere('address', 'like', '%'.$search.'%')->orWhere('activity_sector', 'like', '%'.$search.'%')->get();
         };
-
-        Log::debug($search);
         
         return view('search', ['users' => $users, 'offers' => $offers, 'comps' => $comps, 'radio' => $radio]);
     }
@@ -63,7 +61,7 @@ class SearchController extends Controller
     //READ
     static function readAllG(Request $request) {
         $radio = $request->get('filter');
-        $search = $request->get('searchbar');
+        $search = $request->input('searchbar');
         
         if ($radio == 'users' && $search == ''){
             $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->get();
@@ -71,7 +69,7 @@ class SearchController extends Controller
             $comps = Company::get();
         }
         elseif ($radio == 'users' && $search != ''){
-            $users = User::where('firstname', 'like', '%'.$search.'%')->orWhere('lastname', 'like', '%'.$search.'%')->orWhere('login', 'like', '%'.$search.'%')->orWhere('center', 'like', '%'.$search.'%')->orWhere('type', 'like', '%'.$search.'%')->join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->get();
+            $users = User::where('firstname', 'like', '%'.$search.'%')->orWhere('lastname', 'like', '%'.$search.'%')->orWhere('login', 'like', '%'.$search.'%')->orWhere('city', 'like', '%'.$search.'%')->orWhere('type', 'like', '%'.$search.'%')->join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->get();
             $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
             $comps = Company::get();
         };
