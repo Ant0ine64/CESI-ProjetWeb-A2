@@ -1,7 +1,7 @@
 <div id="header">
     <div id="partLeft">
         <div class="links">
-            <a href="home" id="Acceuil">Acceuil</a>
+            <a href="home" id="Home">Home</a>
         </div>
         <div class="links">
             <a href="search" id="Search">Search</a>
@@ -15,7 +15,7 @@
     </div>
     <div id="partRight">
         <div class="part2">
-            <a href="profile" id="Profile">Profile</a>
+            <a href="profile?id=<?php use Illuminate\Support\Facades\Auth;echo Auth::user()->id; ?>" id="Profile">Profile</a>
         </div>
         <div class="part2">
             <a href="login" id="Deco">Déconnexion</a>
