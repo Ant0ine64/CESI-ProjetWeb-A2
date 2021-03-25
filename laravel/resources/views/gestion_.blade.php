@@ -13,7 +13,7 @@
         <div id="form_div">
                 <form action="{{route('gestion.filter')}}" method="POST">
                 @csrf
-                    <input type="text" placeholder="Your search..." id="searchbar"><br><br>
+                    <input type="text" placeholder="Your search..." name="searchbar" id="searchbar"><br><br>
                     <input type="radio" id="users" name="filter" value="users">
                     <label for="users">Users</label>
                     <input type="radio" id="company" name="filter" value="companies">
