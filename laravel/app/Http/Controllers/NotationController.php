@@ -6,13 +6,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Notation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NotationController extends Controller
 {
 
     //Create
     function addNotation(Request $request){ //todo: j'ai oublié de mettre le grade de la notation
-        $idUser = "4"; //todo: get this ID by using User Model
+        $idUser = Auth::id();
         $idCompany = $request->input("idCompany");
         $grade = $request->input("grade");
 
