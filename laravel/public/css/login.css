@@ -1,0 +1,24 @@
+html{
+    min-height: 100%;
+}
+
+body{
+    background: linear-gradient(to bottom right,orange, white);
+}
+
+#logo{
+    max-width: 10%;
+    height: auto;
+}
+
+#log_form_div{
+    line-height: 550px;
+    text-align:center; 
+    vertical-align:middle;
+}
+
+#login_form{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 14px; 
+}

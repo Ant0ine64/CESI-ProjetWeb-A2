@@ -1,0 +1,36 @@
+.b{
+    color:grey;
+    font-size: 250%;
+    margin-right: 400px;
+    text-decoration: none;
+}
+
+.note{
+    margin-left: 10%;
+    width: 32px;
+    text-decoration: none;
+    transform: rotate(90deg);
+}
+
+.c{
+    z-index: 200000;
+    margin-left: 5px;
+    margin-top: -30px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.labelButon
+{
+    background-color:white;
+    color: grey;
+}
+
+input:checked,
+.labelButon:active,
+input:hover ~ .labelButon,
+input:focus  ~ .labelButon
+{
+    color: black;
+    cursor: pointer;
+}
