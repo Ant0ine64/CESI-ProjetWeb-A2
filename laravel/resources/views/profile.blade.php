@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="/css/profile.css" rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="Profile.css" media="all"/>
 </head>
 <body style="font-family: 'Nunito'">
     <header id="header">
@@ -29,13 +34,14 @@
     $centerInfos = \App\Models\Center::Where('id' , $userInfos->id_center)->get()->First();
     $typeInfos = \App\Models\Type::Where('id' , $userInfos->id_type)->get()->First();
     ?>
+
     <div class="information" style="text-align: center">
         <h1>Your informations :</h1>
-        <p>First Name : <?php echo $userInfos->firstname; ?> </p><br>
-        <p>Last Name : <?php echo $userInfos->lastname; ?></p><br>
-        <p>Login : <?php echo $userInfos->login; ?></p><br>
-        <p>Type name :<?php echo $typeInfos->type; ?></p><br>
-        <p>City name :<?php echo $centerInfos->city; ?></p><br>
+        <p>First Name : {{$userInfos->firstname}} </p><br>
+        <p>Last Name : {{$userInfos->lastname}}</p><br>
+        <p>Login : {{$userInfos->login}}</p><br>
+        <p>Type name : {{$typeInfos->type}}</p><br>
+        <p>City name : {{$centerInfos->city}}</p><br>
     </div>
     <footer id="footer">
         @include('footer')
