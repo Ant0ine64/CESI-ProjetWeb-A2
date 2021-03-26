@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="/css/profile.css" rel="stylesheet">
 </head>
-<body>
-
+<body style="font-family: 'Nunito'">
+    <header id="header">
+        @include('header')
+    </header>
     <?php
     use Illuminate\Support\Facades\Auth;
 
@@ -25,12 +29,16 @@
     $centerInfos = \App\Models\Center::Where('id' , $userInfos->id_center)->get()->First();
     $typeInfos = \App\Models\Type::Where('id' , $userInfos->id_type)->get()->First();
     ?>
-
-    @csrf
-    First Name : <?php echo $userInfos->firstname; ?> <br>
-    Last Name : <?php echo $userInfos->lastname; ?><br>
-    Login : <?php echo $userInfos->login; ?><br>
-    Type name :<?php echo $typeInfos->type; ?><br>
-    City name :<?php echo $centerInfos->city; ?><br>
+    <div class="information" style="text-align: center">
+        <h1>Your informations :</h1>
+        <p>First Name : <?php echo $userInfos->firstname; ?> </p><br>
+        <p>Last Name : <?php echo $userInfos->lastname; ?></p><br>
+        <p>Login : <?php echo $userInfos->login; ?></p><br>
+        <p>Type name :<?php echo $typeInfos->type; ?></p><br>
+        <p>City name :<?php echo $centerInfos->city; ?></p><br>
+    </div>
+    <footer id="footer">
+        @include('footer')
+    </footer>
 </body>
 </html>
