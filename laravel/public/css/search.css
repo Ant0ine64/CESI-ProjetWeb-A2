@@ -17,12 +17,12 @@ header{
     height:70px;
 }
 
-#main{
-    top: 85px;
-    position: relative;
+table td{
+    text-align: center;
 }
 
-#form_div{
+table td a{
+    display: inline-block;
     text-align: center;
 }
 
@@ -30,6 +30,44 @@ header{
     margin-right: auto;
     margin-left: auto;
     width: 100%;
+}
+
+.clickme {
+    background-color: #EEEEEE;
+    padding: 8px 20px;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.danger {
+    background-color:orange;
+    color: #FFFFFF;
+}
+
+.danger:hover {
+    background-color:orangered;
+    color: #FFFFFF;
+}
+
+.critical {
+    background-color: orangered;
+    color: #FFFFFF;
+}
+
+.critical:hover {
+    background-color:red;
+    color: #FFFFFF;
+}
+
+#main{
+    top: 85px;
+    position: relative;
+}
+
+#form_div{
+    text-align: center;
 }
 
 footer{
@@ -41,6 +79,8 @@ footer{
     text-align: center;
     font-family: Nunito;
 }
+
+
 
 footer a
 {

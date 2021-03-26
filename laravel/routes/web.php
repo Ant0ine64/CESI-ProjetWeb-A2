@@ -14,14 +14,18 @@ use App\Http\Controllers\SearchController;
 // ===== STANDARD ROUTES =====
 
 // root
-Route::get('/', function () { // todo : if auth -> home else ->login
-    return view('login');
+Route::get('/', function () {
+    if(!PermissionController::isLogged())
+        return view('login');
+    else
+        return view('home');
 })->name('Login');
 
 // login
 Route::get('login', function () {
     return view('login');
 })->name('login');
+
 Route::post('login', [LoginController::class, 'authenticate'])->name('user.login');
 Route::get('logout', [LoginController::class, 'logout'])->name('user.logout');
 
@@ -32,7 +36,7 @@ Route::get('ask_account', function () {
 
 // START SEARCH
 Route::any('search', function () {
-    return view('search_');
+    return view('search');
 })->name('Search')->middleware('auth');
 
 Route::post('search', [SearchController::class, 'readAll'])->name('search.filter');
@@ -40,11 +44,16 @@ Route::post('search', [SearchController::class, 'readAll'])->name('search.filter
 
 // START GESTION
 Route::any('gestion', function () {
-    return view('gestion_');
+    return view('gestion');
 })->name('Gestion')->middleware('auth');
 
 Route::post('gestion', [SearchController::class, 'readAllG'])->name('gestion.filter');
 //END GESTION
+
+// Profile page
+Route::get('profile', function () {
+    return view('profile');
+})->name('profile');
 
 Route::get('register', function(){
     return view('register');
@@ -63,6 +72,17 @@ Route::prefix('register')-> group(function() {
     Route::post('submit', [UserController::class, 'register'])->name('user.create');
 });
 
+// ===== USER =====
+
+Route::prefix('user')-> group(function() {
+    Route::prefix('update')-> group(function() {
+        Route::get('/', function () {
+            return (PermissionController::tryGettingToView('user.update','auth'));
+        });
+        Route::post('submit', [UserController::class, 'updateByLogin'])->name('user.update');
+    });
+
+});
 
 // ===== COMPANY =====
 
@@ -169,3 +189,6 @@ Route::prefix('delegate')-> group(function() {
 
     Route::post('update', [PermissionController::class, 'updateDelegatePermissions'])->name('delegate.update');
 });
+
+
+
