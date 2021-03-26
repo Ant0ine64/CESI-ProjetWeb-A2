@@ -42,14 +42,6 @@ Route::any('search', function () {
 Route::post('search', [SearchController::class, 'readAll'])->name('search.filter');
 //END SEARCH
 
-// START GESTION
-Route::any('gestion', function () {
-    return view('gestion');
-})->name('Gestion')->middleware('auth');
-
-Route::post('gestion', [SearchController::class, 'readAllG'])->name('gestion.filter');
-//END GESTION
-
 // Profile page
 Route::get('profile', function () {
     return view('profile');
