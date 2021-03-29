@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>UpdateCompany</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="/css/companyUpdate.css" rel="stylesheet"></head>
+    <link href="/css/update.css" rel="stylesheet"></head>
 <body>
 <header style="font-family: Nunito">
     @include ('header')
@@ -24,20 +24,22 @@
                return;
            }
     ?>
-               <form action="{{route('company.update')}}" method="post" class="form">
+    <body style="font-family: Nunito;">
+    <form action="{{route('company.update')}}" method="post" class="form">
                @csrf
-               Company id :
+               Company id : <br>
                <input value="{{$companyInfos->id}}" type="text" name="companyId" id="companyId" readonly><br>
-               Company name :
+               Company name : <br>
                <input value="{{$companyInfos->name}}" type="text" name="name" id="name"><br>
-               Company address :
+               Company address : <br>
                <input value="{{$companyInfos->address}}" type="text" name="address" id="address"><br>
-               Company activity sector :
+               Company activity sector : <br>
                <input value="{{$companyInfos->activity_sector}}" type="text" name="activitySector" id="activitySector"><br>
-               Company interns number :
-               <input value="{{$companyInfos->interns_number}}" type="text" name="internsNumber" id="internsNumber"><br>
+               Company interns number : <br>
+               <input value="{{$companyInfos->interns_number}}" type="text" name="internsNumber" id="internsNumber"><br><br>
                <input type="submit" value="UpdateCompany">
                </form>
+    </body>       
 <footer>
     @include('footer')
 </footer>

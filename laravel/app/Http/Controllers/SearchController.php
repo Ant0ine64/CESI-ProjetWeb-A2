@@ -20,7 +20,7 @@ class SearchController extends Controller
     //READ
     static function readAllU(Request $request) {
         $search = $request->input('searchbar');
-    
+
         if ($search == ''){
             $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->paginate(5);
         }
@@ -48,13 +48,15 @@ class SearchController extends Controller
     //READ
     static function readAllO(Request $request) {
         $search = $request->input('searchbar');
-        
+
         if($search == ''){
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->paginate(5);
+            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->select('offer.*', 'company.name', 'company.address', 'company.activity_sector', 'company.interns_number', 'company.is_visible')->paginate(5);
         }
         elseif($search != ''){
-            $offers = Offer::where('title', 'like', '%'.$search.'%')->orWhere('competences', 'like', '%'.$search.'%')->orWhere('date', 'like', '%'.$search.'%')->orWhere('duration', 'like', '%'.$search.'%')->join('company', 'offer.id_company', '=', 'company.id')->paginate(5);
+            $offers = Offer::where('title', 'like', '%'.$search.'%')->orWhere('competences', 'like', '%'.$search.'%')->orWhere('date', 'like', '%'.$search.'%')->orWhere('duration', 'like', '%'.$search.'%')->join('company', 'offer.id_company', '=', 'company.id')->select('offer.*', 'company.name', 'company.address', 'company.activity_sector', 'company.interns_number', 'company.is_visible')->paginate(5);
         };
+
+        Log::debug($offers);
 
         return view('offers', ['offers' => $offers]);
     }

@@ -16,7 +16,7 @@
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
                     <input type="submit" value="Filter" name="result">
                 </form>
-        </div>
+        </div><br>
         @if(\App\Http\Controllers\PermissionController::can('company.create'))
         <a href="/company/register" class="clickme wish">Add a company</a>
         @endif

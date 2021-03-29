@@ -1,5 +1,5 @@
 html{
-    height: 100%;
+    min-height: 100%;
 }
 
 * {
@@ -20,8 +20,24 @@ header{
 }
 
 .main{
-    top: 8px;
+    top: 85px;
     position: relative;
+}
+
+.center-wish{
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+}
+
+#sect-right{
+    top: 100px;
+    float: right;
 }
 
 #left{
@@ -127,4 +143,35 @@ header a
     color: dimgrey;
     margin-left: 80%;
     margin-bottom: -30%;
+}
+
+.clickme {
+    background-color: #EEEEEE;
+    padding: 8px 20px;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.critical:hover {
+    background-color:red;
+    color: #FFFFFF;
+}
+
+table td{
+    text-align: center;
+}
+
+table td a{
+    display: inline-block;
+    text-align: center;
+}
+
+table, th, td{
+    border: 1px solid black;
+}
+
+th, td{
+    padding: 15px;
 }

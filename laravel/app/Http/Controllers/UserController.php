@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notation;
+use App\Models\PermissionCustom;
+use App\Models\UserPromotion;
+use App\Models\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
@@ -73,8 +77,7 @@ class UserController extends Controller
             'id_center' => $id_center->id
         ]);
 
-        return response('Successfully updated user : '.$login, 200)
-            ->header('Content-Type', 'text/plain');
+        return redirect()->route('Users');
     }
 
     function updatePasswordByLogin(Request $request) {
@@ -93,5 +96,21 @@ class UserController extends Controller
 
         return response('Successfully deleted user : '.$login, 200)
             ->header('Content-Type', 'text/plain');
+    }
+
+    function deleteUserById(Request $request) {
+        $userId = $request->input('idUser');
+
+        //clearing tables
+        Notation::where('id_user', $userId)->delete();
+        WishList::where('id_user', $userId)->delete();
+        UserPromotion::where('id_user', $userId)->delete();
+        PermissionCustom::where('id_user', $userId)->delete();
+        if(User::where('id', $userId)->delete())
+            return response('Successfully removed user : ' . $userId, 200)
+                ->header('Content-Type', 'text/plain');
+        else
+            return response('Wrong user input', 400)
+                ->header('Content-Type', 'text/plain');
     }
 }

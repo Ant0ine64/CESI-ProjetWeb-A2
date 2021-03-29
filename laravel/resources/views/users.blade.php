@@ -16,7 +16,7 @@
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
                     <input type="submit" value="Filter" name="result">
                 </form>
-        </div>
+        </div><br>
         @if(\App\Http\Controllers\PermissionController::can('user.create'))
         <a href="/register" class="clickme wish">Add a user</a>
         @endif
@@ -53,10 +53,10 @@
                         @break
                     @endswitch
                     @if (\App\Http\Controllers\PermissionController::can($prefix.".update"))
-                    <a href="#" class="clickme danger">Edit</a>
+                    <a href="/user/update?id={{$user->id}}" class="clickme danger">Edit</a>
                     @endif
                     @if (\App\Http\Controllers\PermissionController::can($prefix.".delete"))
-                    &emsp;<a href="#" class="clickme critical">Delete</a>
+                    &emsp;<a href="/user/delete/{{$user->id}}" class="clickme critical">Delete</a>
                     @endif
                     </td>
                 </tr>
