@@ -17,7 +17,9 @@
                     <input type="submit" value="Filter" name="result">
                 </form>
         </div>
+        @if(\App\Http\Controllers\PermissionController::can('user.create'))
         <a href="/register" class="clickme wish">Add a user</a>
+        @endif
         <div id="table_div"><br>
                 <table class="center">
                 <tr>
