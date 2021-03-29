@@ -67,10 +67,9 @@ Route::get('register', function(){
     return view('register');
 })->name('Register');
 
-Route::get('home', function()
-{
-    return view('home');
-})->name('Home')->middleware('auth');
+
+// HOME
+Route::get('home', [WishListController::class, 'getEveryoneList'])->name('Home')->middleware('auth');
 
 //register
 Route::prefix('register')-> group(function() {

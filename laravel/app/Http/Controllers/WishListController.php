@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Echo_;
+use Illuminate\Support\Facades\Log;
 
 class WishListController extends Controller
 {
@@ -47,8 +48,19 @@ class WishListController extends Controller
 
     //Read
 
-    public static function getWishListByUserId($userId){
-        return WishList::where('id_user', $userId)->get();
+    public static function getWishListByUserId(){
+        $userId = Auth::id();
+        $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->where('id_user', $userId)->select('wishlist.*', 'company.*', 'offer.*')->get();
+
+        return view('home', ['wishes' => $wishes]);
+    }
+
+    public static function getEveryoneList(){
+        $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->select('wishlist.*', 'company.*', 'offer.*')->get();
+
+        Log::debug($wishes);
+
+        return view('home', ['wishes' => $wishes]);
     }
 
     //Update
