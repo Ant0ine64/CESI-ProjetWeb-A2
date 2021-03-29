@@ -61,6 +61,16 @@ class UserController extends Controller
     }
 
     //UPDATE
+    function preCompleteUpdateForm(Request $request) {
+
+        $user = self::tryGettingUserById($request->input('id'));
+
+        $user['type'] = Type::where('id', $user['id_type'])->first()['type'];
+        $user['center'] = Center::where('id', $user['id_center'])->first()['center'];
+
+        return view('user.update', ['user' => $user]);
+    }
+
     function updateByLogin(Request $request) {
         $login = $request->input('login');
         $id_type = Type::where('type', $request->input('type'))->first();

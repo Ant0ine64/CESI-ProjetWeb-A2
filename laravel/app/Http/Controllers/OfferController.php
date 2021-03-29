@@ -71,6 +71,14 @@ class OfferController extends Controller
     }
 
     //Update
+    function preCompleteUpdateForm(Request $request) {
+
+        $offer = self::tryGettingOffer($request->input('id'));
+
+        return view('offer.update', ['offer' =>$offer]);
+    }
+
+
     function updateOffer(Request $request){
 
         $idOffer = $request->input("idOffer");
@@ -110,7 +118,7 @@ class OfferController extends Controller
                   'slots' =>  $newSlots
               ])){
                     return redirect()->route('Offers');
-              }   
+              }
               else{
                   return response('Wrong input', 500)
                       ->header('Content-Type', 'text/plain');
