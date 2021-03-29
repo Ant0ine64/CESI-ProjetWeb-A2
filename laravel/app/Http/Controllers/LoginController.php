@@ -17,6 +17,9 @@ class LoginController extends Controller
 
         $user = User::where('login', $credentials['login'])->first();
 
+        if($user == null)
+            return view('login', ['status' => 'Incorrect credentials']);
+
         if (Hash::check($credentials['password'], $user['password_hash'])) {
             Auth::login($user);
             $request->session()->regenerate();

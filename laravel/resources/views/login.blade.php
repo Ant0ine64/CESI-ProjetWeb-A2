@@ -13,7 +13,6 @@
             <div id="log_form_div">
                 <img src="img/cesinkdin.png" alt="Logo" id="logo">
                 <form id="login_form" action="{{route('user.login')}}" method="POST">
-                    @csrf
                     <label for="login">Login:</label><br>
                     <input type="text" name="login" id="login"><br><br>
                     <label for="pwd">Password:</label><br>
