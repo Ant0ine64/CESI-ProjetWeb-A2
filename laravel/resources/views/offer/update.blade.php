@@ -16,7 +16,7 @@
         <label for="idOffer">Offer ID : </label><br>
         <input value = "{{$offerInfos->id}}" type="text" name="idOffer" id="idOffer" readonly><br>
         <label for="idCompany">Company ID : </label><br>
-        <input value = "{{$offerInfos->company}}" type="text" name="idCompany" id="idCompany" readonly><br>
+        <input value = "{{$offerInfos->id_company}}" type="text" name="idCompany" id="idCompany" readonly><br>
         <label for="title">Offer title : </label><br>
         <input value = "{{$offerInfos->title}}" type="text" name="title" id="title"><br>
         <label for="competences">Competences : </label><br>
