@@ -11,7 +11,6 @@
     @include ('header')
 </header>
     <form action="{{route('promotion.add')}}" method="post" class="form">
-        @csrf
         <label for="year">Year : </label><br/>
         <input type="text" name="year" id="year"><br>
         <label for="speciality">Speciality : </label><br/>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"> 
+<html lang="fr">
 <head>
         <link href="/css/ask.css" rel="stylesheet">
         <meta charset="UTF-8">
@@ -9,7 +9,6 @@
             <div id="ask_form_div">
                 <img src="img/cesinkdin.png" alt="Logo" id="logo">
                 <form id="ask_acc_form" method="POST">
-                    @csrf
                     <label for="email">Email:</label><br>
                     <input type="email" placeholder="Email" id="email"><br><br>
                     <label for="pwd">Password:</label><br>
