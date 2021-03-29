@@ -17,7 +17,14 @@
              echo "You're not allowed to perform this request.";
              return;
          }
-        $userInfos = \App\Http\Controllers\UserController::tryGettingUserById(Auth::user()->id)->First();
+
+        $userId = $_GET['id'];
+        if($userId == null){
+            echo "This company doesn't exists !";
+            return;
+        }
+
+        $userInfos = \App\Http\Controllers\UserController::tryGettingUserById($userId)->First();
         $centerInfos = \App\Models\Center::Where('id' , $userInfos->id_center)->get()->First();
         $typeInfos = \App\Models\Type::Where('id' , $userInfos->id_type)->get()->First();
     ?>
