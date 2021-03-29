@@ -47,7 +47,7 @@ table td a{
 }
 
 .danger:hover {
-    background-color:orangered;
+    background-color:#FF8C00;
     color: #FFFFFF;
 }
 
@@ -58,6 +58,16 @@ table td a{
 
 .critical:hover {
     background-color:red;
+    color: #FFFFFF;
+}
+
+.wish {
+    background-color:green;
+    color: #FFFFFF;
+}
+
+.wish:hover {
+    background-color: #006400;
     color: #FFFFFF;
 }
 

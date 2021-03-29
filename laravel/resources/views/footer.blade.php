@@ -8,11 +8,11 @@
     </div>
     <div id="links">
         <p>
-            <a href="#">A propos</a>
-            <a href="#">Mention légal</a>
+            <a href="#">About</a>
+            <a href="legal">Legal mention </a>
         </p>
     </div>
 </div>
 
-    
-    
+
+

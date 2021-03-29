@@ -13,6 +13,11 @@ use App\Http\Controllers\SearchController;
 
 // ===== STANDARD ROUTES =====
 
+// Legal mentions 
+Route::get('legal', function(){
+    return view('legal');
+})->name('Legal');
+
 // root
 Route::get('/', function () {
     if(!PermissionController::isLogged())
@@ -35,20 +40,18 @@ Route::get('ask_account', function () {
 })->name('Ask');
 
 // START SEARCH
-Route::any('search', function () {
-    return view('search');
-})->name('Search')->middleware('auth');
+Route::get('companies', [SearchController::class, 'readAllC'])->name('Companies')->middleware('auth');
 
-Route::post('search', [SearchController::class, 'readAll'])->name('search.filter');
+Route::post('companies', [SearchController::class, 'readAllC'])->name('comp.filter');
+
+Route::get('offers', [SearchController::class, 'readAllO'])->name('Offers')->middleware('auth');
+
+Route::post('offers', [SearchController::class, 'readAllO'])->name('offer.filter');
+
+Route::get('users', [SearchController::class, 'readAllU'])->name('Users')->middleware('auth');
+
+Route::post('users', [SearchController::class, 'readAllU'])->name('user.filter');
 //END SEARCH
-
-// START GESTION
-Route::any('gestion', function () {
-    return view('gestion');
-})->name('Gestion')->middleware('auth');
-
-Route::post('gestion', [SearchController::class, 'readAllG'])->name('gestion.filter');
-//END GESTION
 
 // Profile page
 Route::get('profile', function () {
