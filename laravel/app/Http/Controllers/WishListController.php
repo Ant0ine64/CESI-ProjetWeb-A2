@@ -38,12 +38,15 @@ class WishListController extends Controller
             'id_user' => $idUser,
             'id_offer' => $offerInfos->First()->id,
             'state' => 0
-        ]))
-            return response('Success', 200)
-                ->header('Content-Type', 'text/plain');
-        else
+        ])){
+            return redirect()->route('Offers');
+        }
+            
+        else{
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
+        }
+            
     }
 
     //Read
@@ -95,8 +98,7 @@ class WishListController extends Controller
         if(WishList::where('id_user', '=', $idUser)
             ->where('id_offer', '=', $idOffer)
             ->delete())
-            return response('Successfully removed offer : ' . $idOffer . ' from ' . $idUser . ' wishlist.', 200)
-                ->header('Content-Type', 'text/plain');
+            return redirect()->route('');
         else
             return response('Wrong user input', 400)
                 ->header('Content-Type', 'text/plain');
