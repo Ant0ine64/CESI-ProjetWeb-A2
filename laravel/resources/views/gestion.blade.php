@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="fr"> 
+<html lang="fr">
 <head>
-        <link href="/css/search.css" rel="stylesheet">
+        <link href="/css/gestion.css" rel="stylesheet">
         <meta charset="UTF-8">
         <title>Gestion</title>
 </head>
@@ -42,7 +42,7 @@
                     <td>{{$users->city}}</td>
                 </tr>
                 @endforeach
-                </table>  
+                </table>
             @elseif (request()->input('filter')=='companies')
                 <table class="center">
                 <tr>
@@ -57,7 +57,7 @@
                     <td>{{$comps->activity_sector}}</td>
                 </tr>
                 @endforeach
-                </table>  
+                </table>
             @elseif (request()->input('filter')=='offers')
                 <table class="center">
                 <tr>
@@ -66,7 +66,7 @@
                     <th>Comptences</th>
                     <th>Start date</th>
                     <th>Duration</th>
-                    <th>Number of slots</th>  
+                    <th>Number of slots</th>
                 </tr>
                 @foreach ($offers as $offers)
                 <tr>
@@ -78,9 +78,9 @@
                     <td>{{$offers->slots}}</td>
                 </tr>
                 @endforeach
-                </table>   
+                </table>
             @endif
-        </div>  
+        </div>
     </main>
     <footer>
             @include('footer')
