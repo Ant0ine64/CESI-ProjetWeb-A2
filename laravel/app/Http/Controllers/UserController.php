@@ -21,6 +21,8 @@ class UserController extends Controller
         //request decomposition
         $input = $request->all();
 
+        Log::debug($input);
+
         foreach ($input as $value) {
             if($value == null || $value == "" || $value == 0) {
                 return response('Error invalid input value :'.$value, 400)
@@ -41,8 +43,7 @@ class UserController extends Controller
             'password_hash' => Hash::make($input['password'])
         ]);
 
-       return response('Successfully created user : '.$user, 200)
-                  ->header('Content-Type', 'text/plain');
+        return redirect()->route('Users');
     }
 
     //READ

@@ -42,11 +42,13 @@ class OfferController extends Controller
             'duration' =>  $interval->format('%a'),
             'remuneration' =>  $remuneration,
             'slots' =>  $slots
-        ]))
-            return back();
-        else
+        ])){
+            return redirect()->route('Offers');
+        }
+        else{
             return response('Wrong input', 400)
                 ->header('Content-Type', 'text/plain');
+        }
 
     }
 
