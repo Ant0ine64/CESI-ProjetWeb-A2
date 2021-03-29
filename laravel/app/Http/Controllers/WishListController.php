@@ -19,7 +19,7 @@ class WishListController extends Controller
         $idUser = Auth::id();
         $idOffer = $request->input("idOffer");
 
-        $offerInfos = OfferController::tryGettingOffer($idOffer);
+        $offerInfos = OfferController::tryGettingOfferById($idOffer);
 
         $userWishList = WishListController::getWishListByUserId($idUser);
 
@@ -62,7 +62,13 @@ class WishListController extends Controller
 
         return view('home', ['wishes' => $wishes]);
     }
-
+    public static function isInWishList($offerId) : bool {
+        $wishList = WishListController::getWishListByUserId(Auth::id());
+        foreach ($wishList as $wishObject)
+            if ($wishObject->id_offer == $offerId)
+                return true;
+        return false;
+    }
     //Update
     function updateWishListState(Request $request){ // attention ici on ne check pas si l'idOffer existe dans l'id user a voir si on a le temps de le faire
         //state++;
@@ -89,8 +95,8 @@ class WishListController extends Controller
         if(WishList::where('id_user', '=', $idUser)
             ->where('id_offer', '=', $idOffer)
             ->delete())
-        return response('Successfully removed offer : ' . $idOffer . ' from ' . $idUser . ' wishlist.', 200)
-            ->header('Content-Type', 'text/plain');
+            return response('Successfully removed offer : ' . $idOffer . ' from ' . $idUser . ' wishlist.', 200)
+                ->header('Content-Type', 'text/plain');
         else
             return response('Wrong user input', 400)
                 ->header('Content-Type', 'text/plain');
