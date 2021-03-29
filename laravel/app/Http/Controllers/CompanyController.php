@@ -50,6 +50,13 @@ class CompanyController extends Controller
         return Company::All();
     }
     //Update
+    function preCompleteUpdateForm(Request $request) {
+
+        $company = self::tryGettingCompany($request->input('id'));
+
+        return view('company.update', ['company' => $company]);
+    }
+
 
     function updateCompany(Request $request){
         $idCompany = $request->input("companyId");
@@ -82,8 +89,8 @@ class CompanyController extends Controller
         else{
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
-        }   
-    } 
+        }
+    }
 
 
     public static function toggleCompanyState($companyId) {
