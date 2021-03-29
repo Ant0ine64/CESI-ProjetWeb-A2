@@ -97,8 +97,13 @@ class UserController extends Controller
 
     function deleteUserById(Request $request) {
         $userId = $request->input('idUser');
+
+
+
+
+
         if(User::where('id', $userId)->delete())
-            return view('Successfully removed user : ' . $userId, 200)
+            return response('Successfully removed user : ' . $userId, 200)
                 ->header('Content-Type', 'text/plain');
         else
             return response('Wrong user input', 400)

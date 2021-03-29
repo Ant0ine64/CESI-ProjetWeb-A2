@@ -121,7 +121,7 @@ class OfferController extends Controller
     function deleteOfferById(Request $request) {
         $offerId = $request->input('idOffer');
         if(Offer::where('id', $offerId)->delete())
-            return view('Successfully removed offer : ' . $offerId, 200)
+            return response('Successfully removed offer : ' . $offerId, 200)
                 ->header('Content-Type', 'text/plain');
          else
              return response('Wrong user input', 400)
