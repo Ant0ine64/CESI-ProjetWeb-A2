@@ -68,17 +68,17 @@ class OfferController extends Controller
             return response('Wrong input', 400)
                 ->header('Content-Type', 'text/plain');
         else
-            return view('offer.update', ['offerInfos' => $offerInfos->First()]);
+            return view('offer.update', ['offer' => $offerInfos->First()]);
 
     }
 
     //Update
-    function preCompleteUpdateForm(Request $request) {
+    /*function preCompleteUpdateForm(Request $request) {
 
         $offer = self::tryGettingOffer($request->input('id'));
 
         return view('offer.update', ['offer' =>$offer]);
-    }
+    }*/
 
 
     function updateOffer(Request $request){
