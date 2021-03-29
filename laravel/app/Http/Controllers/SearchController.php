@@ -56,8 +56,6 @@ class SearchController extends Controller
             $offers = Offer::where('title', 'like', '%'.$search.'%')->orWhere('competences', 'like', '%'.$search.'%')->orWhere('date', 'like', '%'.$search.'%')->orWhere('duration', 'like', '%'.$search.'%')->join('company', 'offer.id_company', '=', 'company.id')->select('offer.*', 'company.name', 'company.address', 'company.activity_sector', 'company.interns_number', 'company.is_visible')->paginate(5);
         };
 
-        Log::debug($offers);
-
         return view('offers', ['offers' => $offers]);
     }
 }

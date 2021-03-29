@@ -10,39 +10,39 @@
             @include ('header')
         </header>
             <main>
-                <section id="sect-left">
-                    <p>
-                        
-                    </p>
-                </section>
-                <section id="sect-mid">
+                <section class="sect-left">
                     
                 </section>
-                <section id="sect-right">
-                    <table class="center-wish">
-                    <tr>
-                        <th>Company name</th>
-                        <th>Offer name</th>
-                        <th>Start date</th>
-                        <th>Duration</th>
-                        <th>State</th>
-                        <th>Actions</th>
-                    </tr>
+                <section class="sect-middle">
+
+                </section>
+                <section class="sect-right">
+                <table class="center">
+                <tr>
+                    <th>Company</th>
+                    <th>Internship title</th>
+                    <th>Start</th>
+                    <th>Duration</th>
+                    <th>State</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
                 @foreach ($wishes as $wish)
-                    <tr>
-                        <td>{{$wish->name}}</td>
-                        <td>{{$wish->title}}</td>
-                        <td>{{$wish->date}}</td>
-                        <td>{{$wish->duration}}</td>
-                        <td>{{$wish->state}}</td>
-                        <td>
-                        @if (\App\Http\Controllers\PermissionController::can('wishtlist.remove'))
-                            <a href="#" class="clickme danger">Delete</a>
-                        @endif
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{$wish->Name}}</td>
+                    <td>{{$wish->title}}</td>
+                    <td>{{$wish->date}}</td>
+                    <td>{{$wish->duration}}</td>
+                    <td>{{$wish->state}}</td>
+                    <td>{{$wish->contact_email}}</td>
+                    <td>
+                    @if (\App\Http\Controllers\PermissionController::can('wishlist.remove'))
+                    &emsp;<a href="" class="clickme critical">Delete</a>
+                    @endif
+                    </td>
+                </tr>
                 @endforeach
-                </table>   
+                </table>
                 </section>
             </main>
         <footer>

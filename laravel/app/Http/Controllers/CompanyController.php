@@ -33,12 +33,14 @@ class CompanyController extends Controller
             'activity_sector' =>  $activitySector,
             'interns_number' => $internsNumber,
             'is_visible' => 1
-        ]))
-        return response('Success', 200)
-                ->header('Content-Type', 'text/plain');
-        else
+        ])){
+            return redirect()->route('Companies');
+        }
+        
+        else{
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
+        }
     }
 
     //Read
