@@ -12,11 +12,11 @@
             <main>
                 <section id="sect-left">
                     <p>
-                        
+
                     </p>
                 </section>
                 <section id="sect-mid">
-                    
+
                 </section>
                 <section id="sect-right">
                     <table class="center-wish">
@@ -36,13 +36,13 @@
                         <td>{{$wish->duration}}</td>
                         <td>{{$wish->state}}</td>
                         <td>
-                        @if (\App\Http\Controllers\PermissionController::can('wishtlist.remove'))
+                        @if (\App\Http\Controllers\PermissionController::can('wishlist.remove'))
                             <a href="#" class="clickme danger">Delete</a>
                         @endif
                         </td>
                     </tr>
                 @endforeach
-                </table>   
+                </table>
                 </section>
             </main>
         <footer>
