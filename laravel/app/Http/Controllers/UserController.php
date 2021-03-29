@@ -21,14 +21,13 @@ class UserController extends Controller
         //request decomposition
         $input = $request->all();
 
-        Log::debug($input);
-
         foreach ($input as $value) {
             if($value == null || $value == "" || $value == 0) {
                 return response('Error invalid input value :'.$value, 400)
                     ->header('Content-Type', 'text/plain');
             }
         }
+
         //print_r(Type::where('type', $input['type']));
         // find the ids of those fields
         $id_type = json_decode(Type::where('type', $input['type'])->first(), true)['id'];

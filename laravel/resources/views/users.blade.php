@@ -10,15 +10,14 @@
         @include ('header')
     </header>
     <main id="main">
-        <div id="form_div">
-                <form action="{{route('user.filter')}}" method="POST">
+        <div class="form_div">
+                <form action="{{route('user.filter')}}" method="POST" class="form">
                 @csrf
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
                     <input type="submit" value="Filter" name="result">
                 </form>
-        </div><br>
-        <a href="/register" class="clickme wish">Add a user</a>
-        <div id="table_div"><br>
+        </div>
+        <div id="table_div">
                 <table class="center">
                 <tr>
                     <th>First name</th>
@@ -59,7 +58,10 @@
                     </td>
                 </tr>
                 @endforeach
-                </table>
+                </table><br>
+                <div class="container">
+                    <a href="/register" class="clickme wish child">Add a user</a>
+                </div> 
                 <span id="paginate-user">
                 {{$users->links()}}
                 </span>
