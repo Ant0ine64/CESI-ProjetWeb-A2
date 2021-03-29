@@ -1,0 +1,89 @@
+html{
+    min-height: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right,orange, white);
+}
+
+header{
+    background-color: dimgray;
+    z-index: 1;
+    position: fixed;
+    width:100%;
+    top: 0px;
+}
+
+main{
+    top: 85px;
+    position: relative;
+}
+
+p{
+    text-align: center;
+}
+
+a:link
+{
+    text-decoration:none;
+}
+
+a:hover
+{
+    color: orange;
+}
+
+header a
+{
+    font-size: 120%;
+    color: lightgrey;
+    margin-right: 5%;
+    font-family: Nunito;
+}
+
+#logo
+{
+    margin-top: 10px;
+    max-width: 25%;
+}
+
+#partLeft
+{
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    margin-right: 25%;
+    margin-bottom: 0%;
+    float: left;
+}
+
+.part1
+{
+    padding: 3%;
+    padding-top: 2%;
+}
+
+.links
+{
+    padding: 10%;
+    padding-top: 8%;
+}
+
+.part2
+{
+    padding: 6%;
+    padding-top: 4%;
+
+}
+
+#partRight
+{
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    color: dimgrey;
+    margin-left: 80%;
+    margin-bottom: -30%;
+}

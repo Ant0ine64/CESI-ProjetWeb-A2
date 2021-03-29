@@ -18,6 +18,11 @@ Route::get('legal', function(){
     return view('legal');
 })->name('Legal');
 
+// About
+Route::get('about', function(){
+    return view('about');
+})->name('About');
+
 // root
 Route::get('/', function () {
     if(!PermissionController::isLogged())
