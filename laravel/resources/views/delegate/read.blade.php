@@ -15,7 +15,6 @@
     @isset($user_permissions)
         @php($permissions = \App\Http\Controllers\PermissionController::readAllDelegablePermissions())
         <form action="{{route('delegate.update')}}" method="post">
-            @csrf
             <table>
                 <thead>
                 <tr>

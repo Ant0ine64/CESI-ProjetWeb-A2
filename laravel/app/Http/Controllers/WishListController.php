@@ -38,17 +38,25 @@ class WishListController extends Controller
             'id_user' => $idUser,
             'id_offer' => $offerInfos->First()->id,
             'state' => 0
-        ]))
-            return response('Success', 200)
+        ])){
+            return response('Successfully added offer : ' . $idOffer . ' from ' . $idUser . ' to user wishlist.', 200)
                 ->header('Content-Type', 'text/plain');
-        else
+        }
+
+        else{
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
+        }
+
     }
 
     //Read
 
-    public static function getWishListByUserId(){
+    public static function getWishListByUserId($userId){
+        return WishList::where('id_user', $userId)->get();
+    }
+
+    public static function getWishList(){ // ????
         $userId = Auth::id();
         $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->where('id_user', $userId)->select('wishlist.*', 'company.*', 'offer.*')->get();
 
@@ -95,8 +103,7 @@ class WishListController extends Controller
         if(WishList::where('id_user', '=', $idUser)
             ->where('id_offer', '=', $idOffer)
             ->delete())
-            return response('Successfully removed offer : ' . $idOffer . ' from ' . $idUser . ' wishlist.', 200)
-                ->header('Content-Type', 'text/plain');
+            return redirect()->route('');
         else
             return response('Wrong user input', 400)
                 ->header('Content-Type', 'text/plain');

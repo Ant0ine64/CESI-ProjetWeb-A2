@@ -13,7 +13,6 @@
 </header>
 <div class="information" style="text-align: center">
     <form action="{{route('company.create')}}" method="post">
-        @csrf
         <p>Company Name : </p><input type="text" name="name" id="name"><br>
         <p>Company Address : </p><input type="text" name="address" id="address"><br>
         <p>Company Activity Sector : </p><input type="text" name="activitySector" id="activitySector"><br>

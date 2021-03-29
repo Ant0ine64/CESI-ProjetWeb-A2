@@ -11,7 +11,6 @@
 </header>
     <body style="font-family: Nunito;">
     <form action="{{route('company.update')}}" method="post" class="form">
-               @csrf
                Company id : <br>
                <input value="{{$company->id}}" type="text" name="companyId" id="companyId" readonly><br>
                Company name : <br>
