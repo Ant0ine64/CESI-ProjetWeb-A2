@@ -1,3 +1,43 @@
+@media only screen and (max-width: 1199px) {
+    main{
+        top: 85px;
+        padding-top: 15%;
+        position: relative;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    main{
+        top: 85px;
+        text-align: center;
+        position: relative;
+    }
+}
+
+#paginate-user ul {
+    list-style-type: none;
+    font-size: larger;
+    margin-left: 46%;
+}
+
+#paginate-comp ul {
+    list-style-type: none;
+    font-size: larger;
+    margin-left: 46%;
+}
+
+#paginate-offer ul {
+    list-style-type: none;
+    font-size: larger;
+    margin-left: 46%;
+}
+
+ul li{
+    float: left;
+    margin-left: 1%;
+}
+
 html{
     height: 100%;
 }
