@@ -51,7 +51,7 @@
                         @break
                     @endswitch
                     @if (\App\Http\Controllers\PermissionController::can($prefix.".update"))
-                    <a href="#" class="clickme danger">Edit</a>
+                    <a href="/user/update?id={{$user->id}}" class="clickme danger">Edit</a>
                     @endif
                     @if (\App\Http\Controllers\PermissionController::can($prefix.".delete"))
                     &emsp;<a href="#" class="clickme critical">Delete</a>
