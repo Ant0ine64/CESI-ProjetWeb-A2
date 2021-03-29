@@ -10,7 +10,7 @@
         @include ('header')
     </header>
     <main id="main">
-        <div id="form_div">
+        <div id="form_div" style="text-align: center">
                 <form action="{{route('comp.filter')}}" method="POST">
                 @csrf
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
@@ -35,6 +35,9 @@
                     @if (\App\Http\Controllers\PermissionController::can('company.update'))
                     <a href="company/update?id={{$comp->id}}" class="clickme danger">Edit</a>
                     @endif
+                    </td>
+                    <td>
+                        @include ('notation')
                     </td>
                 </tr>
                 @endforeach
