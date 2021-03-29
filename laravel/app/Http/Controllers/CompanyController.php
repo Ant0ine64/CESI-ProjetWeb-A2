@@ -62,11 +62,6 @@ class CompanyController extends Controller
         else
             return view('company.update', ['company' => $company->First()]);
 
-/*
-        Log::debug($request->input('id'));
-        $company = self::tryGettingCompany($request->input('id'));
-        Log::debug($company);
-        return view('company.update', ['company' => $company]);*/
     }
 
 
