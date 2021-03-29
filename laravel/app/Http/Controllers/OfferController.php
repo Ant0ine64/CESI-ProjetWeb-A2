@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Offer;
 use DateTime;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class OfferController extends Controller
 {
     function registerOffer(Request $request){
 
-        $idCompany = $request->input("idCompany");
+        $companyName = $request->input("idCompany");
         $title = $request->input("title");
         $competences = $request->input("competences");
         $date = $request->input("date");
@@ -20,7 +21,7 @@ class OfferController extends Controller
         $remuneration = $request->input("remuneration");
         $slots = $request->input("slots");
 
-        $companyInfos = CompanyController::tryGettingCompany($idCompany);
+        $companyInfos = Company::where('name', $companyName); //CompanyController::tryGettingCompany($idCompany);
 
         if($companyInfos == null || $companyInfos->First() == null ||
             $title == null || $competences == null ||$date == null || $endDate == null || $remuneration == null || $slots==null ||
@@ -42,7 +43,7 @@ class OfferController extends Controller
             'remuneration' =>  $remuneration,
             'slots' =>  $slots
         ]))
-            return view('search_');
+            return back();
         else
             return response('Wrong input', 400)
                 ->header('Content-Type', 'text/plain');
