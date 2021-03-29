@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>UpdateCompany</title>
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="/css/companyUpdate.css" rel="stylesheet"></head>
 <body>
+<header style="font-family: Nunito">
+    @include ('header')
+</header>
     <?php
            use App\Http\Controllers\CompanyController;
            if(!isset($_GET['id'])){
@@ -20,7 +24,7 @@
                return;
            }
     ?>
-               <form action="{{route('company.update')}}" method="post">
+               <form action="{{route('company.update')}}" method="post" class="form">
                @csrf
                Company id :
                <input value="{{$companyInfos->id}}" type="text" name="companyId" id="companyId" readonly><br>
@@ -34,6 +38,9 @@
                <input value="{{$companyInfos->interns_number}}" type="text" name="internsNumber" id="internsNumber"><br>
                <input type="submit" value="UpdateCompany">
                </form>
+<footer>
+    @include('footer')
+</footer>
 </body>
 </html>
 
