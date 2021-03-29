@@ -50,10 +50,10 @@ class SearchController extends Controller
         $search = $request->input('searchbar');
         
         if($search == ''){
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->paginate(5);
+            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->select('offer.*', 'company.name', 'company.address', 'company.activity_sector', 'company.interns_number', 'company.is_visible')->paginate(5);
         }
         elseif($search != ''){
-            $offers = Offer::where('title', 'like', '%'.$search.'%')->orWhere('competences', 'like', '%'.$search.'%')->orWhere('date', 'like', '%'.$search.'%')->orWhere('duration', 'like', '%'.$search.'%')->join('company', 'offer.id_company', '=', 'company.id')->paginate(5);
+            $offers = Offer::where('title', 'like', '%'.$search.'%')->orWhere('competences', 'like', '%'.$search.'%')->orWhere('date', 'like', '%'.$search.'%')->orWhere('duration', 'like', '%'.$search.'%')->join('company', 'offer.id_company', '=', 'company.id')->select('offer.*', 'company.name', 'company.address', 'company.activity_sector', 'company.interns_number', 'company.is_visible')->paginate(5);
         };
 
         return view('offers', ['offers' => $offers]);

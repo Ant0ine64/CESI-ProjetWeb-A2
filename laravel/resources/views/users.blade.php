@@ -16,7 +16,7 @@
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
                     <input type="submit" value="Filter" name="result">
                 </form>
-        </div>
+        </div><br>
         <a href="/register" class="clickme wish">Add a user</a>
         <div id="table_div"><br>
                 <table class="center">
