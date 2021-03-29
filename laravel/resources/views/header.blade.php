@@ -4,7 +4,13 @@
             <a href="home" id="Home">Home</a>
         </div>
         <div class="links">
-            <a href="search" id="Search">Search</a>
+            <a href="users" id="Search">Users</a>
+        </div>
+        <div class="links">
+            <a href="companies" id="Search">Companies</a>
+        </div>
+        <div class="links">
+            <a href="offers" id="Search">Offers</a>
         </div>
     </div>
     <div id="partRight">

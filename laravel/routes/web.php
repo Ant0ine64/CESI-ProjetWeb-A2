@@ -40,11 +40,17 @@ Route::get('ask_account', function () {
 })->name('Ask');
 
 // START SEARCH
-Route::any('search', function () {
-    return view('search');
-})->name('Search')->middleware('auth');
+Route::get('companies', [SearchController::class, 'readAllC'])->name('Companies')->middleware('auth');
 
-Route::post('search', [SearchController::class, 'readAll'])->name('search.filter');
+Route::post('companies', [SearchController::class, 'readAllC'])->name('comp.filter');
+
+Route::get('offers', [SearchController::class, 'readAllO'])->name('Offers')->middleware('auth');
+
+Route::post('offers', [SearchController::class, 'readAllO'])->name('offer.filter');
+
+Route::get('users', [SearchController::class, 'readAllU'])->name('Users')->middleware('auth');
+
+Route::post('users', [SearchController::class, 'readAllU'])->name('user.filter');
 //END SEARCH
 
 // Profile page
