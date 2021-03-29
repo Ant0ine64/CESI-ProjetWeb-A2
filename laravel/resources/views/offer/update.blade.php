@@ -12,7 +12,6 @@
         @include ('header')
     </header>
     <form action="{{route('offer.update')}}" method="post" class="form">
-        @csrf
         <label for="idOffer">Offer ID : </label><br>
         <input value = "{{$offer->id}}" type="text" name="idOffer" id="idOffer" readonly><br>
         <label for="idCompany">Company ID : </label><br>

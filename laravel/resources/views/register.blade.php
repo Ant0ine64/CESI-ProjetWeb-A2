@@ -12,7 +12,6 @@
     </header>
     <main>
         <form action="{{route('user.create')}}" method="post" >
-            @csrf
             <label for="firstname">Firstname : </label><br/>
             <input type="text" name="firstname" id="firstname"><br>
             <label for="lastname">Lastname : </label><br/>

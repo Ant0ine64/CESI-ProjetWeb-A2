@@ -11,7 +11,6 @@
     @include ('header')
 </header>
     <form action="{{route('userPromotion.add')}}" method="post" class="form">
-        @csrf
         <label for="idUser">ID user : </label><br/>
         <input type="text" name="idUser" id="idUser"><br>
         <label for="idPromo">ID Promotion : </label><br/>

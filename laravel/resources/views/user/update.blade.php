@@ -11,7 +11,6 @@
     @include ('header')
 </header>
     <form action="{{route('user.update')}}" method="post" class="form">
-        @csrf
         First Name :
         <input value= "{{$user->firstname}}" type="text" name="firstname" id="firstname"><br>
         Last Name :

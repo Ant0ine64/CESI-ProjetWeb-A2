@@ -11,7 +11,6 @@
     @include ('header')
 </header>
     <form action="{{route('wishlist.remove')}}" method="post" class="form">
-        @csrf
         Confirmation :
         <input value = "{{$offerId}}" type="text" name="idOffer" id="idOffer" readonly><br>
         <input type="submit" value="WishListRemove">

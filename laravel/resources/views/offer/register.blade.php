@@ -11,7 +11,6 @@
         @include ('header')
     </header>
     <form action="{{route('offer.create')}}" method="post" class="form" style="text-align: center;">
-        @csrf
         <label for="idCompany">Company Name : </label><br>
         <input type="text" name="idCompany" id="idCompany"><br>
         <label for="title">Title : </label><br>
