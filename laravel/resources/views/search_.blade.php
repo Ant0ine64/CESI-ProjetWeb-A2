@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr"> 
+<html lang="fr">
 <head>
         <link href="/css/search.css" rel="stylesheet">
         <meta charset="UTF-8">
@@ -50,8 +50,8 @@
             @if(request()->input('filter')=='users')
                 <table class="center">
                 <tr>
-                    <th>Name</th>
-                    <th>Sirname</th>
+                    <th>First name</th>
+                    <th>Last name</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Center</th>
@@ -109,7 +109,7 @@
                     @if (\App\Http\Controllers\PermissionController::can('company.update'))
                     <a href="company/update?id={{$comp->id}}" class="clickme danger">Edit</a>
                     @endif
-                    </td>    
+                    </td>
                 </tr>
                 @endforeach
                 </table>  
@@ -124,7 +124,7 @@
                     <th>Comptences</th>
                     <th>Start date</th>
                     <th>Duration</th>
-                    <th>Number of slots</th>  
+                    <th>Number of slots</th>
                     <th>Actions</th>
                 </tr>
                 @foreach ($offers as $offer)
@@ -144,8 +144,8 @@
                     @endif
                     @if (\App\Http\Controllers\PermissionController::can('wishlist.add'))
                     &emsp;<a href="#" class="clickme wish">Add to wishlist</a>
-                    @endif 
-                    </td>    
+                    @endif
+                    </td>
                 </tr>
                 @endforeach
                 </table>   
@@ -153,7 +153,7 @@
                 {{$offers->links()}}
                 </span>
             @endif
-        </div>  
+        </div>
     </main>
     <footer>
             @include('footer')

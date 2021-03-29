@@ -27,8 +27,8 @@
             @if(request()->input('filter')=='users')
                 <table class="center">
                 <tr>
-                    <th>Name</th>
-                    <th>Sirname</th>
+                    <th>First name</th>
+                    <th>Last name</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Center</th>
