@@ -108,9 +108,7 @@ Route::prefix('company')-> group(function() {
     });
 
     Route::prefix('update')-> group(function() {
-        Route::get('/', function () {
-            return (PermissionController::tryGettingToView('company.update','company.update'));
-        });
+        Route::get('/', [CompanyController::class, 'preCompleteUpdateForm']);//function () {return (PermissionController::tryGettingToView('company.update','company.update'));});
         Route::post('submit', [CompanyController::class, 'updateCompany'])->name('company.update');
     });
 });
