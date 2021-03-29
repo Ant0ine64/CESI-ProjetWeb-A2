@@ -11,7 +11,6 @@
         @include ('header')
     </header>
     <form action="{{route('offer.delete')}}" method="post" class="form">
-        @csrf
         Are you sure you want to delete offer :
         <input value = "{{$offerId}}" type="text" name="idOffer" id="idOffer" readonly><br>
         <input type="submit" value="deleteOffer">
