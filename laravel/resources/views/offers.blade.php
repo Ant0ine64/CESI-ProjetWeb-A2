@@ -17,6 +17,7 @@
                     <input type="submit" value="Filter" name="result">
                 </form>
         </div>
+        <a href="/offer/register" class="clickme wish">Add an offer</a>
         <div id="table_div"><br>
                 <table class="center">
                 <tr>
@@ -49,7 +50,7 @@
                     </td>
                 </tr>
                 @endforeach
-                </table>   
+                </table>
                 <span id="paginate-offer">
                 {{$offers->links()}}
                 </span>
