@@ -11,7 +11,7 @@
     </header>
     <main id="main">
         <div id="form_div">
-                <form action="{{route('search.filter')}}" method="POST">
+                <form action="{{route('search.filter')}}" method="GET">
                 @csrf
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
                     @if ($radio == 'users')
@@ -57,15 +57,15 @@
                     <th>Center</th>
                     <th>Actions</th>
                 </tr>
-                @foreach ($users as $users)
+                @foreach ($users as $user)
                 <tr>
-                    <td>{{$users->firstname}}</td>
-                    <td>{{$users->lastname}}</td>
-                    <td><a href="profile?id={{$users->id}}">{{$users->login}}</a></td>
-                    <td>{{$users->type}}</td>
-                    <td>{{$users->city}}</td>
+                    <td>{{$user->firstname}}</td>
+                    <td>{{$user->lastname}}</td>
+                    <td><a href="profile?id={{$user->id}}">{{$user->login}}</a></td>
+                    <td>{{$user->type}}</td>
+                    <td>{{$user->city}}</td>
                     <td>
-                    @switch($users->id_type)
+                    @switch($user->id_type)
                     @case ('1')
                         @php ($prefix = "dummy")
                         @break
@@ -88,7 +88,10 @@
                     </td>
                 </tr>
                 @endforeach
-                </table>  
+                </table>
+                <span id="paginate-user">
+                {{$users->appends($radio)->links()}}
+                </span>
             @elseif (request()->input('filter')=='companies')
                 <table class="center">
                 <tr>
@@ -97,19 +100,22 @@
                     <th>Activity sector</th>
                     <th>Actions</th>
                 </tr>
-                @foreach ($comps as $comps)
+                @foreach ($comps as $comp)
                 <tr>
-                    <td><a href="#">{{$comps->name}}</a></td>
-                    <td>{{$comps->address}}</td>
-                    <td>{{$comps->activity_sector}}</td>
+                    <td><a href="#">{{$comp->name}}</a></td>
+                    <td>{{$comp->address}}</td>
+                    <td>{{$comp->activity_sector}}</td>
                     <td>
                     @if (\App\Http\Controllers\PermissionController::can('company.update'))
-                    <a href="company/update?id={{$comps->id}}" class="clickme danger">Edit</a>
+                    <a href="company/update?id={{$comp->id}}" class="clickme danger">Edit</a>
                     @endif
                     </td>    
                 </tr>
                 @endforeach
                 </table>  
+                <span id="paginate-comp">
+                {{$comps->links()}}
+                </span>
             @elseif (request()->input('filter')=='offers')
                 <table class="center">
                 <tr>
@@ -121,14 +127,14 @@
                     <th>Number of slots</th>  
                     <th>Actions</th>
                 </tr>
-                @foreach ($offers as $offers)
+                @foreach ($offers as $offer)
                 <tr>
-                    <td><a href="#">{{$offers->title}}</a></td>
-                    <td>{{$offers->name}}</td>
-                    <td>{{$offers->competences}}</td>
-                    <td>{{$offers->date}}</td>
-                    <td>{{$offers->duration}}</td>
-                    <td>{{$offers->slots}}</td>
+                    <td><a href="#">{{$offer->title}}</a></td>
+                    <td>{{$offer->name}}</td>
+                    <td>{{$offer->competences}}</td>
+                    <td>{{$offer->date}}</td>
+                    <td>{{$offer->duration}}</td>
+                    <td>{{$offer->slots}}</td>
                     <td>
                     @if (\App\Http\Controllers\PermissionController::can('offer.update'))
                     <a href="#" class="clickme danger">Edit</a>
@@ -143,6 +149,9 @@
                 </tr>
                 @endforeach
                 </table>   
+                <span id="paginate-offer">
+                {{$offers->links()}}
+                </span>
             @endif
         </div>  
     </main>
