@@ -106,9 +106,6 @@
                     @if (\App\Http\Controllers\PermissionController::can('company.update'))
                     <a href="company/update?id={{$comps->id}}" class="clickme danger">Edit</a>
                     @endif
-                    @if (\App\Http\Controllers\PermissionController::can('company.maskForStudent'))
-                    &emsp;<a href="#" class="clickme critical">Mask</a>
-                    @endif 
                     </td>    
                 </tr>
                 @endforeach
