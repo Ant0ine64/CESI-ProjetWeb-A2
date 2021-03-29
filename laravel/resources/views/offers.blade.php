@@ -12,7 +12,6 @@
     <main id="main">
         <div id="form_div">
                 <form action="{{route('offer.filter')}}" method="GET">
-                @csrf
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
                     <input type="submit" value="Filter" name="result">
                 </form>

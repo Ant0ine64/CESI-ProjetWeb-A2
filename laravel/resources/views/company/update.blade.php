@@ -26,7 +26,6 @@
     ?>
     <body style="font-family: Nunito;">
     <form action="{{route('company.update')}}" method="post" class="form">
-               @csrf
                Company id : <br>
                <input value="{{$companyInfos->id}}" type="text" name="companyId" id="companyId" readonly><br>
                Company name : <br>
@@ -39,7 +38,7 @@
                <input value="{{$companyInfos->interns_number}}" type="text" name="internsNumber" id="internsNumber"><br><br>
                <input type="submit" value="UpdateCompany">
                </form>
-    </body>       
+    </body>
 <footer>
     @include('footer')
 </footer>

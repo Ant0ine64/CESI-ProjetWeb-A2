@@ -11,7 +11,6 @@
     @include ('header')
 </header>
 <form action="{{route('user.delete')}}" method="post" class="form">
-    @csrf
     Are you sure you want to delete this user :
     <input value = "{{$userId}}" type="text" name="idUser" id="idUser" readonly><br>
     <input type="submit" value="deleteUser">
