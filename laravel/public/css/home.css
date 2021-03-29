@@ -128,3 +128,17 @@ header a
     margin-left: 80%;
     margin-bottom: -30%;
 }
+
+.clickme {
+    background-color: #EEEEEE;
+    padding: 8px 20px;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.critical:hover {
+    background-color:red;
+    color: #FFFFFF;
+}
