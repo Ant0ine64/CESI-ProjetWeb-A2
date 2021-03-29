@@ -51,7 +51,7 @@ class PermissionController extends Controller
     public static function can($permission): bool
     {
         $ability = false;
-        $permission_id = Permission::where('title', $permission)->first()['id'];
+        $permission_id = Permission::where('title', $permission)->First()->id;
 
         // used for getting type and id
         $user = Auth::user();
