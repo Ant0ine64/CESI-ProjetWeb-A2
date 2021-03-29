@@ -73,8 +73,7 @@ class UserController extends Controller
             'id_center' => $id_center->id
         ]);
 
-        return response('Successfully updated user : '.$login, 200)
-            ->header('Content-Type', 'text/plain');
+        return redirect()->route('Users');
     }
 
     function updatePasswordByLogin(Request $request) {

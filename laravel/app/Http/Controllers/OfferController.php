@@ -95,7 +95,7 @@ class OfferController extends Controller
         $offerEndDate = new DateTime($newEndDate);
         $interval = $origin->diff($offerEndDate);
 
-        $offerInfos = OfferController::tryGettingOffer($idOffer);
+        $offerInfos = OfferController::tryGettingOfferById($idOffer);
         if($offerInfos == null || $offerInfos->First() == null)
             return response('This offer id doesnt exist..', 400)
                 ->header('Content-Type', 'text/plain');
@@ -108,12 +108,13 @@ class OfferController extends Controller
                   'duration' =>  $interval->format('%a'),
                   'remuneration' =>  $newRemuneration,
                   'slots' =>  $newSlots
-              ]))
-                  return response('Success', 200)
-                      ->header('Content-Type', 'text/plain');
+              ])){
+                    return redirect()->route('Offers');
+              }   
               else{
                   return response('Wrong input', 500)
-                      ->header('Content-Type', 'text/plain');}
+                      ->header('Content-Type', 'text/plain');
+                    }
 
     }
 
@@ -121,7 +122,7 @@ class OfferController extends Controller
     function deleteOfferById(Request $request) {
         $offerId = $request->input('idOffer');
         if(Offer::where('id', $offerId)->delete())
-            return view('Successfully removed offer : ' . $offerId, 200)
+            return response('Successfully removed offer : ' . $offerId, 200)
                 ->header('Content-Type', 'text/plain');
          else
              return response('Wrong user input', 400)

@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Models\Offer;
 use App\Models\Type;
 use App\Models\User;
+use App\Http\Controllers\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -73,13 +74,17 @@ class CompanyController extends Controller
             'activity_sector' =>  $newActivitySector,
             'interns_number' => $newInternsNumber,
             'is_visible' => DB::raw('is_visible')
-        ]))
-            return response('Succesfully updated company !', 200)
-                ->header('Content-Type', 'text/plain');
-        else
+        ])){
+
+            return redirect()->route('Companies');
+        }
+
+        else{
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
-    }
+        }   
+    } 
+
 
     public static function toggleCompanyState($companyId) {
         if(Company::where('id', $companyId)->update([
