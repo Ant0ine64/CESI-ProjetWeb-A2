@@ -10,18 +10,16 @@
             @include ('header')
         </header>
             <main>
-                <section id="left">
-                    <p>
-                        Welcome <?php use Illuminate\Support\Facades\Auth;echo Auth::user()->firstname; ?>
-                    </p>
-                </section>
-                <section id="middle">
+                <section id="sect-left">
                     <p>
                         
                     </p>
                 </section>
+                <section id="sect-mid">
+                    
+                </section>
                 <section id="sect-right">
-                    <table class="center">
+                    <table class="center-wish">
                     <tr>
                         <th>Company name</th>
                         <th>Offer name</th>
