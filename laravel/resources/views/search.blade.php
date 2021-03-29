@@ -9,7 +9,9 @@
     <header id="header">
         @include ('header')
     </header>
+
     <main id="main">
+
         <div id="form_div">
                 <form action="{{route('search.filter')}}" method="POST">
                 @csrf
@@ -23,12 +25,13 @@
                     <input type="submit" value="Filter" name="result">
                 </form>
         </div>
+        <a href="/company/register" class="clickme wish">Add a company</a>
         <div id="table_div"><br>
             @if(request()->input('filter')=='users')
                 <table class="center">
                 <tr>
                     <th>Name</th>
-                    <th>Sirname</th>
+                    <th>Surname</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Center</th>
