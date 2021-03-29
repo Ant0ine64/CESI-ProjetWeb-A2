@@ -139,6 +139,9 @@
                     @if (\App\Http\Controllers\PermissionController::can('offer.delete'))
                     &emsp;<a href="#" class="clickme critical">Delete</a>
                     @endif
+                    @if (\App\Http\Controllers\PermissionController::can('wishlist.add'))
+                    &emsp;<a href="#" class="clickme wish">Add to wishlist</a>
+                    @endif 
                     </td>    
                 </tr>
                 @endforeach

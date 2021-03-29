@@ -13,6 +13,11 @@ use App\Http\Controllers\SearchController;
 
 // ===== STANDARD ROUTES =====
 
+// Legal mentions 
+Route::get('legal', function(){
+    return view('legal');
+})->name('Legal');
+
 // root
 Route::get('/', function () {
     if(!PermissionController::isLogged())
