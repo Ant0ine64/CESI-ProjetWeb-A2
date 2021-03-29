@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Délégué</title>
+    <title>Delegue</title>
 </head>
 <body>
     <form action="{{route('delegate.read')}}" method="get">
@@ -11,7 +11,7 @@
         <input type="submit" value="Search delegate"><br>
     </form>
     @isset($username)
-        <p>Permissions de {{$username}} :</p><br>
+        <p>Permission of : {{$username}} :</p><br>
     @isset($user_permissions)
         @php($permissions = \App\Http\Controllers\PermissionController::readAllDelegablePermissions())
         <form action="{{route('delegate.update')}}" method="post">
@@ -37,7 +37,7 @@
                 </tbody>
             </table>
             <input type="hidden" name="login" value="{{$username}}">
-            <input type="submit" value="Enregistrer">
+            <input type="submit" value="Save">
         </form>
     @endisset
     @endisset

@@ -18,7 +18,7 @@
         <input value = "defaultValue" type="text" name="title" id="title"><br>
         <label for="competences">Compétences :</label><br>
         <input value = "defaultValue"type="text" name="competences" id="competences"><br>
-        <label for="date">Date 1 [A redéfinir] : </label><br>
+        <label for="date">Start date : </label><br>
         <input type="date" name="date" id="date" value="2021-03-22" min="2021-03-22"><br> <!--todo: faire en sorte de display a partir de la date actuelle -->
         <label for="endDate">End date : </label><br>
         <input type="date" name="endDate" id="endDate" value="2021-03-23" min="2021-03-22"><br> <!--todo: min doit etre la date de selectionnée dans date (juste au dessus) -->
