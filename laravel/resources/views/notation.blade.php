@@ -7,7 +7,7 @@
 </head>
 <body>
 <form action="" method="post">
-    <div class="note">
+    <div class="note" style="margin-left: 25%; margin-right: -2%">
 
         <label for="note-5" class="labelButon">★</label>
         <input class="c" type="radio" name="note" id="note-5" value="5">
@@ -28,7 +28,7 @@
         <label for="note-1" class="labelButon">★</label>
         <input class="c" type="radio" name="note" id="note-1" value="1">
     </div>
-    <input  class="iinput" type="Submit" value="Commander" name="commander">
+    <input  class="iinput" type="Submit" value="Submit" name="commander">
 </form>
 
 </body>
