@@ -1,13 +1,21 @@
-
-.information
-{
-    margin-left: 30%;
-    margin-right: 30%;
-    border-radius: 2%;
-    border: 1px grey solid;
-    top: 85px;
-    position: relative;
+@media only screen and (max-width: 1199px) {
+    .information{
+        top: 85px;
+        padding: 15%;
+        position: relative;
+        text-align: center;
+    }
 }
+
+@media only screen and (min-width: 1200px) {
+    .information{
+        top: 85px;
+        padding: 1%;
+        position: relative;
+        text-align: center;
+    }
+}
+
 html{
     height: 100%;
 }
