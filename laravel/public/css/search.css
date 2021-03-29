@@ -33,6 +33,14 @@
     margin-left: 46%;
 }
 
+input[type=text] {
+    padding: 6px;
+    border: 1px solid;
+    text-align: center;
+    font-size: 17px;
+    width: 300px;
+}
+
 ul li{
     float: left;
     margin-left: 1%;

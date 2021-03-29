@@ -39,6 +39,7 @@
         <p>Type name : {{$typeInfos->type}}</p><br>
         <p>City name : {{$centerInfos->city}}</p><br>
     </div>
+
     <footer id="footer">
         @include('footer')
     </footer>

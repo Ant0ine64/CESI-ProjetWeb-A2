@@ -13,7 +13,7 @@ use App\Http\Controllers\SearchController;
 
 // ===== STANDARD ROUTES =====
 
-// Legal mentions 
+// Legal mentions
 Route::get('legal', function(){
     return view('legal');
 })->name('Legal');
@@ -67,10 +67,9 @@ Route::get('register', function(){
     return view('register');
 })->name('Register');
 
-Route::get('home', function()
-{
-    return view('home');
-})->name('Home')->middleware('auth');
+
+// HOME
+Route::get('home', [WishListController::class, 'getEveryoneList'])->name('Home')->middleware('auth');
 
 //register
 Route::prefix('register')-> group(function() {
@@ -90,6 +89,12 @@ Route::prefix('user')-> group(function() {
         Route::post('submit', [UserController::class, 'updateByLogin'])->name('user.update');
     });
 
+    Route::prefix('delete')-> group(function() {
+        Route::get('/{id}', function ($id) {
+            return view('user.delete', ['userId' => $id]);
+        });
+        Route::post('submit', [UserController::class, 'deleteUserById'])->name('user.delete');
+    });
 });
 
 // ===== COMPANY =====
@@ -122,15 +127,16 @@ Route::prefix('offer')-> group(function() {
     });
 
     Route::prefix('update')-> group(function() {
-        Route::get('/', function () {
-            return (PermissionController::tryGettingToView('offer.update','offer.update'));
+        Route::get('/{id}', function ($id) {
+            return OfferController::tryGettingOffer($id);
         })->name('offer.getUpdate');
         Route::post('submit', [OfferController::class, 'updateOffer'])->name('offer.update');
     });
 
     Route::prefix('delete')-> group(function() {
-        Route::get('/', function () {
-            return (PermissionController::tryGettingToView('offer.delete','offer.delete'));
+        Route::get('/{id}', function ($id) {
+            return view('offer.delete', ['offerId' => $id]);
+            //return (PermissionController::tryGettingToView('offer.delete','offer.delete'));
         });
         Route::post('submit', [OfferController::class, 'deleteOfferById'])->name('offer.delete');
    });
@@ -141,14 +147,16 @@ Route::prefix('offer')-> group(function() {
 
 Route::prefix('wishlist')-> group(function() {
     Route::prefix('add')-> group(function() {
-        Route::get('/', function () {
-            return (PermissionController::tryGettingToView('wishlist.add','wishlist.add'));
+        Route::get('/{id}', function ($id){
+            return view('wishlist.add', ['offerId' => $id]);
+            //r//eturn (PermissionController::tryGettingToView('wishlist.add','wishlist.add'));
         });
         Route::post('submit', [WishListController::class, 'addToWishList'])->name('wishlist.add');
     });
     Route::prefix('remove')-> group(function() {
-        Route::get('/', function () {
-            return (PermissionController::tryGettingToView('wishlist.remove','wishlist.remove'));
+        Route::get('/{id}', function ($id){
+            return view('wishlist.remove', ['offerId' => $id]);
+            //r//eturn (PermissionController::tryGettingToView('wishlist.add','wishlist.add'));
         });
         Route::post('submit', [WishListController::class, 'removeFromWishList'])->name('wishlist.remove');
     });
