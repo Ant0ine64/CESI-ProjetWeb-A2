@@ -25,6 +25,7 @@
                     <th>Comptences</th>
                     <th>Start date</th>
                     <th>Duration</th>
+                    <th>Contact email</th>
                     <th>Number of slots</th>
                     <th>Actions</th>
                 </tr>
@@ -35,6 +36,7 @@
                     <td>{{$offer->competences}}</td>
                     <td>{{$offer->date}}</td>
                     <td>{{$offer->duration}}</td>
+                    <td>{{$offer->contact_email}}</td>
                     <td>{{$offer->slots}}</td>
                     <td>
                     @if (\App\Http\Controllers\PermissionController::can('offer.update'))
