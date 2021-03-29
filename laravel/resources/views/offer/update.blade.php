@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="/css/offerUpdate.css" rel="stylesheet">
+    <link href="/css/update.css" rel="stylesheet">
     <title>UpdateOffer</title>
 </head>
 
@@ -29,7 +29,7 @@
         <input value = "{{$offerInfos->remuneration}}" type="text" name="remuneration" id="remuneration"><br>
         <label for="slots">Slots : </label><br>
         <input value = "{{$offerInfos->slots}}" type="text" name="slots" id="slots"><br><br/>
-
+        <input type="submit" value="Update">
     </form>
     <footer>
         @include('footer')
