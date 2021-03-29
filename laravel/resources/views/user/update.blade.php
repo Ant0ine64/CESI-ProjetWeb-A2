@@ -29,7 +29,6 @@
         $typeInfos = \App\Models\Type::Where('id' , $userInfos->id_type)->get()->First();
     ?>
     <form action="{{route('user.update')}}" method="post" class="form">
-        @csrf
         First Name :
         <input value= "{{$userInfos->firstname}}" type="text" name="firstname" id="firstname"><br>
         Last Name :

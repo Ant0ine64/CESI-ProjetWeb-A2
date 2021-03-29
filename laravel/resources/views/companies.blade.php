@@ -12,7 +12,6 @@
     <main id="main">
         <div class="form_div">
                 <form action="{{route('comp.filter')}}" method="POST" class="form">
-                @csrf
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
                     <input type="submit" value="Filter" name="result">
                 </form>
