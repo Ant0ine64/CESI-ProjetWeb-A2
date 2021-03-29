@@ -8,7 +8,7 @@
     </div>
     <div id="links">
         <p>
-            <a href="#">About</a>
+            <a href="about">About</a>
             <a href="legal">Legal mention </a>
         </p>
     </div>
