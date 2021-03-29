@@ -89,6 +89,12 @@ Route::prefix('user')-> group(function() {
         Route::post('submit', [UserController::class, 'updateByLogin'])->name('user.update');
     });
 
+    Route::prefix('delete')-> group(function() {
+        Route::get('/{id}', function ($id) {
+            return view('user.delete', ['userId' => $id]);
+        });
+        Route::post('submit', [UserController::class, 'deleteUserById'])->name('user.delete');
+    });
 });
 
 // ===== COMPANY =====
