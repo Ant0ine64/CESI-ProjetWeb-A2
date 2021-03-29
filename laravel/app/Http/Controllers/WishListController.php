@@ -39,19 +39,24 @@ class WishListController extends Controller
             'id_offer' => $offerInfos->First()->id,
             'state' => 0
         ])){
-            return redirect()->route('Offers');
+            return response('Successfully added offer : ' . $idOffer . ' from ' . $idUser . ' to user wishlist.', 200)
+                ->header('Content-Type', 'text/plain');
         }
-            
+
         else{
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
         }
-            
+
     }
 
     //Read
 
-    public static function getWishListByUserId(){
+    public static function getWishListByUserId($userId){
+        return WishList::where('id_user', $userId)->get();
+    }
+
+    public static function getWishList(){ // ????
         $userId = Auth::id();
         $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->where('id_user', $userId)->select('wishlist.*', 'company.*', 'offer.*')->get();
 
