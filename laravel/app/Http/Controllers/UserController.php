@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notation;
+use App\Models\PermissionCustom;
+use App\Models\UserPromotion;
+use App\Models\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
@@ -98,10 +102,11 @@ class UserController extends Controller
     function deleteUserById(Request $request) {
         $userId = $request->input('idUser');
 
-
-
-
-
+        //clearing tables
+        Notation::where('id_user', $userId)->delete();
+        WishList::where('id_user', $userId)->delete();
+        UserPromotion::where('id_user', $userId)->delete();
+        PermissionCustom::where('id_user', $userId)->delete();
         if(User::where('id', $userId)->delete())
             return response('Successfully removed user : ' . $userId, 200)
                 ->header('Content-Type', 'text/plain');
