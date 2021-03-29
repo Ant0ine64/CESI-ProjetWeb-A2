@@ -97,7 +97,7 @@ Route::prefix('user')-> group(function() {
 
 // ===== COMPANY =====
 
-Route::prefix('company')-> group(function() {
+Route::prefix('companies')-> group(function() {
     Route::prefix('register')-> group(function() {
         Route::get('/', function () {
             return (PermissionController::tryGettingToView('company.register','company.create'));
@@ -106,7 +106,9 @@ Route::prefix('company')-> group(function() {
     });
 
     Route::prefix('update')-> group(function() {
-        Route::get('/', [CompanyController::class, 'preCompleteUpdateForm']);
+        Route::get('/{id}', function ($id) {
+            return CompanyController::preCompleteUpdateForm($id);
+        })->name('company.getUpdate');
         Route::post('submit', [CompanyController::class, 'updateCompany'])->name('company.update');
     });
 });

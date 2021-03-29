@@ -34,7 +34,7 @@
                     <td>{{$comp->activity_sector}}</td>
                     <td>
                     @if (\App\Http\Controllers\PermissionController::can('company.update'))
-                    <a href="company/update?id={{$comp->id}}" class="clickme danger">Edit</a>
+                    <a href="companies/update/{{$comp->id}}" class="clickme danger">Edit</a>
                     @endif
                     </td>
                     <td>
