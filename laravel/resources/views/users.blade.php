@@ -17,6 +17,7 @@
                     <input type="submit" value="Filter" name="result">
                 </form>
         </div>
+        <a href="/register" class="clickme wish">Add a user</a>
         <div id="table_div"><br>
                 <table class="center">
                 <tr>

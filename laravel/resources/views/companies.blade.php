@@ -17,6 +17,7 @@
                     <input type="submit" value="Filter" name="result">
                 </form>
         </div>
+        <a href="/company/register" class="clickme wish">Add a company</a>
         <div id="table_div"><br>
                 <table class="center">
                 <tr>
@@ -37,7 +38,7 @@
                     </td>
                 </tr>
                 @endforeach
-                </table>  
+                </table>
                 <span id="paginate-comp">
                 {{$comps->links()}}
                 </span>
