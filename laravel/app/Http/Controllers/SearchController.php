@@ -18,84 +18,44 @@ use function Psy\debug;
 class SearchController extends Controller
 {
     //READ
-    static function readAll(Request $request) {
-        $radio = $request->get('filter');
+    static function readAllU(Request $request) {
         $search = $request->input('searchbar');
     
-        if ($radio == 'users' && $search == ''){
-            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
-            $comps = Company::get();
+        if ($search == ''){
+            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->paginate(5);
         }
-        elseif ($radio == 'users' && $search != ''){
-            $users = User::where('firstname', 'like', '%'.$search.'%')->orWhere('lastname', 'like', '%'.$search.'%')->orWhere('login', 'like', '%'.$search.'%')->orWhere('city', 'like', '%'.$search.'%')->orWhere('type', 'like', '%'.$search.'%')->join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
-            $comps = Company::get();
-        };
-        
-        if($radio == 'offers' && $search == ''){
-            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
-            $comps = Company::get();
-        }
-        elseif($radio == 'offers' && $search != ''){
-            $offers = Offer::where('title', 'like', '%'.$search.'%')->orWhere('competences', 'like', '%'.$search.'%')->orWhere('date', 'like', '%'.$search.'%')->orWhere('duration', 'like', '%'.$search.'%')->join('company', 'offer.id_company', '=', 'company.id')->get();
-            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $comps = Company::get();
+        elseif ($search != ''){
+            $users = User::where('firstname', 'like', '%'.$search.'%')->orWhere('lastname', 'like', '%'.$search.'%')->orWhere('login', 'like', '%'.$search.'%')->orWhere('city', 'like', '%'.$search.'%')->orWhere('type', 'like', '%'.$search.'%')->join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->paginate(5);
         };
 
-        if($radio == 'companies' && $search == ''){
-            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
-            $comps = Company::get();
-        }
-        elseif($radio == 'companies' && $search != ''){
-            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
-            $comps = Company::where('name', 'like', '%'.$search.'%')->orWhere('address', 'like', '%'.$search.'%')->orWhere('activity_sector', 'like', '%'.$search.'%')->get();
-        };
-        
-        return view('search_', ['users' => $users, 'offers' => $offers, 'comps' => $comps, 'radio' => $radio]);
+        return view('users', ['users' => $users]);
     }
 
     //READ
-    static function readAllG(Request $request) {
-        $radio = $request->get('filter');
+    static function readAllC(Request $request) {
+        $search = $request->input('searchbar');
+
+        if($search == ''){
+            $comps = Company::paginate(5);
+        }
+        elseif($search != ''){
+            $comps = Company::where('name', 'like', '%'.$search.'%')->orWhere('address', 'like', '%'.$search.'%')->orWhere('activity_sector', 'like', '%'.$search.'%')->paginate(5);
+        };
+
+        return view('companies', ['comps' => $comps]);
+    }
+
+    //READ
+    static function readAllO(Request $request) {
         $search = $request->input('searchbar');
         
-        if ($radio == 'users' && $search == ''){
-            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
-            $comps = Company::get();
+        if($search == ''){
+            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->paginate(5);
         }
-        elseif ($radio == 'users' && $search != ''){
-            $users = User::where('firstname', 'like', '%'.$search.'%')->orWhere('lastname', 'like', '%'.$search.'%')->orWhere('login', 'like', '%'.$search.'%')->orWhere('city', 'like', '%'.$search.'%')->orWhere('type', 'like', '%'.$search.'%')->join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
-            $comps = Company::get();
-        };
-        
-        if($radio == 'offers' && $search == ''){
-            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
-            $comps = Company::get();
-        }
-        elseif($radio == 'offers' && $search != ''){
-            $offers = Offer::where('title', 'like', '%'.$search.'%')->orWhere('competences', 'like', '%'.$search.'%')->orWhere('date', 'like', '%'.$search.'%')->orWhere('duration', 'like', '%'.$search.'%')->join('company', 'offer.id_company', '=', 'company.id')->get();
-            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $comps = Company::get();
+        elseif($search != ''){
+            $offers = Offer::where('title', 'like', '%'.$search.'%')->orWhere('competences', 'like', '%'.$search.'%')->orWhere('date', 'like', '%'.$search.'%')->orWhere('duration', 'like', '%'.$search.'%')->join('company', 'offer.id_company', '=', 'company.id')->paginate(5);
         };
 
-        if($radio == 'companies' && $search == ''){
-            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
-            $comps = Company::get();
-        }
-        elseif($radio == 'companies' && $search != ''){
-            $users = User::join('center', 'user.id_center', '=', 'center.id')->join('type', 'user.id_type', '=', 'type.id')->select('user.*', 'center.city', 'type.type')->get();
-            $offers = Offer::join('company', 'offer.id_company', '=', 'company.id')->get();
-            $comps = Company::where('name', 'like', '%'.$search.'%')->orWhere('address', 'like', '%'.$search.'%')->orWhere('activity_sector', 'like', '%'.$search.'%')->get();
-        };
-
-        return view('gestion_', ['users' => $users, 'offers' => $offers, 'comps' => $comps, 'radio' => $radio]);
+        return view('offers', ['offers' => $offers]);
     }
 }
