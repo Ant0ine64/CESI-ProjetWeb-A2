@@ -56,9 +56,18 @@ class OfferController extends Controller
         Log::debug($offers);
         return view('search', ['offers' => $offers]);
     }
-
-    public static function tryGettingOffer($offerId) {
+    public static function tryGettingOfferById($offerId) {
         return Offer::where('id', $offerId)->get();
+    }
+
+    public static function tryGettingOffer($id) {
+        $offerInfos = Offer::where('id', $id)->get();
+        if($offerInfos == null || $offerInfos->First() == null)
+            return response('Wrong input', 400)
+                ->header('Content-Type', 'text/plain');
+        else
+            return view('offer.update', ['offerInfos' => $offerInfos->First()]);
+
     }
 
     //Update
@@ -112,7 +121,7 @@ class OfferController extends Controller
     function deleteOfferById(Request $request) {
         $offerId = $request->input('idOffer');
         if(Offer::where('id', $offerId)->delete())
-            return response('Successfully removed offer : ' . $offerId, 200)
+            return view('Successfully removed offer : ' . $offerId, 200)
                 ->header('Content-Type', 'text/plain');
          else
              return response('Wrong user input', 400)
