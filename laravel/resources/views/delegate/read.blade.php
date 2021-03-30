@@ -11,14 +11,8 @@
 </header>
 <main style="height: 130%">
     <div>
-        <form action="{{route('delegate.read')}}" method="get">
-            <input type="text" name="login" id="login"><br>
-            <input type="submit" value="Search delegate"><br>
-        </form>
-    </div>
-    <div>
         @isset($username)
-            <p>Permission of : {{$username}} :</p><br>
+            <p>Permission of <strong>{{$username}}</strong> :</p><br>
         @isset($user_permissions)
             @php($permissions = \App\Http\Controllers\PermissionController::readAllDelegablePermissions())
             <form action="{{route('delegate.update')}}" method="post">
