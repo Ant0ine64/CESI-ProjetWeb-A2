@@ -50,7 +50,7 @@
                 @endforeach
                 </table><br>
                 <div class="container">
-                    <a href="/company/register" class="clickme wish child1">Add a company</a>
+                    <a href="/companies/register" class="clickme wish child1">Add a company</a>
                 </div>
                 <span id="paginate-comp" class="child2">
                     {{$comps->links()}}
