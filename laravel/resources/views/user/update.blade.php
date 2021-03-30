@@ -10,35 +10,17 @@
 <header>
     @include ('header')
 </header>
-    <?php
-    use Illuminate\Support\Facades\Auth;
-
-        if(!\App\Http\Controllers\PermissionController::hasAdminRights()){
-             echo "You're not allowed to perform this request.";
-             return;
-         }
-
-        $userId = $_GET['id'];
-        if($userId == null){
-            echo "This company doesn't exists !";
-            return;
-        }
-
-        $userInfos = \App\Http\Controllers\UserController::tryGettingUserById($userId)->First();
-        $centerInfos = \App\Models\Center::Where('id' , $userInfos->id_center)->get()->First();
-        $typeInfos = \App\Models\Type::Where('id' , $userInfos->id_type)->get()->First();
-    ?>
     <form action="{{route('user.update')}}" method="post" class="form">
-        First Name :
-        <input value= "{{$userInfos->firstname}}" type="text" name="firstname" id="firstname"><br>
-        Last Name :
-        <input value= "{{$userInfos->lastname}}" type="text" name="lastname" id="lastname"><br>
-        Login :
-        <input value= "{{$userInfos->login}}" type="text" name="login" id="login" readonly><br>
-        Type name :
-        <input value= "{{$typeInfos->type}}" type="text" name="type" id="type"><br>
-        City name :
-        <input value= "{{$centerInfos->city}}" type="text" name="city" id="city"><br>
+        <label for="firstname">First Name :</label><br>
+        <input value= "{{$user->firstname}}" type="text" name="firstname" id="firstname"><br>
+        <label for="lastname">Last Name :</label><br>
+        <input value= "{{$user->lastname}}" type="text" name="lastname" id="lastname"><br>
+        <label for="login">Login :</label><br>
+        <input value= "{{$user->login}}" type="text" name="login" id="login" readonly><br>
+        <label for="type">Type name :</label><br>
+        <input value= "{{$user->type}}" type="text" name="type" id="type"><br>
+        <label for="city">City name :</label><br>
+        <input value= "{{$user->city}}" type="text" name="city" id="city"><br>
         <input type="submit" value="Update">
     </form>
 <footer>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Offer;
+use App\Models\OfferPromo;
+use App\Models\WishList;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -42,13 +44,12 @@ class OfferController extends Controller
             'duration' =>  $interval->format('%a'),
             'remuneration' =>  $remuneration,
             'slots' =>  $slots
-        ])){
+        ]))
             return redirect()->route('Offers');
-        }
-        else{
+        else
             return response('Wrong input', 400)
                 ->header('Content-Type', 'text/plain');
-        }
+
 
     }
 
@@ -58,6 +59,7 @@ class OfferController extends Controller
         Log::debug($offers);
         return view('search', ['offers' => $offers]);
     }
+
     public static function tryGettingOfferById($offerId) {
         return Offer::where('id', $offerId)->get();
     }
@@ -68,11 +70,19 @@ class OfferController extends Controller
             return response('Wrong input', 400)
                 ->header('Content-Type', 'text/plain');
         else
-            return view('offer.update', ['offerInfos' => $offerInfos->First()]);
+            return view('offer.update', ['offer' => $offerInfos->First()]);
 
     }
 
     //Update
+    /*function preCompleteUpdateForm(Request $request) {
+
+        $offer = self::tryGettingOffer($request->input('id'));
+
+        return view('offer.update', ['offer' =>$offer]);
+    }*/
+
+
     function updateOffer(Request $request){
 
         $idOffer = $request->input("idOffer");
@@ -83,7 +93,6 @@ class OfferController extends Controller
         $newEndDate = $request->input("endDate");
         $newRemuneration = $request->input("remuneration");
         $newSlots = $request->input("slots");
-
         $companyInfos = CompanyController::tryGettingCompany($newIdCompany);
 
         if($companyInfos == null || $companyInfos->First() == null ||
@@ -110,22 +119,23 @@ class OfferController extends Controller
                   'duration' =>  $interval->format('%a'),
                   'remuneration' =>  $newRemuneration,
                   'slots' =>  $newSlots
-              ])){
+              ]))
                     return redirect()->route('Offers');
-              }   
-              else{
+              else
                   return response('Wrong input', 500)
                       ->header('Content-Type', 'text/plain');
-                    }
 
     }
 
     //Delete
     function deleteOfferById(Request $request) {
         $offerId = $request->input('idOffer');
+        OfferPromo::where('id_offer', $offerId)->delete();
+        WishList::where('id_offer', $offerId)->delete();
+
+
         if(Offer::where('id', $offerId)->delete())
-            return response('Successfully removed offer : ' . $offerId, 200)
-                ->header('Content-Type', 'text/plain');
+            return redirect()->route('Offers');
          else
              return response('Wrong user input', 400)
                   ->header('Content-Type', 'text/plain');

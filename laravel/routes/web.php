@@ -13,17 +13,17 @@ use App\Http\Controllers\SearchController;
 
 // ===== STANDARD ROUTES =====
 
-// Legal mentions
-Route::get('legal', function(){
-    return view('legal');
-})->name('Legal');
+// PROFILE PAGE
+Route::get('profile', [WishListController::class, 'getWishListUser'])->name('profile')->middleware('auth');
 
-// About
-Route::get('about', function(){
-    return view('about');
-})->name('About');
+// FOOTER : Legal mentions
+Route::get('legal', function(){return view('legal');})->name('Legal');
 
-// root
+// FOOTER : About
+Route::get('about', function(){return view('about');})->name('About');
+
+
+// ===== ROOT REDIRECTION =====
 Route::get('/', function () {
     if(!PermissionController::isLogged())
         return view('login');
@@ -31,60 +31,36 @@ Route::get('/', function () {
         return view('home');
 })->name('Login');
 
-// login
-Route::get('login', function () {
-    return view('login');
-})->name('login');
 
+// ===== HOME =====
+Route::get('home', [WishListController::class, 'getEveryoneList'])->name('Home')->middleware('auth');
+
+
+// ===== LOGIN =====
+
+// login
+Route::get('login', function () {return view('login');})->name('login');
 Route::post('login', [LoginController::class, 'authenticate'])->name('user.login');
+
+// logout
 Route::get('logout', [LoginController::class, 'logout'])->name('user.logout');
 
-// ask account
+
+// ASK ACCOUNT
 Route::get('ask_account', function () {
     return view('ask_account');
 })->name('Ask');
 
-// START SEARCH
-Route::get('companies', [SearchController::class, 'readAllC'])->name('Companies')->middleware('auth');
-
-Route::post('companies', [SearchController::class, 'readAllC'])->name('comp.filter');
-
-Route::get('offers', [SearchController::class, 'readAllO'])->name('Offers')->middleware('auth');
-
-Route::post('offers', [SearchController::class, 'readAllO'])->name('offer.filter');
-
-Route::get('users', [SearchController::class, 'readAllU'])->name('Users')->middleware('auth');
-
-Route::post('users', [SearchController::class, 'readAllU'])->name('user.filter');
-//END SEARCH
-
-// Profile page
-Route::get('profile',  [WishListController::class, 'getWishListUser'])->name('profile')->middleware('auth');
-
-// Register page
-Route::get('register', function(){
-    return view('register');
-})->name('Register');
-
-
-// HOME
-Route::get('home', [WishListController::class, 'getEveryoneList'])->name('Home')->middleware('auth');
-
-//register
-Route::prefix('register')-> group(function() {
-    Route::get('/', function () {
-    return view('register');
-    });
-    Route::post('submit', [UserController::class, 'register'])->name('user.create');
-});
 
 // ===== USER =====
 
+// search users
+Route::get('users', [SearchController::class, 'readAllU'])->name('Users')->middleware('auth');
+Route::post('users', [SearchController::class, 'readAllU'])->name('user.filter');
+
 Route::prefix('user')-> group(function() {
     Route::prefix('update')-> group(function() {
-        Route::get('/', function () {
-            return (PermissionController::tryGettingToView('user.update','auth'));
-        });
+        Route::get('/', [UserController::class, 'preCompleteUpdateForm']);
         Route::post('submit', [UserController::class, 'updateByLogin'])->name('user.update');
     });
 
@@ -96,9 +72,21 @@ Route::prefix('user')-> group(function() {
     });
 });
 
+// Add USER (register user)
+Route::prefix('register')-> group(function() {
+    Route::get('/', function () {return view('register');})->name('Register');
+    Route::post('submit', [UserController::class, 'register'])->name('user.create');
+});
+
+
 // ===== COMPANY =====
 
-Route::prefix('company')-> group(function() {
+Route::prefix('companies')-> group(function() {
+    // search tables
+    Route::get('/', [SearchController::class, 'readAllC'])->name('Companies')->middleware('auth');
+    Route::post('/', [SearchController::class, 'readAllC'])->name('comp.filter');
+
+    // register forms
     Route::prefix('register')-> group(function() {
         Route::get('/', function () {
             return (PermissionController::tryGettingToView('company.register','company.create'));
@@ -106,16 +94,21 @@ Route::prefix('company')-> group(function() {
         Route::post('submit', [CompanyController::class, 'registerCompany'])->name('company.create');
     });
 
+    // update forms
     Route::prefix('update')-> group(function() {
-        Route::get('/', function () {
-            return (PermissionController::tryGettingToView('company.update','company.update'));
-        });
+        Route::get('/{id}', function ($id) {
+            return CompanyController::preCompleteUpdateForm($id);
+        })->name('company.getUpdate');
         Route::post('submit', [CompanyController::class, 'updateCompany'])->name('company.update');
     });
 });
 
 
 // ===== OFFER ====
+
+// search tables
+Route::get('offers', [SearchController::class, 'readAllO'])->name('Offers')->middleware('auth');
+Route::post('offers', [SearchController::class, 'readAllO'])->name('offer.filter');
 
 Route::prefix('offer')-> group(function() {
     Route::prefix('register')-> group(function() {
