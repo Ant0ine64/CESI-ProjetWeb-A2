@@ -13,6 +13,7 @@ use App\Http\Controllers\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
 {
@@ -36,7 +37,7 @@ class CompanyController extends Controller
         ])){
             return redirect()->route('Companies');
         }
-        
+
         else{
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
@@ -52,6 +53,17 @@ class CompanyController extends Controller
         return Company::All();
     }
     //Update
+    static function preCompleteUpdateForm($id) {
+
+        $company = Company::where('id', $id)->get();
+        if($company == null || $company->First() == null)
+            return response('Wrong input', 400)
+                ->header('Content-Type', 'text/plain');
+        else
+            return view('company.update', ['company' => $company->First()]);
+
+    }
+
 
     function updateCompany(Request $request){
         $idCompany = $request->input("companyId");
@@ -84,8 +96,8 @@ class CompanyController extends Controller
         else{
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
-        }   
-    } 
+        }
+    }
 
 
     public static function toggleCompanyState($companyId) {
