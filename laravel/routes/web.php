@@ -14,9 +14,7 @@ use App\Http\Controllers\SearchController;
 // ===== STANDARD ROUTES =====
 
 // PROFILE PAGE
-Route::get('profile', function () {
-    return view('profile');
-})->name('profile');
+Route::get('profile', [WishListController::class, 'getWishListUser'])->name('profile')->middleware('auth');
 
 // FOOTER : Legal mentions
 Route::get('legal', function(){return view('legal');})->name('Legal');
@@ -155,8 +153,8 @@ Route::prefix('wishlist')-> group(function() {
         Route::post('submit', [WishListController::class, 'removeFromWishList'])->name('wishlist.remove');
     });
     Route::prefix('update')-> group(function() {
-        Route::get('/', function () {
-            return (PermissionController::tryGettingToView('wishlist.update','')); //todo: this permission doesnt exist
+        Route::get('/{id}', function ($id) {
+            return view('wishlist.update', ['WishId' => $id]); //todo: this permission doesnt exist
         });
         Route::post('submit', [WishListController::class, 'updateWishListState'])->name('wishlist.update');
     });
