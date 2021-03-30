@@ -3,7 +3,7 @@
 <head>
         <link href="/css/search.css" rel="stylesheet">
         <meta charset="UTF-8">
-        <title>Search</title>
+        <title>Offers</title>
 </head>
 <body>
     <header id="header">
