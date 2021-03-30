@@ -164,10 +164,13 @@ Route::prefix('wishlist')-> group(function() {
 // ===== NOTATION =====
 
 Route::prefix('notation')-> group(function() { //add
-    Route::get('/', function () {
-        return (PermissionController::tryGettingToView('notationAdd','auth'));
+    Route::prefix('add')-> group(function() {
+        Route::get('/{id}', function ($id){
+            return view('notation.add', ['companyId' => $id]);
+            //r//eturn (PermissionController::tryGettingToView('wishlist.add','wishlist.add'));
+        });
+        Route::post('submit', [NotationController::class, 'addNotation'])->name('notation.add');
     });
-    Route::post('submit', [NotationController::class, 'addNotation'])->name('notation.add'); //todo: this permission doesnt exist
 });
 
 
