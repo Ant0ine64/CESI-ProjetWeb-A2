@@ -61,10 +61,10 @@
                     <td>{{$wish->state}}</td>
                     <td>
                     @if (\App\Http\Controllers\PermissionController::can('offer.update'))
-                    <a href="/wishlist/update/{{$wish->id_offer}}" class="clickme danger">Edit</a>
+                    <a href="/wishlist/update/{{$wish->id}}" class="clickme danger">Edit</a>
                     @endif
                     @if (\App\Http\Controllers\PermissionController::can('wishlist.remove'))
-                    &emsp;<a href="/wishlist/remove/{{$wish->id_offer}}" class="clickme critical">Remove from wishlist</a>
+                    &emsp;<a href="/wishlist/remove/{{$wish->id_offer}}" class="clickme critical">Remove</a>
                     @endif
                     </td>
                 </tr>
