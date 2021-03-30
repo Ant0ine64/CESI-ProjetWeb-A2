@@ -57,8 +57,15 @@ class NotationController extends Controller
 
     public static function getNotationsByCompanyId($companyId){
         $value = Notation::where('id_company', $companyId)->get();
-        if($value->First() != null)
-            return $value->First()->grade;
+        if($value->First() != null){
+            $result = 0;
+            $index = 0;
+            foreach($value as $gradeNotation){
+                $result += $gradeNotation->grade;
+                $index++;
+            }
+            return $result/$index;
+        }
         return 0;
     }
 }
