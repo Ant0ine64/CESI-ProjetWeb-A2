@@ -1,17 +1,40 @@
-@media only screen and (max-width: 1199px) {
+@media only screen and (max-width: 1347px) {
     main{
         top: 85px;
-        padding-top: 15%;
+        transform: translateY(7%);
         position: relative;
         text-align: center;
     }
+    footer{
+        width: 100%;
+        position: absolute;
+        top: 135%;
+        font-size: 20px;
+        background-color: dimgrey;
+        text-align: center;
+        font-family: Nunito;
+    }
+    #addWish
+    {
+        margin-left: -4%;
+        margin-top: 4%;
+    }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1348px) {
     main{
         top: 85px;
         text-align: center;
         position: relative;
+    }
+    footer{
+        width: 100%;
+        position: absolute;
+        top: 110%;
+        font-size: 20px;
+        background-color: dimgrey;
+        text-align: center;
+        font-family: Nunito;
     }
 }
 
@@ -42,6 +65,7 @@ input[type=text] {
     list-style-type: none;
     font-size: larger;
     margin-left: 46%;
+    padding-bottom: -10%;
 }
 
 #paginate-offer ul {
@@ -137,15 +161,7 @@ table td a{
     margin-top: 50px;
 }
 
-footer{
-    width: 100%;
-    position: absolute;
-    top: 100%;
-    font-size: 20px;
-    background-color: dimgrey;
-    text-align: center;
-    font-family: Nunito;
-}
+
 
 footer a
 {
