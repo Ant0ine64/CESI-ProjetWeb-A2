@@ -49,9 +49,16 @@ class NotationController extends Controller
                 ->header('Content-Type', 'text/plain');
     }
 
-    //Update
-
+    //READ
     public static function getNotationsById($userId){
         return Notation::where('id_user', $userId)->get();
+    }
+
+
+    public static function getNotationsByCompanyId($companyId){
+        $value = Notation::where('id_company', $companyId)->get();
+        if($value->First() != null)
+            return $value->First()->grade;
+        return 0;
     }
 }

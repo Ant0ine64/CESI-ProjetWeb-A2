@@ -163,7 +163,7 @@ Route::prefix('wishlist')-> group(function() {
 
 // ===== NOTATION =====
 
-Route::prefix('notationAdd')-> group(function() {
+Route::prefix('notation')-> group(function() { //add
     Route::get('/', function () {
         return (PermissionController::tryGettingToView('notationAdd','auth'));
     });
