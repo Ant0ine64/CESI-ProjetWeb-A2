@@ -47,8 +47,11 @@ class PermissionController extends Controller
     // Test permission, return true if user can
     public static function can($permission): bool
     {
-        $ability = false;
-        $permission_id = Permission::where('title', $permission)->First()->id;
+
+        $permission = Permission::where('title', $permission)->First();
+        if ($permission == null)
+            return false;
+        $permission_id = $permission->id;
 
         // used for getting type and id
         $user = Auth::user();
