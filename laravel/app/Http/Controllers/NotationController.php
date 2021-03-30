@@ -40,10 +40,9 @@ class NotationController extends Controller
         if(Notation::insert([
             'id_company' => $companyInfos->First()->id,
             'id_user' => $idUser,
-            'grade' => 0
+            'grade' => $grade
         ]))
-            return response('Success', 200)
-                ->header('Content-Type', 'text/plain');
+            return redirect()->route('Companies');
         else
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
