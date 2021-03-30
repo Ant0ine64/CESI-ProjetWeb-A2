@@ -42,16 +42,16 @@
                     <td>{{$offer->slots}}</td>
                     <td>
                     @if (\App\Http\Controllers\PermissionController::can('offer.update'))
-                    <a href="/offer/update/{{$offer->id}}" class="clickme danger">Edit</a>
+                    <a href="/offer/update/{{$offer->id}}" class="clickme danger" id="edit">Edit</a>
                     @endif
                     @if (\App\Http\Controllers\PermissionController::can('offer.delete'))
-                    &emsp;<a href="/offer/delete/{{$offer->id}}" class="clickme critical">Delete</a>
+                    &emsp;<a href="/offer/delete/{{$offer->id}}" class="clickme critical" id="delete">Delete</a>
                     @endif
                     @if (\App\Http\Controllers\PermissionController::can('wishlist.add'))
                         @if(\App\Http\Controllers\WishListController::isInWishList($offer->id))
-                            &emsp;<a href="/wishlist/remove/{{$offer->id}}" class="clickme danger">Remove from wishlist</a>
+                            &emsp;<a href="/wishlist/remove/{{$offer->id}}" class="clickme danger" id="remove">Remove from wishlist</a>
                         @else
-                            &emsp;<a href="/wishlist/add/{{$offer->id}}" class="clickme wish">Add to wishlist</a>
+                            &emsp;<a href="/wishlist/add/{{$offer->id}}" class="clickme wish" id="addWish">Add to wishlist</a>
                         @endif
                     @endif
                     </td>
@@ -60,7 +60,7 @@
                 </table><br>
                 <div class="container">
                     <a href="/offer/register" class="clickme wish child">Add an offer</a>
-                </div> 
+                </div>
                 <span id="paginate-offer">
                 {{$offers->links()}}
                 </span>
