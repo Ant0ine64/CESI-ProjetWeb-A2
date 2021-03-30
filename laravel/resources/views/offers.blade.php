@@ -10,8 +10,8 @@
         @include ('header')
     </header>
     <main id="main">
-        <div id="form_div">
-                <form action="{{route('offer.filter')}}" method="GET">
+        <div class="form_div">
+                <form action="{{route('offer.filter')}}" method="POST" class="form">
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
                     <input type="submit" value="Filter" name="result">
                 </form>
@@ -33,7 +33,7 @@
                 </tr>
                 @foreach ($offers as $offer)
                 <tr>
-                    <td><a href="#">{{$offer->title}}</a></td>
+                    <td>{{$offer->title}}</td>
                     <td>{{$offer->name}}</td>
                     <td>{{$offer->competences}}</td>
                     <td>{{$offer->date}}</td>
@@ -57,7 +57,10 @@
                     </td>
                 </tr>
                 @endforeach
-                </table>
+                </table><br>
+                <div class="container">
+                    <a href="/offer/register" class="clickme wish child">Add an offer</a>
+                </div> 
                 <span id="paginate-offer">
                 {{$offers->links()}}
                 </span>

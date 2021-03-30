@@ -10,8 +10,8 @@
         @include ('header')
     </header>
     <main id="main">
-        <div id="form_div" style="text-align: center">
-                <form action="{{route('comp.filter')}}" method="POST">
+        <div class="form_div">
+                <form action="{{route('comp.filter')}}" method="POST" class="form">
                     <input type="text" placeholder="Your search..." id="searchbar" name="searchbar"><br><br>
                     <input type="submit" value="Filter" name="result">
                 </form>
@@ -26,10 +26,11 @@
                     <th>Address</th>
                     <th>Activity sector</th>
                     <th>Actions</th>
+                    <th>Notation</th>
                 </tr>
                 @foreach ($comps as $comp)
                 <tr>
-                    <td><a href="#">{{$comp->name}}</a></td>
+                    <td>{{$comp->name}}</td>
                     <td>{{$comp->address}}</td>
                     <td>{{$comp->activity_sector}}</td>
                     <td>
@@ -42,10 +43,13 @@
                     </td>
                 </tr>
                 @endforeach
-                </table>
-                <span id="paginate-comp">
-                {{$comps->links()}}
-                </span>
+                </table><br>
+                <div class="container">
+                    <a href="/company/register" class="clickme wish child1">Add a company</a>
+                </div>
+                <span id="paginate-comp" class="child2">
+                    {{$comps->links()}}
+                    </span>
         </div>
     </main>
     <footer>
