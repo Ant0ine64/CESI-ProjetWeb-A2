@@ -19,30 +19,39 @@ class UserController extends Controller
     //CREATE USER
     function register(Request $request){
         //request decomposition
+        $firstName = $request->input("firstname");
+        $lastName = $request->input("lastname");
+        $login = $request->input("login");
+        $typeName = $request->input("type");
+        $cityName = $request->input("city");
+
         $input = $request->all();
 
-        foreach ($input as $value) {
-            if($value == null || $value == "" || $value == 0) {
-                return response('Error invalid input value :'.$value, 400)
+        foreach ($input as $value)
+            if($value == null || $value == "")
+                return response('Wrong input ..', 400)
                     ->header('Content-Type', 'text/plain');
-            }
-        }
 
-        //print_r(Type::where('type', $input['type']));
-        // find the ids of those fields
+        if(is_numeric($typeName))
+            return response('Wrong input..', 400)
+                ->header('Content-Type', 'text/plain');
+
+
         $id_type = json_decode(Type::where('type', $input['type'])->first(), true)['id'];
         $id_center = json_decode(Center::where('city', $input['city'])->first(), true)['id'];
 
-        $user = User::insert([
-            'firstname' => $input['firstname'],
-            'lastname' => $input['lastname'],
+        if($user = User::insert([
+            'firstname' => $firstName,
+            'lastname' => $lastName,
+            'login' => $login,
             'id_type' => $id_type,
             'id_center' => $id_center,
-            'login' => $input['login'],
             'password_hash' => Hash::make($input['password'])
-        ]);
-
-        return redirect()->route('Users');
+        ]))
+            return redirect()->route('login');
+        else
+            return response('Server error..', 500)
+                ->header('Content-Type', 'text/plain');
     }
 
     //READ

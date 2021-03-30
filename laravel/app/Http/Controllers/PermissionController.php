@@ -16,12 +16,9 @@ class PermissionController extends Controller
 {
     public static function readAllDelegablePermissions() {
         //$updatablePermissions = [];
-        foreach (Permission::all() as $perm) {
-            if (in_array($perm['id'], self::UPDATABLE_DELEGATE_PERM)) {
-                //check if permission is updatable
+        foreach (Permission::all() as $perm)
+            if (in_array($perm['id'], self::UPDATABLE_DELEGATE_PERM))
                 $updatablePermissions[$perm['id']] = $perm['title'];
-            }
-        }
         return $updatablePermissions;
     }
 
@@ -61,18 +58,14 @@ class PermissionController extends Controller
 
         Log::debug('utype:'.$user['id_type'].' permid'.$permission_id);
 
-        if(PermissionType::where('id_type', $user['id_type'])->where('id_permission', $permission_id)->first()) {
-            //permission exist in standard permission_type table
+        if(PermissionType::where('id_type', $user['id_type'])->where('id_permission', $permission_id)->first()) //permission exist in standard permission_type table
             return true;
-        } elseif ($user['id_type'] != 4) { //simple perms : not delegate
+         elseif ($user['id_type'] != 4)  //simple perms : not delegate
             return false;
-        }elseif (PermissionCustom::where('id_user', $user['id'])->where('id_permission', $permission_id)->first()) {
-            //test in permission_custom table
+        elseif (PermissionCustom::where('id_user', $user['id'])->where('id_permission', $permission_id)->first()) //test in permission_custom table
             return true;
-        } else {
-            // permission for delegate doesn't exists
+         else // permission for delegate doesn't exists
             return false;
-        }
     }
 
 
@@ -85,10 +78,10 @@ class PermissionController extends Controller
 
         $delegate = User::where('login', $login)->first();
 
-        if ($delegate['id_type'] != 4) { //return if not delegate
+        if ($delegate['id_type'] != 4)  //return if not delegate
             return response('Not a delegate', 404)
                 ->header('Content-Type', 'text/plain');
-        }
+
 
         // find permission of corresponding user
        $join = PermissionCustom::where('id_user', $delegate['id'])->get();
@@ -110,15 +103,16 @@ class PermissionController extends Controller
         $permissions = array_keys($request->except(['login', '_token']));
         Log::debug($permissions);
 
-        if ($delegate['id_type'] != 4) { //return if not delegate
+        if ($delegate['id_type'] != 4)  //return if not delegate
             return response('Not a delegate', 404)
                 ->header('Content-Type', 'text/plain');
-        }
+
 
         //throw 403 forbidden if unauthorized perm is chosen
-        foreach ($permissions as $perm) {
-            if (!in_array($perm, self::UPDATABLE_DELEGATE_PERM)) abort(403);
-        }
+        foreach ($permissions as $perm)
+            if (!in_array($perm, self::UPDATABLE_DELEGATE_PERM))
+                abort(403);
+
 
         //edit the permissions
         PermissionCustom::where('id_user', $delegate['id'])->delete();
