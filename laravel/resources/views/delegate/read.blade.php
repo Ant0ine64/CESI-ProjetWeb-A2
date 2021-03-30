@@ -36,8 +36,8 @@
                     @endforeach
                     </tbody>
                 </table>
-                <input type="hidden" name="login" value="{{$username}}">
-                <input type="submit" value="Save">
+                <input type="hidden" name="login" value="{{$username}}" style="text-align: center">
+                <input type="submit" value="Save" class="clickme critical">
             </form>
     </div>
     @endisset
