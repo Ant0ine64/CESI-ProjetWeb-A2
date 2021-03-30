@@ -40,10 +40,9 @@ class NotationController extends Controller
         if(Notation::insert([
             'id_company' => $companyInfos->First()->id,
             'id_user' => $idUser,
-            'grade' => 0
+            'grade' => $grade
         ]))
-            return response('Success', 200)
-                ->header('Content-Type', 'text/plain');
+            return redirect()->route('Companies');
         else
             return response('Wrong input', 500)
                 ->header('Content-Type', 'text/plain');
@@ -57,8 +56,15 @@ class NotationController extends Controller
 
     public static function getNotationsByCompanyId($companyId){
         $value = Notation::where('id_company', $companyId)->get();
-        if($value->First() != null)
-            return $value->First()->grade;
+        if($value->First() != null){
+            $result = 0;
+            $index = 0;
+            foreach($value as $gradeNotation){
+                $result += $gradeNotation->grade;
+                $index++;
+            }
+            return $result/$index;
+        }
         return 0;
     }
 }
