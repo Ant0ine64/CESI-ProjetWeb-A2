@@ -127,6 +127,10 @@ table td a{
     color: #FFFFFF;
 }
 
+.info {
+    background-color: #0090ff;
+    color: #FFFFFF;
+}
 .danger:hover {
     background-color:#FF8C00;
     color: #FFFFFF;
