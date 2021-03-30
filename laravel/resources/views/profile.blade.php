@@ -38,6 +38,38 @@
         <p>Login : {{$userInfos->login}}</p><br>
         <p>Type name : {{$typeInfos->type}}</p><br>
         <p>City name : {{$centerInfos->city}}</p><br>
+    </div><br><br><br>
+
+    <div class="table_div">
+    <table class="center">
+                <tr>
+                    <th>Company name</th>
+                    <th>Offer Title</th>
+                    <th>Start date</th>
+                    <th>Duration</th>
+                    <th>Contact email</th>
+                    <th>State</th>
+                    <th>Actions</th>
+                </tr>
+                @foreach ($wishes as $wish)
+                <tr>
+                    <td>{{$wish->name}}</td>
+                    <td>{{$wish->title}}</td>
+                    <td>{{$wish->date}}</td>
+                    <td>{{$wish->duration}}</td>
+                    <td>{{$wish->contact_email}}</td>
+                    <td>{{$wish->state}}</td>
+                    <td>
+                    @if (\App\Http\Controllers\PermissionController::can('offer.update'))
+                    <a href="/wishlist/update/{{$wish->id_offer}}" class="clickme danger">Edit</a>
+                    @endif
+                    @if (\App\Http\Controllers\PermissionController::can('wishlist.remove'))
+                    &emsp;<a href="/wishlist/remove/{{$wish->id_offer}}" class="clickme critical">Remove from wishlist</a>
+                    @endif
+                    </td>
+                </tr>
+                @endforeach
+                </table><br>
     </div>
 
     <footer id="footer">
