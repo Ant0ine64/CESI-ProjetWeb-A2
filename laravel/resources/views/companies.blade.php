@@ -2,8 +2,15 @@
 <html lang="fr">
 <head>
         <link href="/css/search.css" rel="stylesheet">
+<<<<<<< HEAD
         <meta charset="UTF-8">
         <title>Companies</title>
+=======
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+    <meta charset="UTF-8">
+        <title>Search</title>
+>>>>>>> cf11df3428d921f59d41ec1fef47a3d7994fe6d4
 </head>
 <body>
     <header id="header">
@@ -39,13 +46,16 @@
                     @endif
                     </td>
                     <td>
-                        @include ('notation')
+                        @for ($i = 0; $i < 5; ++$i)
+                            <i class="fa fa-star{{ \App\Http\Controllers\NotationController::getNotationsByCompanyId($comp->id) <= $i ? '-o' : '' }}" aria-hidden="true"></i>
+                        @endfor
+                            <a href="notation/add/{{$comp->id}}" class="clickme info">Evaluate Company</a>
                     </td>
                 </tr>
                 @endforeach
                 </table><br>
                 <div class="container">
-                    <a href="/company/register" class="clickme wish child1">Add a company</a>
+                    <a href="/companies/register" class="clickme wish child1">Add a company</a>
                 </div>
                 <span id="paginate-comp" class="child2">
                     {{$comps->links()}}
