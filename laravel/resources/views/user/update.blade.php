@@ -11,15 +11,15 @@
     @include ('header')
 </header>
     <form action="{{route('user.update')}}" method="post" class="form">
-        First Name :
+        <label for="firstname">First Name :</label><br>
         <input value= "{{$user->firstname}}" type="text" name="firstname" id="firstname"><br>
-        Last Name :
+        <label for="lastname">Last Name :</label><br>
         <input value= "{{$user->lastname}}" type="text" name="lastname" id="lastname"><br>
-        Login :
+        <label for="login">Login :</label><br>
         <input value= "{{$user->login}}" type="text" name="login" id="login" readonly><br>
-        Type name :
+        <label for="type">Type name :</label><br>
         <input value= "{{$user->type}}" type="text" name="type" id="type"><br>
-        City name :
+        <label for="city">City name :</label><br>
         <input value= "{{$user->city}}" type="text" name="city" id="city"><br>
         <input type="submit" value="Update">
     </form>
