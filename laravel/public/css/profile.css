@@ -123,3 +123,59 @@ a:hover
     max-width: 25%;
 }
 
+.table_div{
+    margin-top: 50px;
+}
+
+table td{
+    text-align: center;
+}
+
+table td a{
+    display: inline-block;
+    text-align: center;
+}
+
+.center{
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+table, th, td{
+    border: 1px solid black;
+
+}
+
+th, td{
+    padding: 15px;
+}
+
+.clickme {
+    background-color: #EEEEEE;
+    padding: 8px 20px;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.critical {
+    background-color: orangered;
+    color: #FFFFFF;
+}
+
+.critical:hover {
+    background-color:red;
+    color: #FFFFFF;
+}
+
+.danger {
+    background-color:orange;
+    color: #FFFFFF;
+}
+
+.danger:hover {
+    background-color:#FF8C00;
+    color: #FFFFFF;
+}

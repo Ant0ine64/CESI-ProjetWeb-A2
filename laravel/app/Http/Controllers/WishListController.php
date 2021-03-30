@@ -53,19 +53,17 @@ class WishListController extends Controller
         return WishList::where('id_user', $userId)->get();
     }
 
-    public static function getWishList(){ // ????
+    public static function getWishListUser(){ // ????
         $userId = Auth::id();
-        $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->where('id_user', $userId)->select('wishlist.*', 'company.*', 'offer.*')->get();
+        $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->where('id_user', $userId)->select('wishlist.*', 'company.name', 'offer.title', 'offer.date', 'offer.duration', 'offer.contact_email')->get();
 
-        return view('home', ['wishes' => $wishes]);
+        return view('profile', ['wishes' => $wishes]);
     }
 
     public static function getEveryoneList(){
-        $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->select('wishlist.*', 'company.*', 'offer.*')->get();
+        $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->select('wishlist.*', 'company.name', 'offer.title', 'offer.date', 'offer.duration', 'offer.contact_email')->get();
 
-        Log::debug($wishes);
-
-        return view('home', ['wishes' => $wishes]);
+        return view('profile', ['wishes' => $wishes]);
     }
     public static function isInWishList($offerId) : bool {
         $wishList = WishListController::getWishListByUserId(Auth::id());
@@ -74,19 +72,20 @@ class WishListController extends Controller
                 return true;
         return false;
     }
+
     //Update
     function updateWishListState(Request $request){ // attention ici on ne check pas si l'idOffer existe dans l'id user a voir si on a le temps de le faire
         //state++;
         $idUser = Auth::id();
-        $idOffer = $request->input('idOffer');
+        $idWish = $request->input('WishId');
         if(WishList::where('id_user', '=', $idUser)
-            ->where('id_offer', '=', $idOffer)
+            ->where('id', '=', $idWish)
             ->update([
+                'id' => $idWish,
                 'id_user' => $idUser,
-                'id_offer' => $idOffer,
                 'state' => DB::raw('state+1')
             ]))
-            return redirect()->route('Offers');
+            return redirect()->route('profile', ['id' => $idUser]);
         else
             return response('Wrong input', 400)
                 ->header('Content-Type', 'text/plain');
