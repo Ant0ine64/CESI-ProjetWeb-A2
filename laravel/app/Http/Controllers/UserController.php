@@ -66,7 +66,7 @@ class UserController extends Controller
 
         $user = self::tryGettingUserById($request->input('id'))->first();
         $user['type'] = Type::where('id', $user['id_type'])->first()['type'];
-        $user['center'] = Center::where('id', $user['id_center'])->first()['city'];
+        $user['city'] = Center::where('id', $user['id_center'])->first()['city'];
 
         return view('user.update', ['user' => $user]);
     }
