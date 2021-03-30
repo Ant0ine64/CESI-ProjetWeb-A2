@@ -89,6 +89,7 @@ class PermissionController extends Controller
         // find permission of corresponding user
        $join = PermissionCustom::where('id_user', $delegate['id'])->get();
 
+       $permissions = [];
         foreach ($join as $perm) $permissions[] = $perm->id_permission;
 
         return view('delegate.read', ['username' => $login, 'user_permissions' => $permissions]);

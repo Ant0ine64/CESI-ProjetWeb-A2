@@ -57,13 +57,16 @@
                     @if (\App\Http\Controllers\PermissionController::can($prefix.".delete"))
                     &emsp;<a href="/user/delete/{{$user->id}}" class="clickme critical">Delete</a>
                     @endif
+                    @if (\App\Http\Controllers\PermissionController::can('delegue.addPermissions') && $prefix == 'delegue')
+                    &emsp;<a href="/delegate?login={{$user->login}}" class="clickme danger">Edit permissions</a>
+                    @endif
                     </td>
                 </tr>
                 @endforeach
                 </table><br>
                 <div class="container">
                     <a href="/register" class="clickme wish child">Add a user</a>
-                </div> 
+                </div>
                 <span id="paginate-user">
                 {{$users->links()}}
                 </span>
