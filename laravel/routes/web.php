@@ -59,10 +59,10 @@ Route::post('users', [SearchController::class, 'readAllU'])->name('user.filter')
 //END SEARCH
 
 // Profile page
-Route::get('profile', function () {
-    return view('profile');
-})->name('profile');
+Route::get('profile',  [WishListController::class, 'getWishListUser'])->name('profile')->middleware('auth');
 
+
+// Register page
 Route::get('register', function(){
     return view('register');
 })->name('Register');

@@ -53,11 +53,11 @@ class WishListController extends Controller
         return WishList::where('id_user', $userId)->get();
     }
 
-    public static function getWishList(){ // ????
+    public static function getWishListUser(){ // ????
         $userId = Auth::id();
         $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->where('id_user', $userId)->select('wishlist.*', 'company.*', 'offer.*')->get();
 
-        return view('home', ['wishes' => $wishes]);
+        return view('profile', ['wishes' => $wishes]);
     }
 
     public static function getEveryoneList(){
@@ -65,7 +65,7 @@ class WishListController extends Controller
 
         Log::debug($wishes);
 
-        return view('home', ['wishes' => $wishes]);
+        return view('profile', ['wishes' => $wishes]);
     }
     public static function isInWishList($offerId) : bool {
         $wishList = WishListController::getWishListByUserId(Auth::id());
@@ -86,7 +86,7 @@ class WishListController extends Controller
                 'id_offer' => $idOffer,
                 'state' => DB::raw('state+1')
             ]))
-            return redirect()->route('Offers');
+            return redirect()->route('profile');
         else
             return response('Wrong input', 400)
                 ->header('Content-Type', 'text/plain');
