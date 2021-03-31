@@ -3,10 +3,12 @@
 <head>
         <link href="/css/main.css" rel="stylesheet">
         <meta charset="UTF-8">
-        <title>Offers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <title>Offers</title>
 </head>
 <body>
-    <header id="header">
+    <header>
         @include ('header')
     </header>
     <main id="main">

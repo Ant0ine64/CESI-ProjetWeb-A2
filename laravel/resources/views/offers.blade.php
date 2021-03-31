@@ -2,7 +2,9 @@
 <html lang="fr">
 <head>
         <link href="/css/main.css" rel="stylesheet">
-        <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
         <title>Offers</title>
 </head>
 <body>

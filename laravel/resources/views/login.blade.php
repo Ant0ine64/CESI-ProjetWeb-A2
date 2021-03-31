@@ -2,14 +2,16 @@
 <html lang="fr">
 <head>
         <link href="/css/login.css" rel="stylesheet">
-        <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="theme-color" content="#000000">
         <title>Login</title>
         <link rel="manifest" href="manifest.json">
         <link rel="apple-touch-icon" href="img/cesinkdin">
     </head>
-    <body>
+    <body style="font-family: 'Nunito'">
             <div id="log_form_div">
                 <img src="img/cesinkdin.png" alt="Logo" id="logo">
                 <form id="login_form" action="{{route('user.login')}}" method="POST">

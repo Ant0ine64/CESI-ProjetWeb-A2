@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>UserUpdate</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="/css/userUpdate.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
 </head>
 <body style="font-family: Nunito;">
 <header id="header">

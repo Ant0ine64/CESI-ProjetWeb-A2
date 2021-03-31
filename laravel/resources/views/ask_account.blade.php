@@ -2,10 +2,12 @@
 <html lang="fr">
 <head>
         <link href="/css/ask.css" rel="stylesheet">
-        <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
         <title>Account demands</title>
     </head>
-    <body>
+    <body style="font-family: 'Nunito'">
             <div id="ask_form_div">
                 <img src="img/cesinkdin.png" alt="Logo" id="logo">
                 <form id="ask_acc_form" method="POST">

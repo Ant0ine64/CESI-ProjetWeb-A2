@@ -9,7 +9,7 @@ html{
 }
 
 body{
-    background: linear-gradient(to bottom right,orange, white);
+    background-image:url("./public/img/home-max.jpg");
 }
 
 
