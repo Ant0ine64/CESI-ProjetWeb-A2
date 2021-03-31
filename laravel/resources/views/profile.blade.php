@@ -5,12 +5,13 @@
     <title>Profile</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="/css/profile.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
 </head>
 <body style="font-family: 'Nunito'">
-    <header id="header">
+    <header style="transform: translateY(-21px)">
         @include('header')
     </header>
+    <main>
     <?php
     use Illuminate\Support\Facades\Auth;
 
@@ -71,7 +72,7 @@
                 @endforeach
                 </table><br>
     </div>
-
+    </main>
     <footer id="footer">
         @include('footer')
     </footer>
