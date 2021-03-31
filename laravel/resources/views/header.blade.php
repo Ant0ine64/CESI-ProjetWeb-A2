@@ -1,3 +1,6 @@
+<head>
+    <link href="/css/headerFooter.css" rel="stylesheet">
+</head>
 <div id="header">
     <div id="partLeft">
         <div class="links">
