@@ -10,6 +10,7 @@
     <header>
         @include ('header')
     </header>
+    <main>
     <form action="{{route('offer.create')}}" method="post" class="form" style="text-align: center;">
         <label for="idCompany">Company Name : </label><br>
         <input type="text" name="idCompany" id="idCompany"><br>
@@ -31,6 +32,7 @@
         color: #FFFFFF;
         ">
     </form>
+    </main>
     <footer>
         @include('footer')
     </footer>

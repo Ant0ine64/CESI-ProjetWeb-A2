@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link href="/css/search.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="/css/read.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Delegue</title>
 </head>
-<body>
-<header id="header">
+<body style="font-family: 'Nunito'">
+<header>
     @include ('header')
 </header>
+    <main>
     <form action="{{route('delegate.read')}}" method="get">
         <input type="text" name="login" id="login"><br>
         <input type="submit" value="Search delegate"><br>
@@ -17,7 +19,7 @@
         <p>Permission of : {{$username}} :</p><br>
     @isset($user_permissions)
         @php($permissions = \App\Http\Controllers\PermissionController::readAllDelegablePermissions())
-        <form action="{{route('delegate.update')}}" method="post">
+        <form action="{{route('delegate.update')}}" method="post" id="tableRead">
             <table>
                 <thead>
                 <tr>
@@ -39,11 +41,12 @@
                 </tbody>
             </table>
             <input type="hidden" name="login" value="{{$username}}">
-            <input type="submit" value="Save">
+            <input type="submit" value="Save" id="buttonSave">
         </form>
     @endisset
     @endisset
-<footer>
+        </main>
+<footer id="footerRead">
     @include('footer')
 </footer>
 </body>

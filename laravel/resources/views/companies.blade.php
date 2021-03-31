@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link href="/css/search.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Companies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <meta charset="UTF-8">
 </head>

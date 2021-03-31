@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="/css/update.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
     <title>UpdateOffer</title>
 </head>
 
@@ -11,7 +11,8 @@
     <header>
         @include ('header')
     </header>
-    <form action="{{route('offer.update')}}" method="post" class="form">
+    <main>
+        <form action="{{route('offer.update')}}" method="post" class="form">
         <label for="idOffer">Offer ID : </label><br>
         <input value = "{{$offer->id}}" type="text" name="idOffer" id="idOffer" readonly><br>
         <label for="idCompany">Company ID : </label><br>
@@ -30,6 +31,7 @@
         <input value = "{{$offer->slots}}" type="text" name="slots" id="slots"><br><br/>
         <input type="submit" value="Update">
     </form>
+    </main>
     <footer>
         @include('footer')
     </footer>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-        <link href="/css/search.css" rel="stylesheet">
+        <link href="/css/main.css" rel="stylesheet">
         <meta charset="UTF-8">
         <title>Offers</title>
 </head>
@@ -33,7 +33,7 @@
                 <tr>
                     <td>{{$user->firstname}}</td>
                     <td>{{$user->lastname}}</td>
-                    <td><a href="profile?id={{$user->id}}">{{$user->login}}</a></td>
+                    <td><a href="profile?id={{$user->id}}" style="color: blue">{{$user->login}}</a></td>
                     <td>{{$user->type}}</td>
                     <td>{{$user->city}}</td>
                     <td>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-        <link href="/css/search.css" rel="stylesheet">
+        <link href="/css/main.css" rel="stylesheet">
         <meta charset="UTF-8">
         <title>Offers</title>
 </head>
