@@ -9,7 +9,7 @@ html{
 }
 
 body{
-    background: linear-gradient(to bottom right,orange, white);
+    
 }
 
 header{
@@ -20,7 +20,7 @@ header{
     height:70px;
 }
 
-.main{
+main{
     top: 8px;
     position: relative;
 }
@@ -168,4 +168,9 @@ header a
     color: dimgrey;
     margin-left: 80%;
     margin-bottom: -30%;
+}
+
+.gueule_de_benoit{
+    height: 5520px;
+    width: 3140px;
 }
