@@ -16,56 +16,52 @@ class WishListController extends Controller
 {
     //Create
     function addToWishList(Request $request){
-        $idUser = Auth::id();
-        $idOffer = $request->input("idOffer");
+        $idUser = Auth::id(); //used to get user id thanks to Auth class
+        $idOffer = $request->input("idOffer"); //we get the idOffer that the user has chosen
 
-        $offerInfos = OfferController::tryGettingOfferById($idOffer);
+        $offerInfos = OfferController::tryGettingOfferById($idOffer); //return the list of all offers that have the id $idOffer
+        $userWishList = WishListController::getWishListByUserId($idUser); //return the list of all users that have the id $idUser
 
-        $userWishList = WishListController::getWishListByUserId($idUser);
-
-        foreach ($userWishList as $wishObject) // todo: remove cette merde et mettre ->where()->where()
+        foreach ($userWishList as $wishObject) //checking if the user aleady have this offer in his wishlist
             if ($wishObject->id_offer == $idOffer)
                 return response('This offer is already in user wishlist..', 400)
                     ->header('Content-Type', 'text/plain');
 
-        if($offerInfos == null || $offerInfos->First() == null ||
+        if($offerInfos == null || $offerInfos->First() == null || //checking user inputs
             $idOffer == null ||
             !is_numeric($idOffer) || !is_numeric($idUser))
             return response('Wrong input', 400)
                 ->header('Content-Type', 'text/plain');
 
-        if(WishList::insert([
+        if(WishList::insert([ //we try to insert all the data in the wishlist table
             'id_user' => $idUser,
             'id_offer' => $offerInfos->First()->id,
             'state' => 0
         ]))
-            return redirect()->route('Offers');
+            return redirect()->route('Offers');//If it's a success, we go back on the road and offer
         else
-            return response('Wrong input', 500)
+            return response('Wrong input', 500) //otherwise we return an error
                 ->header('Content-Type', 'text/plain');
 
 
     }
 
     //Read
-
-    public static function getWishListByUserId($userId){
+    public static function getWishListByUserId($userId){ //returns the list of all the user's wishlists ($userId)
         return WishList::where('id_user', $userId)->get();
     }
 
-    public static function getWishListUser(){ // ????
+    public static function getWishListUser(){ // returns the list of all the user's wishlists (Auth::id())
         $userId = Auth::id();
         $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->where('id_user', $userId)->select('wishlist.*', 'company.name', 'offer.title', 'offer.date', 'offer.duration', 'offer.contact_email')->get();
-
         return view('profile', ['wishes' => $wishes]);
     }
 
-    public static function getEveryoneList(){
+    public static function getEveryoneList(){ //return the list of all the wishlist
         $wishes = WishList::join('offer', 'wishlist.id_offer', '=', 'offer.id')->join('company', 'offer.id_company', '=', 'company.id')->select('wishlist.*', 'company.name', 'offer.title', 'offer.date', 'offer.duration', 'offer.contact_email')->get();
-
         return view('profile', ['wishes' => $wishes]);
     }
-    public static function isInWishList($offerId) : bool {
+    public static function isInWishList($offerId) : bool { //check if the user has the $offerId in his wishlist
         $wishList = WishListController::getWishListByUserId(Auth::id());
         foreach ($wishList as $wishObject)
             if ($wishObject->id_offer == $offerId)
@@ -74,33 +70,33 @@ class WishListController extends Controller
     }
 
     //Update
-    function updateWishListState(Request $request){ // attention ici on ne check pas si l'idOffer existe dans l'id user a voir si on a le temps de le faire
-        //state++;
-        $idUser = Auth::id();
-        $idWish = $request->input('WishId');
-        if(WishList::where('id_user', '=', $idUser)
+    function updateWishListState(Request $request){
+        $idUser = Auth::id(); //used to get user id thanks to Auth class
+        $idWish = $request->input('WishId'); //we get the WishId that the user has chosen
+
+        if(WishList::where('id_user', '=', $idUser) //we try to update the status of his wishlisted offer
             ->where('id', '=', $idWish)
             ->update([
                 'id' => $idWish,
                 'id_user' => $idUser,
                 'state' => DB::raw('state+1')
             ]))
-            return redirect()->route('profile', ['id' => $idUser]);
+            return redirect()->route('profile', ['id' => $idUser]); //if it's a success, we go back on the road and offer
         else
-            return response('Wrong input', 400)
+            return response('Wrong input', 400)//otherwise we return an error
                 ->header('Content-Type', 'text/plain');
     }
 
     //Delete
     function removeFromWishList(Request $request){
-        $idUser = Auth::id();
-        $idOffer = $request->input('idOffer');
-        if(WishList::where('id_user', '=', $idUser)
+        $idUser = Auth::id(); //used to get user id thanks to Auth class
+        $idOffer = $request->input('idOffer'); //we get the idOffer that the user has chosen
+        if(WishList::where('id_user', '=', $idUser) //we try to remove this wishlisted offer
             ->where('id_offer', '=', $idOffer)
             ->delete())
-            return redirect()->route('Offers');
+            return redirect()->route('Offers'); //if it's a success, we go back on the road and offer
         else
-            return response('Wrong user input', 400)
+            return response('Wrong user input', 400) //otherwise we return an error
                 ->header('Content-Type', 'text/plain');
     }
 }

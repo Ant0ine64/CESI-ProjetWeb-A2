@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class WishList extends Model
 {
-    use HasFactory;
+    use HasFactory; //getting a new factory instance for the model.
 
-    protected $table = 'wishlist';
-    protected $guarded = [];
-    public $timestamps = false;
+    protected $table = 'wishlist'; //table name
+    protected $guarded = []; //guards
+    public $timestamps = false; //is using timestamps ?
 }
