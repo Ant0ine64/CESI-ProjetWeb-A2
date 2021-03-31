@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <link href="/css/search.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Delegue</title>
 </head>
 <body>
+<header id="header">
+    @include ('header')
+</header>
     <form action="{{route('delegate.read')}}" method="get">
-        @csrf
         <input type="text" name="login" id="login"><br>
         <input type="submit" value="Search delegate"><br>
     </form>
@@ -40,5 +43,8 @@
         </form>
     @endisset
     @endisset
+<footer>
+    @include('footer')
+</footer>
 </body>
 </html>

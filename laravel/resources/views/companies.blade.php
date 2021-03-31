@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-        <link href="/css/search.css" rel="stylesheet">
-<<<<<<< HEAD
-        <meta charset="UTF-8">
-        <title>Companies</title>
-=======
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
-
+    <link href="/css/search.css" rel="stylesheet">
     <meta charset="UTF-8">
-        <title>Search</title>
->>>>>>> cf11df3428d921f59d41ec1fef47a3d7994fe6d4
+    <title>Companies</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <meta charset="UTF-8">
 </head>
 <body>
     <header id="header">
