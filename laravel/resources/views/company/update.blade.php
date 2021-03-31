@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>UpdateCompany</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="/css/update.css" rel="stylesheet"></head>
-<body>
+    <link href="/css/main.css" rel="stylesheet"></head>
+<body style="font-family: Nunito;">
 <header style="font-family: Nunito">
     @include ('header')
 </header>
-    <body style="font-family: Nunito;">
+<main>
+
     <form action="{{route('company.update')}}" method="post" class="form">
                Company id : <br>
                <input value="{{$company->id}}" type="text" name="companyId" id="companyId" readonly><br>
@@ -23,7 +24,7 @@
                <input value="{{$company->interns_number}}" type="text" name="internsNumber" id="internsNumber"><br><br>
                <input type="submit" value="Update Company">
                </form>
-    </body>
+</main>
 <footer>
     @include('footer')
 </footer>

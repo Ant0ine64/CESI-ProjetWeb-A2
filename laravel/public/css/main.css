@@ -1,0 +1,157 @@
+main{
+    top: 85px;
+    transform: translateY(7%);
+    position: relative;
+    text-align: center;
+}
+
+html{
+    height: 100%;
+}
+
+a{
+    color: lightgrey;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right,orange, white);
+}
+
+table td {
+    text-align: center;
+}
+
+table td a {
+    display: inline-block;
+    text-align: center;
+}
+
+.center {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.clickme {
+    background-color: #EEEEEE;
+    padding: 8px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.danger {
+    background-color: orange;
+    color: #FFFFFF;
+}
+
+.danger:hover {
+    background-color: orangered;
+    color: #FFFFFF;
+}
+
+.critical {
+    background-color: orangered;
+    color: #FFFFFF;
+}
+
+.critical:hover {
+    background-color: red;
+    color: #FFFFFF;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+
+th, td {
+    padding: 15px;
+}
+
+.form_div{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+input[type=text] {
+    padding: 6px;
+    border: 1px solid;
+    font-size: 17px;
+    width: 300px;
+}
+
+#paginate-user ul {
+    list-style-type: none;
+    font-size: larger;
+    margin-left: 46%;
+}
+
+#paginate-comp ul {
+    list-style-type: none;
+    font-size: larger;
+    margin-left: 46%;
+    padding-bottom: -10%;
+}
+
+#paginate-offer ul {
+    list-style-type: none;
+    font-size: larger;
+    margin-left: 46%;
+}
+
+ul li{
+    float: left;
+    margin-left: 1%;
+}
+
+html{
+    height: 100%;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+table td{
+    text-align: center;
+}
+
+.center{
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.info {
+    background-color: #0090ff;
+    color: #FFFFFF;
+}
+
+.wish {
+    background-color:green;
+    color: #FFFFFF;
+}
+
+.wish:hover {
+    background-color: #006400;
+    color: #FFFFFF;
+}
+
+#main{
+    top: 85px;
+    position: relative;
+}
+
+#table_div{
+    margin-top: 50px;
+}
+
