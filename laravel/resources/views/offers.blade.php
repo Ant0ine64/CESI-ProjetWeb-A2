@@ -58,9 +58,6 @@
                 </tr>
                 @endforeach
                 </table><br>
-                <div class="container">
-                    <a href="/offer/register" class="clickme wish child">Add an offer</a>
-                </div>
                 <span id="paginate-offer">
                 {{$offers->links()}}
                 </span>
