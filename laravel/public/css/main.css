@@ -155,3 +155,6 @@ table td{
     margin-top: 50px;
 }
 
+footer{
+    transform: translateY(50px);
+}
