@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="/css/update.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
     <title>NotationAdd</title>
 </head>
-<body style="font-family: Nunito;">
+<body>
 <header>
     @include ('header')
 </header>
