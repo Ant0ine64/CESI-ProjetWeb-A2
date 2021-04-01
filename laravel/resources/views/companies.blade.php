@@ -49,10 +49,7 @@
                     </td>
                 </tr>
                 @endforeach
-                </table><br>
-                <div class="container">
-                    <a href="/companies/register" class="clickme wish child1">Add a company</a>
-                </div>
+                </table><br/>
                 <span id="paginate-comp" class="child2">
                     {{$comps->links()}}
                     </span>
