@@ -7,6 +7,11 @@ body{
     background: linear-gradient(to bottom right,orange, white);
 }
 
+#img{
+    width: 100%;
+    height: 75%;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -47,5 +52,5 @@ main p{
 }
 
 footer{
-    bottom: 0;
+    transform: translateY(700px);
 }
