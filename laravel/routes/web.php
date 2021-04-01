@@ -28,12 +28,14 @@ Route::get('/', function () {
     if(!PermissionController::isLogged())
         return view('login');
     else
-        return view('home');
+        return redirect()->route('home');
 })->name('Login');
 
 
 // ===== HOME =====
-Route::get('home', [WishListController::class, 'getEveryoneList'])->name('Home')->middleware('auth');
+Route::get('home', function(){
+    return view('home');
+})->name('Home')->middleware('auth');
 
 
 // ===== LOGIN =====
