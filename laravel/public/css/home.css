@@ -52,5 +52,6 @@ main p{
 }
 
 footer{
+    height: 250px;
     transform: translateY(700px);
 }
