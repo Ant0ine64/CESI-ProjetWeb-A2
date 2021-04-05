@@ -8,6 +8,7 @@ Projet WEB réalisé par :
 
 ## Contenu
 - MCD sous `database/MCD.png`
+- Mockup sous `MockUP/*`
 - Fichiers de virtual host sous `vistual_hosts/*`
 - Fichier de configuration d'accès apache sous `laravel/public/.htaccess`
 - Le code source que nous avons écrit pour l'application se trouve dans : 
